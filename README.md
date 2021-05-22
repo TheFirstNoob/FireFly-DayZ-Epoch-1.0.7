@@ -21,13 +21,15 @@ FireFly - Это российский сервер с упором на хард
 * [Notepad++](http://www.notepad-plus-plus.org/download/)
 * [Navicat](http://www.yadi.sk/d/YloWgCGM60FL2) или другая программа для работы с MySQL
 * [XAMPP](http://www.apachefriends.org/download.html) или другая оболочка для MySQL
-* [Python 2.7+ версии](http://www.python.org/downloads/) Версия: 3.х НЕ ПОДОЙДЕТ!!!)
 
 --------------------------
 В сборке имеется:
 --------------------------
 
-* Не указано!
+* Epoch AntiHack & AdminTools
+* DZAI
+* DZMS
+* EVENT: Анимированный ХелиКраш (Исправлен под 1.0.7 версию)
 
 --------------------------
 Тестеры:
