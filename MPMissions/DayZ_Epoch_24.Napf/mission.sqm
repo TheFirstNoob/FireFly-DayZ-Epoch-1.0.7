@@ -203,13 +203,13 @@ class Mission
 		class Item2
 		{
 			
-			position[]={11037,0,1868};
+			position[]={16814,0,5249};
 			name="spawn0";
 			type="Empty";
 		};
 		class Item3
 		{
-			position[]={5528,0,1677};
+			position[]={2956,0,4083};
 			name="spawn1";
 			type="Empty";
 		};
@@ -233,13 +233,13 @@ class Mission
 		};
 		class Item7
 		{
-			position[]={17984,0,12451};
+			position[]={16436,0,11994};
 			name="spawn5";
 			type="Empty";
 		};
 		class Item8
 		{
-			position[]={15444,0,5804};
+			position[]={12733,0,5274};
 			name="spawn6";
 			type="Empty";
 		};
