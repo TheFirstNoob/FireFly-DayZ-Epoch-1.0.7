@@ -93,6 +93,7 @@ if (!isDedicated) then
 	execFSM "\z\addons\dayz_code\system\player_monitor.fsm";
 
 	[] call compile preprocessFileLineNumbers "DZAI_Client\dzai_initclient.sqf";
+	execVM "Scripts\RndLoadout\RndLoadout.sqf";
 	//[false,12] execVM "\z\addons\dayz_code\compile\local_lights_init.sqf";
 	//[600,.15,30] execVM "\z\addons\dayz_code\compile\fn_chimney.sqf"; // Smoking chimney effects.
 	if (DZE_R3F_WEIGHT) then
