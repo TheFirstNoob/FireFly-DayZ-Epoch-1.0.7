@@ -102,15 +102,24 @@ class Category_402
 // Еда (Рюкзаки) - 1 слот (375)
 class Category_403
 {
-	class DZ_Patrol_Pack_EP1		{typeB	buyFB 3750 worth 	sellFB 750 worth };		// 10
-	class DZ_Assault_Pack_EP1		{typeB	buyFB 4500 worth 	sellFB 900 worth };		// 12
-	class DZ_Czech_Vest_Pouch		{typeB	buyFB 4500 worth 	sellFB 900 worth };		// 12
-	class DZ_TerminalPack_EP1		{typeB	buyFB 5625 worth 	sellFB 1125 worth };	// 15
-	class DZ_ALICE_Pack_EP1			{typeB	buyFB 7500 worth 	sellFB 1500 worth };	// 20
-	class DZ_CompactPack_EP1		{typeB	buyFB 9375 worth 	sellFB 1875 worth };	// 25
-	class DZ_British_ACU			{typeB	buyFB 11250 worth 	sellFB 2250 worth };	// 30
-	class DZ_GunBag_EP1				{typeB	buyFB 13125 worth 	sellFB 2625 worth };	// 35
-	class DZ_CivilBackpack_EP1		{typeB	buyFB 15000 worth 	sellFB 3000 worth };	// 40
-	class DZ_Backpack_EP1			{typeB	buyFB 18750 worth 	sellFB 3750 worth };	// 50
-	class DZ_LargeGunBag_EP1		{typeB	buyFB 22500 worth 	sellFB 4500 worth };	// 60
+	class GymBag_Camo_DZE1			{typeB	buyFB 3750 worth 	sellFB 750 worth };		// 10
+	class Patrol_Pack_DZE1			{typeB	buyFB 3750 worth 	sellFB 750 worth };		// 10
+	class Czech_Vest_Pouch_DZE1		{typeB	buyFB 4500 worth 	sellFB 900 worth };		// 12
+	class Assault_Pack_DZE1			{typeB	buyFB 5625 worth 	sellFB 1125 worth };	// 15
+	class TerminalPack_DZE1			{typeB	buyFB 6375 worth 	sellFB 1275 worth };	// 17
+	class TinyPack_DZE1				{typeB	buyFB 6750 worth 	sellFB 1350 worth };	// 17
+	class ALICE_Pack_DZE1			{typeB	buyFB 7500 worth 	sellFB 1500 worth };	// 20
+	class TK_Assault_Pack_DZE1		{typeB	buyFB 8250 worth 	sellFB 1650 worth };	// 22
+	class School_Bag_DZE1			{typeB	buyFB 9000 worth 	sellFB 1800 worth };	// 24
+	class CompactPack_DZE1			{typeB	buyFB 9375 worth 	sellFB 1875 worth };	// 25
+	class British_ACU_DZE1			{typeB	buyFB 11250 worth 	sellFB 2250 worth };	// 30
+	class AirwavesPack_DZE1			{typeB	buyFB 13125 worth 	sellFB 2625 worth };	// 35
+	class GunBag_DZE1				{typeB	buyFB 13125 worth 	sellFB 2625 worth };	// 35
+	class NightPack_DZE1			{typeB	buyFB 13125 worth 	sellFB 2625 worth };	// 35
+	class PartyPack_DZE1			{typeB	buyFB 13500 worth 	sellFB 2700 worth };	// 36
+	class SurvivorPack_DZE1			{typeB	buyFB 15000 worth 	sellFB 3000 worth };	// 40
+	class CzechBackpack_DZE1		{typeB	buyFB 16875 worth 	sellFB 3375 worth };	// 45
+	class WandererBackpack_DZE1		{typeB	buyFB 18750 worth 	sellFB 3750 worth };	// 50
+	class LegendBackpack_DZE1		{typeB	buyFB 20625 worth 	sellFB 4125 worth };	// 55
+	class CoyoteBackpack_DZE1		{typeB	buyFB 22500 worth 	sellFB 4500 worth };	// 60
 };

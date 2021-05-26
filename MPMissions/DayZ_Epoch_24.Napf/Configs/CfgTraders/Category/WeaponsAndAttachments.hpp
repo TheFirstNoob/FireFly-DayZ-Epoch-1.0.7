@@ -30,18 +30,45 @@ class Category_190
 // Пистолеты
 class Category_100
 {
-	class Makarov_DZ		{typeW		buyWA 50 worth 		sellWA 10 worth };
-	class Makarov_SD_DZ		{typeW		buyWA 170 worth 	sellWA 34 worth };
-	class Revolver_DZ		{typeW		buyWA 100 worth 	sellWA 20 worth };
-	class M1911_DZ			{typeW		buyWA 150 worth 	sellWA 30 worth };
-	class M9_DZ				{typeW		buyWA 180 worth 	sellWA 36 worth };
-	class M9_SD_DZ			{typeW		buyWA 300 worth 	sellWA 60 worth };
-	class G17_DZ			{typeW		buyWA 200 worth 	sellWA 40 worth };
-	class G17_FL_DZ			{typeW		buyWA 220 worth 	sellWA 44 worth };
-	class G17_MFL_DZ		{typeW		buyWA 220 worth 	sellWA 44 worth };
-	class G17_SD_DZ			{typeW		buyWA 320 worth 	sellWA 64 worth };
-	class G17_SD_FL_DZ		{typeW		buyWA 340 worth 	sellWA 68 worth };
-	class G17_SD_MFL_DZ		{typeW		buyWA 340 worth 	sellWA 68 worth };
+	class Tokarew_TT33_DZ			{typeW		buyWA 70 worth 		sellWA 14 worth };
+	class PPK_DZ					{typeW		buyWA 60 worth 		sellWA 12 worth };
+	class P38_DZ					{typeW		buyWA 90 worth 		sellWA 18 worth };
+	class MK22_DZ					{typeW		buyWA 110 worth 	sellWA 22 worth };
+	class MK22_SD_DZ				{typeW		buyWA 230 worth 	sellWA 46 worth };
+	class CZ75SP_DZ					{typeW		buyWA 145 worth 	sellWA 29 worth };
+	class CZ75SP_SD_DZ				{typeW		buyWA 265 worth 	sellWA 53 worth };
+	class Makarov_DZ				{typeW		buyWA 50 worth 		sellWA 10 worth };
+	class Makarov_SD_DZ				{typeW		buyWA 170 worth 	sellWA 34 worth };
+	class Revolver_DZ				{typeW		buyWA 100 worth 	sellWA 20 worth };
+	class Revolver_Gold_DZ			{typeW		buyWA 999999999 worth		sellWA 5000 worth };
+	class Colt_Anaconda_DZ			{typeW		buyWA 250 worth 	sellWA 50 worth };
+	class Colt_Anaconda_Gold_DZ		{typeW		buyWA 999999999 worth		sellWA 6000 worth };
+	class Colt_Bull_DZ				{typeW		buyWA 230 worth 	sellWA 46 worth };
+	class Colt_Python_DZ			{typeW		buyWA 250 worth 	sellWA 50 worth };
+	class Colt_Revolver_DZ			{typeW		buyWA 110 worth 	sellWA 22 worth };
+	class M1911_DZ					{typeW		buyWA 150 worth 	sellWA 30 worth };
+	class USP_DZ					{typeW		buyWA 200 worth 	sellWA 40 worth };
+	class USP_SD_DZ					{typeW		buyWA 380 worth 	sellWA 76 worth };
+	class P99_Black_DZ				{typeW		buyWA 200 worth 	sellWA 50 worth };
+	class P99_Black_SD_DZ			{typeW		buyWA 380 worth 	sellWA 76 worth };
+	class P226_DZ					{typeW		buyWA 180 worth 	sellWA 36 worth };
+	class M9_DZ						{typeW		buyWA 180 worth 	sellWA 36 worth };
+	class M9_SD_DZ					{typeW		buyWA 300 worth 	sellWA 60 worth };
+	class M93R_DZ					{typeW		buyWA 450 worth 	sellWA 90 worth };
+	class Ruger_MK2_DZ				{typeW		buyWA 150 worth 	sellWA 30 worth };
+	class TEC9_DZ					{typeW		buyWA 400 worth 	sellWA 80 worth };
+	class APS_DZ					{typeW		buyWA 300 worth 	sellWA 60 worth };
+	class APS_SD_DZ					{typeW		buyWA 480 worth 	sellWA 96 worth };
+	class G17_DZ					{typeW		buyWA 200 worth 	sellWA 40 worth };
+	class G17_FL_DZ					{typeW		buyWA 220 worth 	sellWA 44 worth };
+	class G17_MFL_DZ				{typeW		buyWA 220 worth 	sellWA 44 worth };
+	class G17_SD_DZ					{typeW		buyWA 320 worth 	sellWA 64 worth };
+	class G17_SD_FL_DZ				{typeW		buyWA 340 worth 	sellWA 68 worth };
+	class G17_SD_MFL_DZ				{typeW		buyWA 340 worth 	sellWA 68 worth };
+	class G18_DZ					{typeW		buyWA 350 worth 	sellWA 70 worth };
+	class DesertEagle_DZ			{typeW		buyWA 750 worth 	sellWA 150 worth };
+	class DesertEagle_Silver_DZ		{typeW		buyWA 999999999 worth 		sellWA 2000 worth };
+	class DesertEagle_Gold_DZ		{typeW		buyWA 999999999 worth		sellWA 8500 worth };
 };
 
 // Серия M4

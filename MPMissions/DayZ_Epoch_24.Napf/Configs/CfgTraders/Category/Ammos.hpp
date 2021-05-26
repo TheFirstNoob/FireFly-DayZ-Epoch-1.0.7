@@ -21,13 +21,36 @@ class Category_200
 // Патр.Пистолеты
 class Category_201
 {
+	
+	class 7Rnd_9x17_PPK			{typeI	buyA 10 worth 		sellA 2 worth };
 	class 8Rnd_9x18_Makarov		{typeI	buyA 10 worth 		sellA 2 worth };
 	class 8Rnd_9x18_MakarovSD	{typeI	buyA 15 worth 		sellA 3 worth };
+	class 8Rnd_762x25_TT33		{typeI	buyA 20 worth 		sellA 4 worth };
+	class 10Rnd_22lfB_RUGERMK2	{typeI	buyA 50 worth 		sellA 10 worth };
+	class 20Rnd_9x18_APS		{typeI	buyA 90 worth 		sellA 18 worth };
+	class 20Rnd_9x18_APSSD		{typeI	buyA 100 worth 		sellA 20 worth };
+	class 8Rnd_9x19_P38			{typeI	buyA 25 worth 		sellA 5 worth };
+	class 8Rnd_9x19_MK22		{typeI	buyA 25 worth 		sellA 5 worth };
+	class 8Rnd_9x19_MK22SD		{typeI	buyA 30 worth 		sellA 6 worth };
+	class 15Rnd_9x19_P226		{typeI	buyA 50 worth 		sellA 10 worth };
 	class 15Rnd_9x19_M9			{typeI	buyA 50 worth 		sellA 10 worth };
 	class 15Rnd_9x19_M9SD		{typeI	buyA 60 worth 		sellA 12 worth };
+	class 18Rnd_9x19_Phantom	{typeI	buyA 80 worth 		sellA 15 worth };
+	class 18Rnd_9x19_PhantomSD	{typeI	buyA 90 worth 		sellA 18 worth };
+	class 20Rnd_9x19_M93R		{typeI	buyA 85 worth 		sellA 17 worth };
+	class 32Rnd_9x19_TEC9		{typeI	buyA 125 worth 		sellA 25 worth };
+	class 15Rnd_10x22_p99		{typeI	buyA 80 worth 		sellA 16 worth };
+	class 15Rnd_10x22_p99_sd	{typeI	buyA 90 worth 		sellA 18 worth };
 	class 7Rnd_45ACP_1911		{typeI	buyA 40 worth 		sellA 8 worth };
 	class 6Rnd_45ACP			{typeI	buyA 30 worth 		sellA 6 worth };
+	class 6Rnd_44Magnum			{typeI	buyA 60 worth 		sellA 12 worth };
+	class 6Rnd_357Magnum		{typeI	buyA 65 worth 		sellA 13 worth };
+	class 7Rnd_50AE_Deagle		{typeI	buyA 210 worth 		sellA 42 worth };
+	class 15Rnd_45ACP_USP		{typeI	buyA 100 worth 		sellA 20 worth };
+	class 15Rnd_45ACP_USPSD		{typeI	buyA 120 worth 		sellA 30 worth };
 	class 17Rnd_9x19_glock17	{typeI	buyA 80 worth 		sellA 16 worth };
+	class 17Rnd_9x19_glock17SD	{typeI	buyA 95 worth 		sellA 19 worth };
+	class 33Rnd_9x19_G18		{typeI	buyA 170 worth 		sellA 34 worth };
 };
 
 // Патр.Пист.Пулеметы
