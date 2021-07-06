@@ -21,16 +21,23 @@ FireFly - Это российский сервер с упором на хард
 * [Notepad++](http://www.notepad-plus-plus.org/download/)
 * [Navicat](http://www.yadi.sk/d/YloWgCGM60FL2) или другая программа для работы с MySQL
 * [XAMPP](http://www.apachefriends.org/download.html) или другая оболочка для MySQL
-* [PBO Manager](https://www.armaholic.com/page.php?id=16369) или другой PBO Менеджер
+* PBO Manager(LINK NOT AVAILABLE! Armaholic Closed!) или другой PBO Менеджер
 
 --------------------------
 В сборке имеется:
 --------------------------
 
 * [Epoch AntiHack & AdminTools by BigEgg17](https://github.com/BigEgg17/Epoch-Antihack-Admin-Tools)
-* DZAI
-* DZMS
-* EVENT: Анимированный ХелиКраш (Исправлен под 1.0.7 версию)
+* DZAI (Обновлятеся согласно: https://github.com/oiad/DZAI)
+* DZMS (Обновляется согласно: https://github.com/worldwidesorrow/DZMS-DayZMissionSystem)
+* WAI (Обновляется согласно: https://github.com/f3cuk/WICKED-AI)
+* EVENT: Анимированный ХелиКраш (https://github.com/worldwidesorrow/Animated-Crash-Spawner)
+* EVENT: Дополнительные Ивенты: (https://github.com/worldwidesorrow/Epoch-Server-Events)
+* SCRIPT: Случайный стартовый лут
+* CUSTOM: Торговля и Лут (Все еще дополняется!)
+* CUSTOM: Переделанные точки спавна
+* CUSTOM: Переделанные Торговые зоны
+* FIXES: 1.0.7.1 Fixes Update (Временно не добавлены!)
 
 --------------------------
 Тестеры:
