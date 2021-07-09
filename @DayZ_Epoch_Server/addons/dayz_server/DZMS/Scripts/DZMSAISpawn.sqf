@@ -150,6 +150,8 @@ _wppos2 = [_xpos+20, _ypos, 0];
 _wppos3 = [_xpos, _ypos-20, 0];
 _wppos4 = [_xpos-20, _ypos, 0];
 
+_unitGroup allowFleeing 0;
+
 // We add the 4 waypoints
 _wp1 = _unitGroup addWaypoint [_wppos1, _wpRadius];
 _wp1 setWaypointType "MOVE";
