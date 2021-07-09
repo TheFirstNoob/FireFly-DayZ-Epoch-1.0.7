@@ -12,22 +12,22 @@ Author:
 #define CAMP_NUM 3
 
 //Minimum distance between camps
-#define CAMP_MIN_DIST 300
+#define CAMP_MIN_DIST 700
 
 //Base class of objects to add loot to
-#define CAMP_CONTAINER_BASE "IC_Tent"
+#define CAMP_CONTAINER_BASE "TentStorage"
 
 //Loot per tent
-#define LOOT_MIN 10
-#define LOOT_MAX 20
+#define LOOT_MIN 2
+#define LOOT_MAX 6
 
 //Random objects per camp
-#define OBJECT_MIN 4
-#define OBJECT_MAX 12
+#define OBJECT_MIN 1
+#define OBJECT_MAX 3
 
 //Radius around the camp in which random objects are spawned
-#define OBJECT_RADIUS_MIN 8
-#define OBJECT_RADIUS_MAX 13
+#define OBJECT_RADIUS_MIN 10
+#define OBJECT_RADIUS_MAX 40
 
 #define SEARCH_CENTER getMarkerPos "center"
 #define SEARCH_RADIUS (getMarkerSize "center") select 0
@@ -44,7 +44,10 @@ private
 	"_position",
 	"_composition",
 	"_compositionObjects",
-	"_objectPos"
+	"_objectPos",
+	"_marker",
+	"_marker_position",
+	"_starttime"
 ];
 
 _typeGroup = Loot_GetGroup("InfectedCampType");
@@ -57,18 +60,22 @@ for "_i" from 1 to (CAMP_NUM) do
 	_type = Loot_SelectSingle(_typeGroup);
 	_composition = _type select 1;
 	
+	_startTime = time;
 	//Find a position
 
 	for "_j" from 1 to (SEARCH_ATTEMPTS) do
 	{
 		_position = ((selectBestPlaces [SEARCH_CENTER, SEARCH_RADIUS, SEARCH_EXPRESSION, SEARCH_PRECISION, 1]) select 0) select 0;
 		_position set [2, 0];
+		_marker_position = [_position,80,300,0,0,2000,0] call BIS_fnc_findSafePos;
+		_marker = createMarker [ format ["InfectedCamp_%1", _startTime], _marker_position];
+		_marker setMarkerType "mil_box";
 		
 		//Check if a camp already exists within the minimum distance
 		if (count (_position nearObjects [CAMP_CONTAINER_BASE,CAMP_MIN_DIST]) < 1) exitWith {};
 	};
 	
-	diag_log format ["DEBUG: Spawning an infected camp (%1) at %2", _composition, _position];
+	diag_log format ["[СЕРВЕР]: [ЭВЕНТ]: [Зараженный лагерь]: Создаем зараженный лагерь (%1) на %2", _composition, _position];
 	
 	//Spawn composition
 	_compositionObjects = [_position, random 360,_composition] call spawnComposition;

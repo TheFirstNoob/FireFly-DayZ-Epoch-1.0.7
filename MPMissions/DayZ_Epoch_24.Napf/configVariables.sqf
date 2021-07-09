@@ -32,9 +32,19 @@ if (isServer) then
 	[
 		// ФОРМАТ: [Год,месяц,день,минуты,Имя файла - .sqf] Установите где время -1, тогда сервер запустит ивент сразу. Используйте "any" для любой даты.
 		// ["any","any","any","any",-1,"Infected_Camps"], // (Кушает прилично FPS)
-		["any","any","any","any",25,"animated_crash_spawner"]
-		,["any","any","any","any",50,"animated_crash_spawner"]
-		,["any","any","any","any",75,"animated_crash_spawner"]
+		["any","any","any","any",-1,"animated_crash_spawner"]
+		,["any","any","any","any",180,"animated_crash_spawner"]
+		,["any","any","any","any",-1,"Infected_Camps"]
+		,["any","any","any","any",-1,"Care_Packages"]
+		
+		,["any","any","any","any",-1,"event_init"]
+		,["any","any","any","any",45,"event_init"]
+		,["any","any","any","any",90,"event_init"]
+		,["any","any","any","any",135,"event_init"]
+		,["any","any","any","any",180,"event_init"]
+		,["any","any","any","any",225,"event_init"]
+		,["any","any","any","any",270,"event_init"]
+		,["any","any","any","any",315,"event_init"]
 	];
 
 	DZE_TRADER_SPAWNMODE 	=	false;	// Купленная техника будет появляться на парашюте? / True - Да, False - Нет
@@ -200,7 +210,7 @@ if (!isDedicated) then
 
 	// SafeZone
 	DZE_SafeZoneNoBuildItems		=	[]; 	// Список Объектов которые нельзя строить возле Трейд-Зон DZE_SafeZonePosArray (Смотри mission\init.sqf). Можно использовать свои значения расстояния для Определенного объекта. НАПРИМЕР: ["VaultStorageLocked","LockboxStorageLocked",["Plastic_Pole_EP1_DZ",1300]].
-	DZE_SafeZoneNoBuildDistance		=	150; 	// Дистанция для объектов возле Трейд-Зон DZE_SafeZonePosArray (see mission\init.sqf) to disallow building near.
+	DZE_SafeZoneNoBuildDistance		=	800; 	// Дистанция для объектов возле Трейд-Зон DZE_SafeZonePosArray (see mission\init.sqf) to disallow building near.
 	DZE_BackpackAntiTheft 			= 	true;	// Предотвращать воровство из Рюкзаков для "Не отмеченных другом" игроков в Трейд-Зонах.
 	
 	// HALO Прыжок
