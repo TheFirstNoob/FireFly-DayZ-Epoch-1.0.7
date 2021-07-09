@@ -24,20 +24,24 @@ Author:
 
 #define CLUTTER_CUTTER 0 //0 = loot hidden in grass, 1 = loot lifted, 2 = no grass, 3 = debug sphere.
 
-private ["_typeGroup","_position","_type","_class","_vehicle","_lootGroup","_lootNum","_lootPos","_lootVeh","_size"];
+private ["_typeGroup","_position","_type","_class","_vehicle","_lootGroup","_lootNum","_lootPos","_lootVeh","_size","_marker","_marker_position","_starttime"];
 
 _lootGroup = Loot_GetGroup("CarePackage");
 _typeGroup = Loot_GetGroup("CarePackageType");
 
 for "_i" from 1 to (SPAWN_NUM) do
 {
+	_startTime = time;
 	_type = Loot_SelectSingle(_typeGroup);
 	_class = _type select 1;
 	_lootNum = round Math_RandomRange(_type select 2, _type select 3);
 	_position = [SEARCH_CENTER, 0, SEARCH_RADIUS, SEARCH_DIST_MIN, 0, SEARCH_SLOPE_MAX, 0, SEARCH_BLACKLIST] call BIS_fnc_findSafePos;
 	_position set [2, 0];
+	_marker_position = [_position,80,300,0,0,2000,0] call BIS_fnc_findSafePos;
+	_marker = createMarker [ format ["CarePackage_%1", _startTime], _marker_position];
+	_marker setMarkerType "mil_triangle";
 	
-	diag_log format ["DEBUG: Spawning a care package (%1) at %2 with %3 items.", _class, _position, _lootNum];
+	diag_log format ["[СЕРВЕР]: [ЭВЕНТ]: [Брошенный ящик]: Создаем Брошенный ящик (%1) на %2 с %3 предметами.", _class, _position, _lootNum];
 	
 	//_vehicle = createVehicle [_class, _position, [], 0, "CAN_COLLIDE"];
 	_vehicle = _class createVehicle _position;
