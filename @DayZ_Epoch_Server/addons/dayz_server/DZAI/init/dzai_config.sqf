@@ -13,7 +13,7 @@ diag_log "[DZAI] Reading DZAI configuration file.";
 
 //Enable or disable event logging to arma2oaserver.rpt. Debug level setting. 0: No debug output, 1: Basic Debug output, 2: Extended Debug output. (Default: 0)
 //Debug output may help finding additional information about DZAI's background behavior. This output is helpful when asking for help regarding bugs or unexpected behaviors.
-DZAI_debugLevel = 1;
+DZAI_debugLevel = 0;
 
 //Frequency of server monitor update to RPT log in seconds. The monitor periodically reports number of max/current AI units and dynamically spawned triggers into RPT log. (Default: 300, 0 = Disable reporting)										
 DZAI_monitorRate = 300;
@@ -47,15 +47,15 @@ DZAI_useHealthSystem = true;
 
 //Minimum and maximum AI blood level to spawn each unit with. Each individual unit will have a randomized blood level within this range. Upper limit: 12000 blood (Default: [10000,12000])
 //Note: No effect if DZAI_useHealthSystem is false
-DZAI_unitBloodLevel = [10000,12000];
+DZAI_unitBloodLevel = [8000,10000];
 
 //Amount of blood restored from a full self-heal. One-third of the total amount is restored 3 times every 3 seconds. Note: Applies to infantry-type AI units. (Default: 6000)
 //Note: No effect if DZAI_useHealthSystem is false
-DZAI_unitHealAmount = 6000;
+DZAI_unitHealAmount = 5100;
 
 //Below this blood level, AI may decide to heal themselves for amount specified by DZAI_unitHealAmount. Healing requires 9 seconds to fully complete and can be interrupted by knocking the unit unconscious. (Default: 5000)
 //Note: No effect if DZAI_useHealthSystem is false
-DZAI_lowBloodLevel = 5000;
+DZAI_lowBloodLevel = 4500;
 
 //Enable or disable zombie attraction to AI weapon sounds. No effect if DZAI_zombieEnemy is set to false. Enabling this option may impact server performance as a script is run for each AI bullet fired.
 //Note: AI cannot be attacked or damaged by zombies.(Default: false)		
@@ -71,29 +71,29 @@ DZAI_tempNVGs = false;
 DZAI_humanityGain = 0;										
 
 //If enabled, players with radios will be given text warnings if they are being pursued by AI groups. (Default: true)
-DZAI_radioMsgs = true;
+DZAI_radioMsgs = false;
 
 //If enabled, last surviving unit of a group will be granted slightly boosted skills. No effect if unit is spawned alone (Default: false)
 DZAI_lastManStanding = false;
 
-//If enabled, dead AI bodies have coins. From 100 - 2000 coins on each AI. Works only if Z_SingleCurrency = true; (Default: [false,[100,2000]])
-DZAI_hasCoins = [false,[100,2000]];
+//If enabled, dead AI bodies have coins. From 0 - 100 coins on each AI. Works only if Z_SingleCurrency = true; (Default: [false,[100,2000]])
+DZAI_hasCoins = [true,[7,100]];
 
 /*DZAI client-side addon settings. 
 **NOTE**: These settings require the DZAI client-side addon to be installed to your mission pbo file in order to work.
 --------------------------------------------------------------------------------------------------------------------*/	
 
 //Enable to use client-side radio addon for radio messages instead of remote execution method. (Default: false)
-DZAI_clientRadio = true;
+DZAI_clientRadio = false;
 
 //Enable or disable AI hostility to zombies. If enabled, AI units spawned by DZAI will attack nearby zombies. (Default: false)
 DZAI_zombieEnemy = true;	
 
 //Maximum distance (in meters) for AI group leader to detect zombies. Increasing range beyond default may negatively impact server performance. (Default: 150)							
-DZAI_zDetectRange = 150;
+DZAI_zDetectRange = 100;
 
 //Enable or disable AI death messages. Messages will be sent only to player responsible for killing the unit. Messages will be sent in System chat in the format "(Unit name) was killed." (Default: false)
-DZAI_deathMessages = true;									
+DZAI_deathMessages = false;									
 
 
 /*	Static AI Spawning Settings
@@ -103,11 +103,11 @@ DZAI_deathMessages = true;
 DZAI_staticAI = true;
 
 //Set minimum and maximum wait time in seconds to respawn an AI group after all units have been killed. Applies to both static AI and custom spawned AI (Default: Min 300, Max 600).									
-DZAI_respawnTimeMin = 300;
-DZAI_respawnTimeMax = 600;
+DZAI_respawnTimeMin = 1800;
+DZAI_respawnTimeMax = 3600;
 
 //Time to allow spawned AI units to exist in seconds before being despawned when no players are present in a trigger area. Applies to both static AI and custom spawned AI (Default: 120)										
-DZAI_despawnWait = 120;										
+DZAI_despawnWait = 900;										
 
 //Respawn limits. Set to -1 for unlimited respawns. (Default: -1 for each).
 DZAI_respawnLimit0 = -1; 	//Respawn limit for low level AI found in low-value areas (Default: -1)
@@ -126,7 +126,7 @@ DZAI_spawnChance3 = 0.90;	//Spawn chance for expert-level AI found in areas with
 --------------------------------------------------------------------------------------------------------------------*/		
 
 //Enable or disable dynamic AI spawns. If enabled, AI spawn locations will be generated for randomly selected players at randomized intervals (Default: true)									
-DZAI_dynAISpawns = true;
+DZAI_dynAISpawns = false;
 
 //Time (seconds) required to reach maximum spawn probability per player, after which the probability is reset to 0%. Lower number = More frequent spawns, Higher Number = Less frequent. (Recommended range: 1200-2700, Default: 1200)
 DZAI_maxSpawnTime = 1200;
@@ -148,17 +148,17 @@ DZAI_dynAreaBlacklist = [];
 DZAI_dynDespawnWait = 120;
 
 //Enable or disable dynamic spawn-free zones of 600m radius around player spawn areas. (Default: false)
-DZAI_freshSpawnSafeArea = false;
+DZAI_freshSpawnSafeArea = true;
 
 
 /*	Random AI Spawning Settings (Feature in development)
 --------------------------------------------------------------------------------------------------------------------*/		
 
 //Maximum number of placed random spawns on map
-DZAI_maxRandomSpawns = 8;
+DZAI_maxRandomSpawns = 0;
 
 //Time to wait before despawning all AI units in random spawn area when no players are present. (Default: 120)
-DZAI_randDespawnWait = 120;
+DZAI_randDespawnWait = 1800;
 
 //Array of area blacklist markers. Players within marker areas will not be targeted for random AI spawns (Example: ["BlacklistArea1","BlacklistArea2","BlacklistArea3"])
 //Epoch: DZAI will automatically set up 200m-radius blacklist areas around each trader area.
@@ -204,25 +204,59 @@ DZAI_airWeapons = [
 --------------------------------------------------------------------------------------------------------------------*/	
 
 //Global maximum number of active AI land vehicle patrols. Set at 0 to disable (Default: 0).	
-DZAI_maxLandPatrols = 4;
+DZAI_maxLandPatrols = 6;
 
 //Set minimum and maximum wait time in seconds to respawn an AI vehicle patrol after vehicle is destroyed or disabled. (Default: Min 600, Max 900).
-DZAI_respawnTMinL = 600;
-DZAI_respawnTMaxL = 900;
+DZAI_respawnTMinL = 1800;
+DZAI_respawnTMaxL = 3600;
 
 //Classnames of land vehicle types to use, with the maximum amount of each type to spawn.
-DZAI_vehList = [
-	["UAZ_Unarmed_TK_EP1_DZE",5]
+DZAI_vehList =
+[
+	["TT650_Civ_DZE",			3]
+	,["TT650_Ins_DZE",			3]
+	,["ATV_CZ_EP1_DZE",			3]
+	,["Tractor_DZE",			3]
+	,["TractorOld_DZE",			3]
+	,["Tractor_Armored_DZE",	2]
+
+	,["VWGolf_DZE",				2]
+	,["Mini_Cooper_DZE",		2]
+	,["Skoda_DZE",				2]
+	,["SkodaBlue_DZE",			2]
+	,["SkodaRed_DZE",			2]
+	,["SkodaGreen_DZE",			2]
+	,["Lada1_DZE",				2]
+	,["Lada2_DZE",				2]
+	,["LadaLM_DZE",				2]
+	,["GLT_M300_LT_DZE",		2]
+	,["GLT_M300_ST_DZE",		2]
+	,["car_hatchback_DZE",		2]
+	,["car_hatchback_red_DZE",	2]
+	,["car_sedan_DZE",			2]
+
+	,["UAZ_RU_DZE",				1]
+	,["UAZ_CDF_DZE",			1]
+	,["UAZ_INS_DZE",			1]
+	,["Jeep_DZE",				1]
+	,["Hummer_DZE",				1]
+	,["HMMWV_Ambulance_DZE",	1]
+	,["Ikarus_White_DZE",		1]
+
+	,["BTR40_TK_GUE_EP1_DZE",		1]
+	,["BTR40_TK_INS_EP1_DZE",		1]
+	,["BTR40_MG_TK_GUE_EP1_DZE",	1]
+	,["BTR40_MG_TK_INS_EP1_DZE",	1]
 ];
 
 //Difficulty level of land vehicle patrol units. Difficulty level also affects unit loadout and loot. Possible values: 0 to 3 (Default: 3)
-DZAI_vehUnitLevel = 3;
+DZAI_vehUnitLevel = 1;
 
 //Maximum number of gunner units per land vehicle. Limited by actual number of available gunner positions. (Default: 1)
-DZAI_vehGunnerUnits = 2;
+DZAI_vehGunnerUnits = 1;
 
 //Maximum number of cargo units per land vehicle. Limited by actual number of available cargo positions. (Default: 3)
-DZAI_vehCargoUnits = 3;
+DZAI_vehCargoUnits = 2;
 
 
 /*	AI Vehicle (Air & Land) Settings
@@ -230,7 +264,7 @@ DZAI_vehCargoUnits = 3;
 
 //Array of area blacklist markers. Areas covered by marker will not be used as waypoints for vehicle patrols. (Example: ["BlacklistArea1","BlacklistArea2","BlacklistArea3"])
 //Note: Vehicles may still pass through these areas but will not make stops unless enemies are encountered.
-DZAI_waypointBlacklist = [];
+DZAI_waypointBlacklist = ["Allies1","Allies2","Allies3","Allies4"];
 
 
 /*	AI weapon selection settings
@@ -242,7 +276,7 @@ DZAI_dynamicWeaponList = true;
 
 //Determines whether DZAI reads from default DayZ loot tables for dynamic AI weapon generation or from user-installed custom loot tables. (Default: false)
 //No effect if DZAI_dynamicWeaponList is 'false'. If DZAI is unable to find custom loot tables installed, default loot tables will be used instead. If no loot tables are found, DZAI will use prebuilt weapon tables.
-DZAI_customLootTables = false;
+DZAI_customLootTables = true;
 
 //List of classnames of weapons that AI should never use. By default, AI may carry any lootable weapon. (Only if DZAI_dynamicWeaponList = true)  
 //Example: DZAI_banAIWeapons = ["M107_DZ","BAF_AS50_scoped"] will remove the M107 and AS50 from AI weapon tables if dynamic weapon list is enabled.								
@@ -288,13 +322,13 @@ DZAI_numMiscItemL = 1;
 --------------------------------------------------------------------------------------------------------------------*/
 
 //Chance to add each medical item.
-DZAI_chanceMedicals = 0.70;	
+DZAI_chanceMedicals = 0.30;	
 
 //Chance to add each edible item.								
-DZAI_chanceEdibles = 0.70;
+DZAI_chanceEdibles = 0.10;
 
 //Chance to add each random item from DZAI_MiscItemS table.									
-DZAI_chanceMiscItemS = 0.60;
+DZAI_chanceMiscItemS = 0.30;
 
 //Chance to add each random item from DZAI_MiscItemL table.								
 DZAI_chanceMiscItemL = 0.15;								

@@ -6,10 +6,10 @@ if (isServer) exitWith {};
 */
 
 //Enables use of client-side radio functions. DZAI_clientRadio must be set 'true' in dzai_config.sqf.
-DZAIC_radio = true;
+DZAIC_radio = false;
 
 //Enables AI hostility to zombies. DZAI_zombieEnemy must be set 'true' in dzai_config.sqf.
 DZAIC_zombieEnemy = true;
 
 //Enables death messages to be displayed to players who kill AI units. DZAI_deathMessages must be set 'true' in dzai_config.sqf
-DZAIC_deathMessages = true;
+DZAIC_deathMessages = false;
