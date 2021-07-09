@@ -55,8 +55,8 @@ if (isPlayer _player) then {
 	
 	// If ZSC installed and DZMSAICheckWallet enabled, add money to AI wallets
 	if (DZMSAICheckWallet && Z_singleCurrency) then {
-		_cash = round(random 10) * 500; // adds money to AI wallets in 500x increments. 
-		_unit setVariable[Z_MoneyVariable,_cash ,true];
+		_cash = round(random 200); // adds money to AI wallets in 500x increments. 
+		_unit setVariable["cashMoney",_cash ,true];
 	};
 	
 	//Lets inform the nearby AI of roughly the players position

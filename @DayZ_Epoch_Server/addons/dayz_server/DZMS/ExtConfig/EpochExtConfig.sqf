@@ -5,7 +5,7 @@
 */
 
 // Generates keys for mission vehicles and places it in the gear. Only works if DZMSSaveVehicles is set to true and Epoch is detected.
-DZMSMakeVehKey = true;
+DZMSMakeVehKey = false;
 
 //If you have ZSC installed then you can set this to true to place money in ai wallets.
 DZMSAICheckWallet = true;
@@ -15,7 +15,7 @@ DZMSAICheckWallet = true;
 DZMSUseRPG = false;
 
 // Do you want static M2 heavy machine gunners at the missions? (Some of the easier missions don't have them).
-DZMSM2Static = false;
+DZMSM2Static = true;
 
 ///////////////////////////////////////////////
 // Arrays of skin classnames for the AI to use

@@ -10,23 +10,23 @@
 DZMSAICount = false;
 
 // Time in minutes for a mission to timeout.
-DZMSMissionTimeOut = 30;
+DZMSMissionTimeOut = 60;
 
 // This is how many bandit missions are allowed to run simultaneously
-DZMSBanditLimit = 1;
+DZMSBanditLimit = 2;
 
 // This is how many hero missions are allowed to run simultaneously
-DZMSHeroLimit = 1;
+DZMSHeroLimit = 2;
 
 // Do you want to turn off damage to the mission objects?
 DZMSObjectsDamageOff = true;
 
 // Mission announcement style. Options: "Hint","TitleText","rollingMessages","DynamicText".
 //Note: The "Hint" messages will appear in the same area as common debug monitors.
-DZMSAnnounceType = "TitleText";
+DZMSAnnounceType = "Hint";
 
 // Turn this on to enable troubleshooting. RPT entries might show where problems occur.
-DZMSDebug = true;
+DZMSDebug = false;
 
 // Do you want your players to gain or lose humanity from killing mission AI?
 DZMSMissHumanity = false;
@@ -42,10 +42,10 @@ DZMSKillFeed = false;
 
 // Do You Want AI to use NVGs?
 //(They are deleted on death)
-DZMSUseNVG = true;
+DZMSUseNVG = false;
 
 // Do you want bandit or hero AI kills to count towards player total?
-DZMSCntKills = true;
+DZMSCntKills = false;
 
 // Do you want AI to disappear instantly when killed?
 DZMSCleanDeath = false;
@@ -107,7 +107,7 @@ DZMSStaticSpawn = [
 DZMSSaveVehicles = false;
 
 // Setting this to true will prevent the mission vehicles from taking damage during the mission.
-DZMSVehDamageOff = true;
+DZMSVehDamageOff = false;
 
 /*///////////////////////////////////////////////////////////////////////////////////////////
 There are two types of missions that run simultaneously on a the server.
