@@ -29,10 +29,10 @@ FireFly - Это российский сервер с упором на хард
 В сборке имеется:
 --------------------------
 
-* [Epoch AntiHack & AdminTools by BigEgg17](https://github.com/BigEgg17/Epoch-Antihack-Admin-Tools)
-* DZAI (Обновлятеся согласно: https://github.com/oiad/DZAI)
-* DZMS (Обновляется согласно: https://github.com/worldwidesorrow/DZMS-DayZMissionSystem)
-* WAI (Обновляется согласно: https://github.com/f3cuk/WICKED-AI)
+* [Epoch AntiHack & AdminTools by BigEgg17](https://github.com/BigEgg17/Epoch-Antihack-Admin-Tools) Ver: 1.0.2 TBD
+* DZAI (Обновлятеся согласно: https://github.com/oiad/DZAI) Ver: 2.2.4
+* DZMS (Обновляется согласно: https://github.com/worldwidesorrow/DZMS-DayZMissionSystem) Ver: 2.1
+* WAI (Обновляется согласно: https://github.com/f3cuk/WICKED-AI) Ver: 2.2.7 TBD
 * EVENT: Анимированный ХелиКраш (https://github.com/worldwidesorrow/Animated-Crash-Spawner)
 * EVENT: Дополнительные Ивенты: (https://github.com/worldwidesorrow/Epoch-Server-Events)
 * SCRIPT: Случайный стартовый лут (DayZ_Epoch_24.Napf\Scripts\RndLoadout)
@@ -48,6 +48,9 @@ FireFly - Это российский сервер с упором на хард
 * [BE] First (TheFirstNoob)
 * Burbon
 * ArtOfWar
+* Fantomow
+* Mason
+* Zed
 
 --------------------------
 Licence (Лицензия):
