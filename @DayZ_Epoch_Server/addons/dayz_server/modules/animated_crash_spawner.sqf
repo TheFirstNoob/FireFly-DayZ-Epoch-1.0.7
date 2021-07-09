@@ -1,289 +1,276 @@
-private["_exploRange","_blackList","_lootArray","_crashSelect","_ran15","_missionEnd","_isClose1","_isClose2","_isClose3","_inFlight","_plane","_porh","_lootVeh","_finder","_crash","_crashDamage","_preWaypointPos","_endTime","_startTime","_heliStart","_heliModel","_lootPos","_wp2","_landingzone","_aigroup","_wp","_helipilot","_crashwreck","_pos","_dir","_mdot","_position","_num","_crashModel","_crashName","_marker","_itemTypes"];
-
 #include "\z\addons\dayz_code\loot\Loot.hpp"
 
-// Конфигурация
-#define DEBUG_MODE 		True  	// Режим Диагностики (server.rpt)?
-#define CRASH_TIMEOUT 	14400	// Время на исчезновение эвента, если игрок не нашел его (сек) 
-#define SPAWN_CHANCE 	100	 	// Шанс спавна Эвента (0-100) 
-#define GUARANTEED_LOOT	10	 	// Гарантированное количество лута
-#define RANDOM_LOOT		10		// Рандомное дополнительное количество лута
-#define SPAWN_FIRE 		True 	// Создать Дым/Огонь над ХелиКрашем?
-#define FADE_FIRE 		False	// Дым/Огонь исчезнет со временем?
-#define PREWAYPOINTS 	2		// Количество точек, который должен пройти вертолет, чтобы упасть
-#define MIN_LOOT_RADIUS 8	 	// Минимальный радиус спавна лута от ХелиКраша (м)
-#define MAX_LOOT_RADIUS 35	 	// Максимальный радиус спавна лута от ХелиКраша (м)
-#define SHOW_MARKER		True	// Показывать маркер ХелиКраша?
-#define LOWER_GRASS		False	// Убирать траву в зоне ХелиКраша
-_crashDamage			= 0.5;	// Количество Урона, который может выдержать ХелиКраш до падения. Чем меньше значение, тем меньше выдержит!
-_exploRange				= 300;	// Как далеко пролетит ХелиКраш перед падением, при поврежденном состоянии
+#define DEBUG_MODE false 			// Режим Диагностики (server.rpt)?
+#define CRASH_TIMEOUT 21600 		// Время на исчезновение эвента, если игрок не нашел его (В Секундах) 
+#define GUARANTEED_LOOT	10 			// Гарантированное количество лута
+#define RANDOM_LOOT	10 				// Случайное дополнительное количество лута
+#define SPAWN_FIRE true 			// Создать Дым/Огонь над ХелиКрашем? (True - Да/False - Нет)
+#define FADE_FIRE false				// Дым/Огонь исчезнет со временем?
+#define PREWAYPOINTS 2 				// Количество точек, который должен пройти вертолет, чтобы упасть
+#define MIN_LOOT_RADIUS 4 			// Минимальный радиус спавна лута от ХелиКраша (В Метрах)
+#define MAX_LOOT_RADIUS 10 			// Максимальный радиус спавна лута от ХелиКраша (В Метрах)
+#define MARKER_RADIUS 300 			// Радиус маркера (В Метрах)
+#define SHOW_MARKER	true 			// Показывать маркер? (True - Да/False - Нет)
+#define MARKER_NAME false 			// Добавить название маркера (ХелиКраша)? , SHOW_MARKER должен быть true (True - Да/False - Нет)
+#define LOWER_GRASS	false 			// Убирать траву в зоне ХелиКраша? (True - Да/False - Нет)
+local _crashDamage = 1; 			// Количество Урона, который может выдержать ХелиКраш до падения. Чем меньше значение, тем меньше выдержит! (От 0 до 1)
+local _exploRange = 300; 			// Как далеко пролетит ХелиКраш перед падением, при поврежденном состоянии (В Метрах)
+local _messageType = "Hint"; 		// Тип вывода оповещения. Параметры: "Hint","TitleText". ***ВНИМАНИЕ: Подсказка появляется в том же месте экрана, что и обычные Hint.
+local _startDist = 4000; 			// Увеличьте это, чтобы задержать время, необходимое для прибытия самолета на миссию
+#define TITLE_COLOR "#00FF11" 		// Hint параметры: Цвет верхней линии
+#define TITLE_SIZE "2" 				// Hint параметры: Размер верхней линии
+#define IMAGE_SIZE "4" 				// Hint параметры: Размер изображения
+#define SEARCH_BLACKLIST [[[2092,14167],[10558,12505]]]
 
-// Параметры для поиска позиции
-#define SEARCH_CENTER getMarkerPos "crashsites"
-#define SEARCH_RADIUS (getMarkerSize "crashsites") select 0
-#define SEARCH_DIST_MIN 20
-#define SEARCH_SLOPE_MAX 2
+local _ran15 = 0;
+local _isClose1 = false;
+local _isClose2 = false;
+local _isClose3 = false;
+local _inFlight = true;
+local _end = false;
+local _lootArray = [];
 
-_ran15		= 0;
-_isClose1	= false;
-_isClose2	= false;
-_isClose3	= false;
-_inFlight 	= true;
-_missionEnd	= false;
-_lootArray	= [];
+// Do not change below values if you do not know what you are doing
+local _select = [["Mi17_DZE","Mi17Wreck",false],["UH60M_MEV_EP1_DZ","MH60Wreck",false]] call BIS_fnc_selectRandom;
+local _heliModel = _select select 0;
+local _crashModel = _select select 1;
+local _plane = _select select 2;
+local _crashName = getText (configFile >> "CfgVehicles" >> _heliModel >> "displayName");
+local _img = (getText (configFile >> "CfgVehicles" >> _heliModel >> "picture"));
 
-_crashSelect = [["Mi17_DZ","Mi17Wreck",false],["UH60M_MEV_EP1","MH60Wreck",false]] call BIS_fnc_selectRandom;
-_heliModel	 = _crashSelect select 0;
-_crashModel	 = _crashSelect select 1;
-_plane		 = _crashSelect select 2;
-_porh		 = "helicopter";
-_crashName	 = getText (configFile >> "CfgVehicles" >> _heliModel >> "displayName");
-#define SPAWN_ROLL round(random 100)
+if (_messageType == "Hint") then {
+	RemoteMessage = ["hintWithImage",["STR_CL_ACS_TITLE",["STR_CL_ACS_ANNOUNCE",_crashName]],[_img,TITLE_COLOR,TITLE_SIZE,IMAGE_SIZE]];
+} else {
+	RemoteMessage = ["titleText",["STR_CL_ACS_ANNOUNCE",_crashName]];
+};
+publicVariable "RemoteMessage";
 
-call
-{
-	if (toLower worldName == "chernarus") exitWith {_blackList = [[[2092,14167],[10558,12505]]]; _heliStart = [[1000.0,2.0],[3500.0,2.0],[5000.0,2.0],[7500.0,2.0],[9712.0,663.067],[12304.0,1175.07],[14736.0,2500.0],[16240.0,5000.0],[16240.0,7500.0],[16240.0,10000.0]] call BIS_fnc_selectRandom;};
-	if (toLower worldName == "napf") exitWith {_blackList = []; _heliStart = [[3458.7625, 2924.917],[11147.994, 1516.9348],[14464.443, 2533.0981],[18155.545, 1416.5674],[16951.584, 5436.3516],[16140.807, 12714.08],[14576.426, 14440.467],[8341.2383, 15756.525],[2070.4771, 8910.4111],[16316.533, 17309.357]] call BIS_fnc_selectRandom;};
+local _pos = [getMarkerPos "crashsites", 0, (getMarkerSize "crashsites") select 0, 20, 0, .3, 0, SEARCH_BLACKLIST] call BIS_fnc_findSafePos;
+_pos set [2, 0];
+
+local _PorM = if (random 1 > .5) then {"+"} else {"-"};
+local _PorM2 = if (random 1 > .5) then {"+"} else {"-"};
+local _heliStart = call compile format ["[(%1 select 0) %2 %4,(%1 select 1) %3 %4, 400]",_pos,_PorM,_PorM2,_startDist];
+
+if (DEBUG_MODE) then {diag_log format["CRASHSPAWNER: %1 started flying from %2 to %3 NOW!(TIME:%4)", _crashName,_heliStart,_pos,round(time)];};
+
+local _time = time;
+local _crashwreck = createVehicle [_heliModel,_heliStart, [], 0, "FLY"];
+_crashwreck setPos _heliStart;
+dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_crashwreck];
+_crashwreck engineOn true;
+_crashwreck flyInHeight 150;
+
+if (_plane) then {
+	_crashDamage = .5;
+	_crashwreck setDamage .4;
+	_crashwreck forceSpeed 250;
+	_crashwreck setSpeedMode "LIMITED";
+} else {
+	_crashwreck forceSpeed 150;
+	_crashwreck setSpeedMode "NORMAL";
 };
 
-if (DEBUG_MODE) then
+local _landingzone = "HeliHEmpty" createVehicle [0,0,0];
+_landingzone setPos _pos;
+local _aigroup = createGroup civilian;
+local _pilot = _aigroup createUnit ["SurvivorW2_DZ",getPos _crashwreck,[],0,"FORM"];
+_pilot setCombatMode "BLUE";
+_pilot moveInDriver _crashwreck;
+_pilot assignAsDriver _crashwreck;
+local _wp = [];
+local _vel = [];
+local _dir = 0;
+local _speed = 0;
+local _crash = objNull;
+
+uiSleep 0.5;
+
+if(PREWAYPOINTS > 0) then
 {
-	diag_log(format["[СЕРВЕР]: [ЭВЕНТ]: [Аним. ХелиКраш]: %1%2 Шанс спавна %3", SPAWN_CHANCE, '%', _crashName]);
+	for "_x" from 1 to PREWAYPOINTS do
+	{
+		local _preWaypointPos = [getMarkerPos "crashsites",0,(getMarkerSize "crashsites") select 0,10,0,2000,0] call BIS_fnc_findSafePos;
+		_wp = _aigroup addWaypoint [_preWaypointPos, 0];
+		_wp setWaypointType "MOVE";
+		_wp setWaypointBehaviour "CARELESS";
+	};
 };
 
-if (SPAWN_ROLL <= SPAWN_CHANCE) then
-{
-	if (_plane) then
-	{
-		_porh = "plane";
+_wp = _aigroup addWaypoint [position _landingzone, 0];
+_wp setWaypointType "MOVE";
+_wp setWaypointBehaviour "CARELESS";
+//_wp2 setWaypointStatements ["true", "_crashwreck setDamage 1;"];
+
+while {_inFlight} do {
+	if ((_crashwreck distance _pos) <= 1000 && !_isClose1) then {
+		if (_plane) then {
+			_crashwreck flyInHeight 100;
+			_crashwreck forceSpeed 150;
+			_crashwreck setSpeedMode "NORMAL";
+			_exploRange = 360;
+		} else {
+			_crashwreck flyInHeight 100;
+			_crashwreck forceSpeed 100;
+			_crashwreck setSpeedMode "NORMAL";
+		};
+		_isClose1 = true;
 	};
 	
-	// Если вам нужно сообщение о старте Эвента, то раскомментируйте
-	[nil,nil,rTitleText,format["Хелик %1 вылетел!",_porh], "PLAIN",10] call RE;
-	
-	_position = [SEARCH_CENTER, 0, SEARCH_RADIUS, SEARCH_DIST_MIN, 0, SEARCH_SLOPE_MAX, 0, _blackList] call BIS_fnc_findSafePos;
-	_position set [2, 0];
-	
-	if (DEBUG_MODE) then
-	{
-		diag_log(format["[СЕРВЕР]: [ЭВЕНТ]: [Аним. ХелиКраш]:  %1 начал полет от %2 к %3 СЕЙЧАС!(ВРЕМЯ:%4)", _crashName,  str(_heliStart), str(_position), round(time)]);
-	};
-	
-	_startTime		=	time;
-	_crashwreck		=	createVehicle [_heliModel,_heliStart, [], 0, "FLY"];
-	dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_crashwreck];
-	_crashwreck	engineOn true;
-	_crashwreck	flyInHeight 150;
-
-	if (_plane) then
-	{
-		_crashDamage = .5;
-		_crashwreck setDamage .4;
-		_crashwreck forceSpeed 250;
-		_crashwreck setspeedmode "LIMITED";
-	}
-	else
-	{
-		_crashwreck forceSpeed 150;
-		_crashwreck setspeedmode "NORMAL";
-	};
-	
-	_landingzone	=	createVehicle ["HeliHEmpty", [_position select 0, _position select 1,0], [], 0, "CAN_COLLIDE"];
-	_aigroup		=	creategroup civilian;
-	_helipilot		=	_aigroup createUnit ["SurvivorW2_DZ",getPos _crashwreck,[],0,"FORM"];
-	_helipilot setCombatMode "BLUE";
-	_helipilot moveindriver _crashwreck;
-	_helipilot assignAsDriver _crashwreck;
-	
-	uiSleep 0.5;
-	
-	if (PREWAYPOINTS > 0) then
-	{
-		for "_x" from 1 to PREWAYPOINTS do
-		{
-			_preWaypointPos = [SEARCH_CENTER,0,SEARCH_RADIUS,10,0,2000,0] call BIS_fnc_findSafePos;
-			_wp = _aigroup addWaypoint [_preWaypointPos, 0];
-			_wp setWaypointType "MOVE";
-			_wp setWaypointBehaviour "CARELESS";
-		};
-	};
- 
-	_wp2 = _aigroup addWaypoint [position _landingzone, 0];
-	_wp2 setWaypointType "MOVE";
-	_wp2 setWaypointBehaviour "CARELESS";
-	_wp2 setWaypointStatements ["true", "_crashwreck setDamage 1;"];
-	
-	while {_inFlight} do 
-	{
-		if ((_crashwreck distance _position) <= 1000 && !_isClose1) then 
-		{
-			if (_plane) then
-			{
-				_crashwreck flyInHeight 100;
-				_crashwreck forceSpeed 150;
-				_crashwreck setspeedmode "NORMAL";
-				_exploRange = 360;
-			}
-			else
-			{
-				_crashwreck flyInHeight 100;
-				_crashwreck forceSpeed 100;
-				_crashwreck setspeedmode "NORMAL";
-			};
-			_isClose1 = true;
-		};
-
-		if ((_crashwreck distance _position) <= _exploRange && !_isClose2) then
-		{
-			if (_plane) then
-			{
-				_crashwreck setDamage 1;
-				_vel	=	velocity _crashwreck;
-				_dir	=	direction _crashwreck;
-				_speed	=	100;
-				_crashwreck setVelocity [(_vel select 0)-(sin _dir*_speed),(_vel select 1)-(cos _dir*_speed),(_vel select 2) - 30];
-			}
-			else
-			{
-				_crashwreck setHit ["mala vrtule", 1];
-				_ran15	=	random 15;
-				_crashwreck setVelocity [_ran15,_ran15,-25];
-				_crashwreck setDamage .9;
-			};
-			_isClose2 = true;
-		};
-
-		if (getPos _crashwreck select 2 <= 30 && !_isClose3) then
-		{
-			_crashwreck setVelocity [_ran15,_ran15,-20];
-			_isClose3 = true;
-		};
-
-		if (getPos _crashwreck select 2 <= 5) then
-		{
-			deleteVehicle _helipilot;
+	if ((_crashwreck distance _pos) <= _exploRange && !_isClose2) then {
+		if (_plane) then {
 			_crashwreck setDamage 1;
-			_inFlight = false;
+			_vel = velocity _crashwreck;
+			_dir = direction _crashwreck;
+			_speed = 100;
+			_crashwreck setVelocity [(_vel select 0)-(sin _dir*_speed),(_vel select 1)-(cos _dir*_speed),(_vel select 2) - 30];
+		} else {
+			_crashwreck setHit ["mala vrtule", 1];
+			_ran15 = random 15;
+			_crashwreck setVelocity [_ran15,_ran15,-25];
+			_crashwreck setDamage .9;
 		};
-		uiSleep 1;
+		_isClose2 = true;
 	};
 	
-	if (DEBUG_MODE) then
-	{
-		diag_log(format["[СЕРВЕР]: [ЭВЕНТ]: [Аним. ХелиКраш]: %1 упал в %2!", _crashName, getPos _crashwreck]);
+	if (getPos _crashwreck select 2 <= 30 && !_isClose3) then {
+		_crashwreck setVelocity [_ran15,_ran15,-20];
+		_isClose3 = true;
 	};
 	
-	_pos = [getPos _crashwreck select 0, getPos _crashwreck select 1,0];
-	_dir = getDir _crashwreck;
-
-	deleteVehicle _crashwreck;
-	deleteVehicle _landingzone;
-
-	_isWater = surfaceIsWater [getPos _crashwreck select 0, getPos _crashwreck select 1];
+	if (getPos _crashwreck select 2 <= 5) then {
+		deleteVehicle _pilot;
+		_crashwreck setDamage 1;
+		_inFlight = false;
+	};
 	
-	// Упал в Воду
-	if (_isWater) then
-	{
-		// Текст о падении в Воду (Если нужно, раскомментируйте)
-		[nil,nil,rTitleText,format["Хелик %1 ебнулся в воду",_porh], "PLAIN",10] call RE;
-	}
-	else
-	{
-		_crash = createVehicle [_crashModel, _pos, [], 0, "CAN_COLLIDE"];
-		_crash setDir _dir;
-		
-		if (SPAWN_FIRE) then
-		{
-			PVDZ_obj_Fire = [_crash, 4, time, false, FADE_FIRE];
-			publicVariable "PVDZ_obj_Fire";
-		};
-		
-		_num = round(random RANDOM_LOOT) + GUARANTEED_LOOT;
-		
-		_itemTypes = Loot_SelectSingle(Loot_GetGroup("CrashSiteType"));
-		_lootGroup = Loot_GetGroup(_itemTypes select 2);
-		{
-			_maxLootRadius 	= (random MAX_LOOT_RADIUS) + MIN_LOOT_RADIUS;
-			_lootPos 		= [_pos, _maxLootRadius, random 360] call BIS_fnc_relPos;
-			_lootPos set [2, 0];
-			_lootVeh = Loot_Spawn(_x, _lootPos, "");
-			_lootVeh setVariable ["permaLoot", true];
-			_lootArray set[count _lootArray, _lootVeh];
+	uiSleep 1;
+};
 
-			if (LOWER_GRASS) then
-			{
-				createVehicle ["ClutterCutter_small_2_EP1", _lootPos, [], 0, "CAN_COLLIDE"];
-			};
-			
-		} forEach Loot_Select(_lootGroup, _num);
-			
-		if (DEBUG_MODE) then
-		{
-			diag_log(format["[СЕРВЕР]: [ЭВЕНТ]: [Аним. ХелиКраш]: Лут отспавнен на позиции: '%1' Группа лута: '%2'", _lootPos, (_itemTypes select 2)]);
+if (DEBUG_MODE) then {diag_log format["CRASHSPAWNER: %1 just crashed at %2!", _crashName, getPos _crashwreck];};
+
+_pos = [getPos _crashwreck select 0, getPos _crashwreck select 1,0];
+_dir = getDir _crashwreck;
+
+deleteVehicle _crashwreck;
+deleteVehicle _landingzone;
+
+local _isWater = surfaceIsWater [getPos _crashwreck select 0, getPos _crashwreck select 1];
+
+if(_isWater) then {
+	
+	if (_messageType == "Hint") then {
+		RemoteMessage = ["hintWithImage",["STR_CL_ACS_TITLE",["STR_CL_ACS_WATERCRASH",_crashName]],[_img,TITLE_COLOR,TITLE_SIZE,IMAGE_SIZE]];
+	} else {
+		RemoteMessage = ["titleText",["STR_CL_ACS_WATERCRASH",_crashName]];
+	};
+	publicVariable "RemoteMessage";
+} else {
+	
+	_crash = _crashModel createVehicle [0,0,0];
+	_crash setDir _dir;
+	_crash setPos _pos;
+	
+	if (SPAWN_FIRE) then {
+		PVDZ_obj_Fire = [_crash, 4, time, false, FADE_FIRE];
+		publicVariable "PVDZ_obj_Fire";
+	};
+	
+	local _num = round(random RANDOM_LOOT) + GUARANTEED_LOOT;
+	local _itemTypes = Loot_SelectSingle(Loot_GetGroup("CrashSiteType"));
+	local _lootGroup = Loot_GetGroup(_itemTypes select 2);
+	local _radius = 0;
+	local _lootPos = [0,0,0];
+	local _lootVeh = objNull;
+	
+	{
+		_radius = (random MAX_LOOT_RADIUS) + MIN_LOOT_RADIUS;
+		_lootPos = [_pos, _radius, random 360] call BIS_fnc_relPos;
+		_lootPos set [2, 0];
+		_lootVeh = Loot_Spawn(_x, _lootPos, "");
+		_lootVeh setVariable ["permaLoot", true];
+		_lootArray set[count _lootArray, _lootVeh];
+		if (LOWER_GRASS) then {
+			createVehicle ["ClutterCutter_small_2_EP1", _lootPos, [], 0, "CAN_COLLIDE"];
 		};
 		
-		_endTime	=	time - _startTime;
-		_startTime	=	time;
+	} forEach Loot_Select(_lootGroup, _num);
 		
-		// Текст о падении ХелиКраша (Если нужно, раскомментируйте)
-		[nil,nil,rTitleText,format["Хелик %1 ебнулся где-то на карте!",_porh], "PLAIN",10] call RE;
-		
-		if (DEBUG_MODE) then
-		{
-			diag_log(format["[СЕРВЕР]: [ЭВЕНТ]: [Аним. ХелиКраш]: ХелиКраш выполнен! Модель: %2 - Время: %1 секунд || Дистанция пройдена POC: %3 метров", round(_endTime), str(_pos), round(_position distance _crash)]);
-		};
-		
-		_marker_position = [_pos,0,800,0,1,2000,0] call BIS_fnc_findSafePos;
-		
-		if (SHOW_MARKER) then
-		{
-			_marker = createMarker [format ["dot_%1", _startTime], _marker_position];
+	if (DEBUG_MODE) then {diag_log(format["CRASHSPAWNER: Loot spawn at '%1' with loot group '%2'", _lootPos, (_itemTypes select 2)]);};
+	
+	local _endTime = time - _time;
+	local _time = time;
+	
+	if (_messageType == "Hint") then {
+		RemoteMessage = ["hintWithImage",["STR_CL_ACS_TITLE",["STR_CL_ACS_CRASH",_crashName]],[_img,TITLE_COLOR,TITLE_SIZE,IMAGE_SIZE]];
+	} else {
+		RemoteMessage = ["titleText",["STR_CL_ACS_CRASH",_crashName]];
+	};
+	publicVariable "RemoteMessage";
+	
+	if (DEBUG_MODE) then {diag_log(format["CRASHSPAWNER: Crash completed! Wreck at: %2 - Runtime: %1 Seconds || Distance from calculated POC: %3 meters", round(_endTime), str(_pos), round(_pos distance _crash)]);};
+	
+	local _marker_pos = [_pos,0,MARKER_RADIUS,0,1,2000,0] call BIS_fnc_findSafePos;
+	
+	// Remove the crash craters so they don't cover up the loot.
+	{deleteVehicle _x;} count (nearestObjects [_pos, ["CraterLong"], 50]);
+	
+	local _marker = "";
+	local _mdot = "";
+	
+	while {!_end} do {
+		if(SHOW_MARKER) then {
+			_marker = createMarker [ format ["loot_event_marker_%1", _time], _marker_pos];
+			
+			/*
+			// Стары маркер
+			_marker setMarkerShape "ELLIPSE";
+			_marker setMarkerColor "ColorYellow";
+			_marker setMarkerAlpha 0.5;
+			_marker setMarkerSize [(MARKER_RADIUS + 50), (MARKER_RADIUS + 50)];
+			_marker setMarkerText _crashName;
+			*/
+			
 			_marker setMarkerType "FOB";
 			
-			//uiSleep 120; 
-
-			//deleteMarker _marker;
-		}; 
-
-		while {!_missionEnd} do
-		{
-			if ((time - _startTime) >= CRASH_TIMEOUT) then
-			{
-				deleteVehicle _crash;
-				{deleteVehicle _x;} forEach _lootArray;
-				{deleteVehicle _x;} forEach nearestObjects [_pos, ["CraterLong"], 15];
-				
-				// Текст об исчезновении ХелиКраша (время на поиск вышло) (если нужно, раскомментируйте)
-				//[nil,nil,rTitleText,format["Survivors did not secure the %1 crash site!",_crashName], "PLAIN",10] call RE;
-				
-				if (DEBUG_MODE) then
-				{
-					diag_log(format["[СЕРВЕР]: [ЭВЕНТ]: [Аним. ХелиКраш]: %1 ХелиКраш - Время вышло, удаляем все!",_crashName]);
-				};
-				_missionEnd = true;
+			if(MARKER_NAME) then {
+				_mdot = createMarker [format ["dot_%1", _time], _marker_pos];
+				_mdot setMarkerColor "ColorBlack";
+				_mdot setMarkerType "mil_dot";
+				_mdot setMarkerText format ["%1 Crashsite",_crashName];
 			};
-
-			{
-				if ((isPlayer _x) && (_x distance _pos <= 25)) then
-				{
-					_finder = name _x;
-					
-					// Текст о нахождении ХелиКраша (Если нужно, раскомментируйте)
-					//[nil,nil,rTitleText,format["Survivors have secured the crash site!"], "PLAIN",10] call RE;
-					
-					if (DEBUG_MODE) then
-					{
-						diag_log(format["[СЕРВЕР]: [ЭВЕНТ]: [Аним. ХелиКраш]: ХелиКраш был найден игроком: %1, удаляем маркер" , _finder]);
-					};
-					_missionEnd = true;
-				};
-			} forEach playableUnits;
-
-			if (!SHOW_MARKER) then
-			{
-				uiSleep 3;
-			};
+			uiSleep 3; deleteMarker _marker; if(MARKER_NAME) then {deleteMarker _mdot;};
 		};
+		
+		if ((time - _time) >= CRASH_TIMEOUT) then {
+			deleteVehicle _crash;
+			{deleteVehicle _x;} count _lootArray;
+			
+			if (_messageType == "Hint") then {
+				RemoteMessage = ["hintWithImage",["STR_CL_ACS_TITLE",["STR_CL_ACS_TIMEOUT",_crashName]],[_img,TITLE_COLOR,TITLE_SIZE,IMAGE_SIZE]];
+			} else {
+				RemoteMessage = ["titleText",["STR_CL_ACS_TIMEOUT",_crashName]];
+			};
+			publicVariable "RemoteMessage";
+			
+			if (DEBUG_MODE) then {diag_log(format["CRASHSPAWNER: The %1 Crash timed out, removing the marker and mission objects",_crashName]);};
+			_end = true;
+		};
+		
+		{
+			if((isPlayer _x) && (_x distance _pos <= 25)) then {
+				if (_messageType == "Hint") then {
+					RemoteMessage = ["hintWithImage",["STR_CL_ACS_TITLE",["STR_CL_ACS_SUCCESS",_crashName]],[_img,TITLE_COLOR,TITLE_SIZE,IMAGE_SIZE]];
+				} else {
+					RemoteMessage = ["titleText",["STR_CL_ACS_SUCCESS",_crashName]];
+				};
+				publicVariable "RemoteMessage";
+				
+				if (DEBUG_MODE) then {diag_log(format["CRASHSPAWNER: Crash found by %1, removing the marker" , (name _x)]);};
+				_end = true;
+			};
+		} count playableUnits;
+		if(!SHOW_MARKER) then {uiSleep 3;};
 	};
 };
 
