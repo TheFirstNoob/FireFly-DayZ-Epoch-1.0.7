@@ -53,6 +53,8 @@ _AH_Admin = _AH_Admin + ("
 	_main set [count _main, ['    Animal Markers', 1, []]];
 	_main set [count _main, ['    Body Markers', 1, []]];
 	_main set [count _main, ['    Plot Markers', 1, []]];
+	_main set [count _main, ['    Vault Markers', 1, []]];
+	_main set [count _main, ['    Lockbox Markers', 1, []]];
 	_main set [count _main, ['    Storage Markers', 1, []]];
 	_main set [count _main, ['    Player Markers', 1, []]];
 	_main set [count _main, ['    Vehicle Markers', 1, []]];
@@ -139,6 +141,23 @@ _AH_Admin = _AH_Admin + ("
 		{
 			_spwn set [count _spwn, [format['>> %1', _x select 5], 13, []]];
 		} count "+str EpochEvents+";
+	};
+	if ("+str _wai+") then {
+		_spwn set [count _spwn, ['===============================================================', 0, []]];
+		_spwn set [count _spwn, ['                           Spawn Missions', 0, []]];
+		_spwn set [count _spwn, ['Spawn Bandit Missions', 1, []]];
+		{
+			_spwn set [count _spwn, [format['>> %1', _x], 14, []]];
+		} count [
+			'patrol','black_hawk_crash','armed_vehicle','base',
+			'captured_mv22','scout_patrol','ikea_convoy','medi_camp',
+			'broken_down_ural','sniper_extraction','mayors_mansion',
+			'weapon_cache','gem_tower','cannibal_cave','crop_raider',
+			'drone_pilot','slaughter_house','drugbust','armybase',
+			'abandoned_trader','lumberjack','presidents_mansion',
+			'tankcolumn','macdonald','radioshack','junkyard','outpost',
+			'farmer','firestation','vehicle_drop'
+		];
 	};
 
 	_envi set [count _envi, ['===============================================================', 0, []]];

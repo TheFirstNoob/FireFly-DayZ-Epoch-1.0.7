@@ -10,33 +10,34 @@ local _menuKey = 0x3C; //---Key that will open the menu.
 local _mod = []; //---Add moderators here - don't forget commas!
 local _admin = []; //---Add admins here - don't forget commas!
 local _headAdmin = []; //---Add head admins here - don't forget commas!
-local _owner = [["", "76561198115492831", true, false, true, ""]
+local _owner = [["", "76561198072428132", true, false, true, ""]
 	//["", "76561198115492831", true, false, true, "Test"],
 	//[["BigEgg", "FatEgg", "TwinkieDestroyer"], "76561198115492831", true, false, true, ""]
 ]; //---Add owners here - don't forget commas!
 
 /* ***************** Server Configuration **************** */
 
-local _diag_prefix = "<Epoch-AH>: "; //---This prefix will appear before all diag_log messages on all clients and the server
+local _diag_prefix = "[СЕРВЕР]: [EPOCH ANTIHACK]:"; //---This prefix will appear before all diag_log messages on all clients and the server
 local _rptall = true; //---If true, all logs will be sent to the rpt as well as their respective designations
 
 local _headless = []; //---List UIDs of headless clients here. They will be sent no client code and global code will be terminated
 
 local _apj = true; //---If true, announces when a player has connected or disconnected in systemChat
-local _bvc = false; //---If true, will delete any vehicles not in server traders or the whitelist below
+local _bvc = true; //---If true, will delete any vehicles not in server traders or the whitelist below
 local _egb = false; //---If true, syncs KFC global bans. Useful for banning hackers from other servers. Will likely be depricated in the future - disabled by default
+local _wai = true; //---If true, enables compatibility with Wicked AI (https://github.com/f3cuk/WICKED-AI)
 
 local _vehWhiteList = []; //---Add any additional vehicles that shouldn't be deleted here (special mission vehicles etc...). Only used if _bvc = true
 
 //---Note: "day/night" must be in _chatcmds in order for these work
-local _voteplayers = 100; //---Number of players that must be online before a vote can be held.
+local _voteplayers = 15; //---Number of players that must be online before a vote can be held.
 local _votedelay = 900; //---Amount of time (in seconds) to wait between day/night votes.
 local _votetime = 180; //---Amount of time to wait before cancelling a vote due to lack of majority.
 local _votepercent = 0.5; //---Percentage of the server population that must vote before a decision is reached (0-1).
 
 /* **************** Client Configuration ***************** */
 
-local _chat_prefix = "<Epoch-AH>: "; //---This prefix will appear before all systemChat messages on clients
+local _chat_prefix = "[FireFly Server]:"; //---This prefix will appear before all systemChat messages on clients
 
 local _viewDistance = 2500; //---Default view distance. This will only be set on login (set to -1 to disable)
 local _grassLevel = 3.125; //---Default grass level. Options are: 3.125 (Highest performance hit), 6.25, 12.5, 25 (multiplayer default), and 50 (No grass). This will only be set on login (set to -1 to disable)
@@ -47,7 +48,7 @@ local _oef = true; //---If true, makes sure that onEachFrame isn't modified (esp
 local _bdc = true; //---If true, checks for bad displays listed in _badDisplays
 local _bsc = true; //---If true, makes sure the player isn't wearing a forbidden skin listed in _badSkins
 local _upc = true; //---If true, prevents urban prone actions near plot poles
-local _mic = true; //---If true, checks the integrity of the mission file. If a file is modified, the player is banned
+local _mic = false; //---If true, checks the integrity of the mission file. If a file is modified, the player is banned
 local _bwc = true; //---If true, makes sure the player doesn't have an illegal weapon listed in _badWeapons
 //local _mev = true; //---If true, monitors unsecure Epoch variables - Removed for 107
 local _sev = true; //---If true, switches client to 3rd person automatically upon login
@@ -70,16 +71,17 @@ local _chatbanned = [ //---List of UIDs that are banned from chatting in any cha
 
 local _debug = true; //---Determines if debug monitor will be used (true = enabled | false = disabled)
 local _dkey = 0xD2; //---Key used to activate / deactivate debug monitor
-local _drestart = 120; //---Restart time in minutes (will be used to calculate time till restart on debug monitor)
-local _dtext = "www.epochmod.com"; //---This text will appear at the bottom of the debug monitor
+local _drestart = 360; //---Restart time in minutes (will be used to calculate time till restart on debug monitor)
+local _dtext = "Нажмите Insert - Убрать Дебаг"; //---This text will appear at the bottom of the debug monitor
 
 /* ********************* Safe Zones ********************** */
 
 local _safezones = true; //---If true, enables safe zones
 local _bubbles = true; //---If true, marks safe zone boundaries with bubbles
 local _antized = true; //---If true, deletes zombies that walk into the safe zone
+local _antiai = true; //---If true, delete AI that walk into the safe zone
 local _antitheft = true; //---If true, prevents theft of vehicles and gear in the safe zones
-local _speedLimit = 30; //---If greater than 0, speed of vehicles in the safe zone will be limited to this number
+local _speedLimit = 45; //---If greater than 0, speed of vehicles in the safe zone will be limited to this number
 local _timer = 10; //---If greater than 0, safe zone protection will remain in affect for this number of seconds after leaving
 
 local _disableWeps = true; //---If true, makes the player drop any weapon listed in _dropWeps while in safe zone
@@ -90,15 +92,15 @@ local _dropWeps = [ //---Will remove these weapons from the player if they try t
 
 /* ********************* Escape Menu ********************* */
 
-local _escTopT = "Epoch Server"; //---Text at the top of the escape menu
+local _escTopT = "FireFly Server"; //---Text at the top of the escape menu
 local _escTopC = [1,1,1,1]; //---Color of the text at the top of the escape menu
 
-local _escMidT = "DayZ Epoch"; //---Text in the middle of the escape menu
+local _escMidT = "Приятной игры"; //---Text in the middle of the escape menu
 
-local _escLUPT = "For the Community"; //---Lower-upper text of the escape menu
+local _escLUPT = ""; //---Lower-upper text of the escape menu
 local _escLUPC = [1,1,1,1]; //---Color of the lower-upper text of the escape menu
 
-local _escLBOT = "By: BigEgg & MG"; //---Lower-bottom text of the escape menu
+local _escLBOT = "Автор: [BE]First"; //---Lower-bottom text of the escape menu
 local _escLBOC = [1,1,1,1]; //---Color of the lower-bottom text of the escape menu
 
 /* ********************* Build Boxes ********************* */
@@ -194,8 +196,9 @@ local _largeSafe = _largeBox; //---Items in the large build safe
 
 /* ********************* Large Lists ********************* */
 
-local _missionFiles = [ //---List of files within your mission. Antihack will make sure that none have been changed.
-	"configVariables.sqf","description.ext","init.sqf","mission.sqm","rules.sqf","Traders_Menu.sqf","DZAI_Client\dzai_client_config.sqf","DZAI_Client\dzai_initclient.sqf"
+local _missionFiles =
+[ //---List of files within your mission. Antihack will make sure that none have been changed.
+	"configVariables.sqf","description.ext","init.sqf","loadingscreen.jpg","mission.sqm","rules.sqf","Traders_Menu.sqf","DZAI_Client\dzai_client_config.sqf","DZAI_Client\dzai_initclient.sqf","Scripts\RndLoadout\RndLoadout.sqf"
 ];
 
 local _badChat = [ //---List of chat commands that will be logged in surveillance log
