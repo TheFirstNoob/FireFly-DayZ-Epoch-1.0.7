@@ -7,23 +7,22 @@
 
 #include "spawn_markers\markers_napf.sqf"	//Load manual spawn point definitions file.
 
-if ((DZAI_maxHeliPatrols > 0) or {(DZAI_maxLandPatrols > 0)}) then {
+if ((DZAI_maxHeliPatrols > 0) or {(DZAI_maxLandPatrols > 0)}) then
+{
 	"DZAI_centerMarker" setMarkerPos [10725.096, 9339.918];
 	"DZAI_centerMarker" setMarkerSize [8500, 8500];
 };
 
 waitUntil {sleep 0.1; !isNil "DZAI_classnamesVerified"};	//Wait for DZAI to finish verifying classname arrays or finish building classname arrays if verification is disabled.
 
-if (DZAI_staticAI) then {
-	if (DZAI_modName == "unleashed") then {
-		call compile preprocessFileLineNumbers format ["%1\init\world_spawn_configs\world_dayzunleashed.sqf",DZAI_directory];
-	} else {
+if (DZAI_staticAI) then
+{
 		//Generic Napf static spawns begin here
 		#include "spawn_areas\areas_napf.sqf"		//Load spawn area definitions file.
 		
 		//marker name, [minimum AI, max additional AI], [markers for manual spawn points] (leave as empty array to use nearby buildings as spawn points), equipType (optional, required if number of AI groups is defined), number of AI groups (optional)
 		//Auto Generated
-		['DZAI_Lenzburg',[1,1],[],1] call DZAI_static_spawn;
+		['DZAI_Lenzburg',[1,1],[],0] call DZAI_static_spawn;
 		['DZAI_Trueb',[2,1],[],0] call DZAI_static_spawn;
 		['DZAI_Seltisberg',[1,1],[],0] call DZAI_static_spawn;
 		['DZAI_Neue_Welt',[1,1],[],0] call DZAI_static_spawn;
@@ -88,7 +87,6 @@ if (DZAI_staticAI) then {
 		['DZAI_Nordstern',[0,1],[],0] call DZAI_static_spawn;
 		['DZAI_SouthAirbaseBarracks',[2,0],[],3] call DZAI_static_spawn;
 		['DZAI_SuhrenfeldHotels',[1,1],[],2] call DZAI_static_spawn;
-	};
 };
 
 #include "custom_markers\cust_markers_napf.sqf"
