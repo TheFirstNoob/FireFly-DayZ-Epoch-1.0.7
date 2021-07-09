@@ -54,9 +54,9 @@ class Category_501
 // Строительство (1 место - 1000)
 class Category_502
 {
-	class ItemTent			{typeI	buyCVP 5000 worth 		sellCVP 1000 worth };
-	class ItemDomeTent		{typeI	buyCVP 7500 worth 		sellCVP 1500 worth };
-	class ItemDesertTent	{typeI	buyCVP 7500 worth 		sellCVP 1500 worth };
+	class ItemTent			{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class ItemDomeTent		{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class ItemDesertTent	{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
 	class plot_pole_kit		{typeI	buyCVP 50000 worth 		sellCVP 10000 worth };
 	class ItemVault			{typeI	buyCVP 50000 worth 		sellCVP 10000 worth };
 	class ItemLockbox		{typeI	buyCVP 75000 worth 		sellCVP 15000 worth };

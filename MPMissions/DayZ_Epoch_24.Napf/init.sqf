@@ -18,7 +18,7 @@ DZE_SafeZonePosArray =
 enableRadio false;
 enableSentences false;
 
-diag_log '[СЕРВЕР]: [МИССИЯ]: [Init.sqf]: Параметр dayz_preloadFinished Сброшен!';
+diag_log "[СЕРВЕР]: [МИССИЯ]: [Init.sqf]: Параметр dayz_preloadFinished Сброшен!";
 dayz_preloadFinished = nil;
 onPreloadStarted "diag_log [diag_tickTime,'onPreloadStarted']; dayz_preloadFinished = false;";
 onPreloadFinished "diag_log [diag_tickTime,'onPreloadFinished']; dayz_preloadFinished = true;";
@@ -44,8 +44,8 @@ dayz_progressBarValue = 0.1;
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
 dayz_progressBarValue = 0.15;
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
+call compile preprocessFileLineNumbers "Traders_Menu.sqf";
 dayz_progressBarValue = 0.25;
-call compile preprocessFileLineNumbers "\z\addons\dayz_code\system\mission\napf.sqf"; //Add trader city objects locally on every machine early (ЭТО ВРОДЕ КАК УЖЕ НЕ НУЖНО!)
 initialized = true;
 
 // DayZ REsec
@@ -80,8 +80,6 @@ if (isServer) then
 
 if (!isDedicated) then
 {
-	call compile preprocessFileLineNumbers "Traders_Menu.sqf";
-	
 	// Enables Plant lib fixes
 	execVM "\z\addons\dayz_code\system\antihack.sqf";
 	

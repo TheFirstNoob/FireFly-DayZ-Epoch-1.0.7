@@ -9,13 +9,20 @@ class Category_200
 	class 20Rnd_556x45_Stanag		{typeI	buyA 100 worth 		sellA 20 worth };
 	class 30Rnd_556x45_Stanag		{typeI	buyA 150 worth 		sellA 30 worth };
 	class 30Rnd_556x45_StanagSD		{typeI	buyA 150 worth 		sellA 30 worth };
+	class ACR_30Rnd_680x43			{typeI	buyA 160 worth 		sellA 32 worth };
+	class ACR_30Rnd_680x43_SD		{typeI	buyA 160 worth 		sellA 32 worth };
 	class 30Rnd_556x45_G36			{typeI	buyA 150 worth 		sellA 30 worth };
 	class 30Rnd_556x45_G36SD		{typeI	buyA 150 worth 		sellA 30 worth };
 	class 30Rnd_545x39_AK			{typeI	buyA 80 worth 		sellA 16 worth };
 	class 30Rnd_545x39_AKSD			{typeI	buyA 100 worth 		sellA 20 worth };
 	class 30Rnd_762x39_AK47			{typeI	buyA 150 worth 		sellA 30 worth };
 	class 30Rnd_762x39_SA58			{typeI	buyA 120 worth 		sellA 24 worth };
-	class 20Rnd_762x51_FNFAL		{typeI	buyA 200 worth 		sellA 40 worth };
+	class 20Rnd_762x51_FNFAL		{typeI	buyA 2800 worth 	sellA 560 worth };
+	class 20Rnd_762x51_G3			{typeI	buyA 2800 worth 	sellA 560 worth };
+	class 30Rnd_762x39_Groza1		{typeI	buyA 350 worth 		sellA 70 worth };
+	class 30Rnd_762x39_Groza1SD		{typeI	buyA 360 worth 		sellA 72 worth };
+	class 20Rnd_9x39_Groza9			{typeI	buyA 150 worth 		sellA 25 worth };
+	class 20Rnd_9x39_Groza9SD		{typeI	buyA 160 worth 		sellA 32 worth };
 };
 
 // Патр.Пистолеты
@@ -62,8 +69,11 @@ class Category_202
 	class 64Rnd_9x19_SD_Bizon	{typeI	buyA 200 worth 		sellA 40 worth };
 	class 10Rnd_B_765x17_Ball	{typeI	buyA 20 worth 		sellA 4 worth };
 	class 20Rnd_B_765x17_Ball	{typeI	buyA 40 worth 		sellA 8 worth };
-	class 30Rnd_9x19_UZI		{typeI	buyA 150 worth 		sellA 18 worth };
-	class 30Rnd_9x19_UZI_SD		{typeI	buyA 170 worth 		sellA 20 worth };
+	class 30Rnd_9x19_UZI		{typeI	buyA 150 worth 		sellA 25 worth };
+	class 30Rnd_9x19_UZI_SD		{typeI	buyA 170 worth 		sellA 34 worth };
+	class 30Rnd_6x35_KAC		{typeI	buyA 150 worth 		sellA 25 worth };
+	class 33Rnd_45ACP_KRISS		{typeI	buyA 300 worth 		sellA 60 worth };
+	class 33Rnd_45ACP_KRISS		{typeI	buyA 350 worth 		sellA 70 worth };
 };
 
 // Патр.Дробовики
@@ -83,7 +93,8 @@ class Category_204
 {
 	class 10Rnd_303British		{typeI	buyA 250 worth 		sellA 50 worth };
 	class 5Rnd_762x54_Mosin		{typeI	buyA 200 worth 		sellA 40 worth };
-	class 20Rnd_762x54_DMR		{typeI	buyA 500 worth 		sellA 100 worth };
+	class 20Rnd_762x51_DMR		{typeI	buyA 2800 worth 	sellA 560 worth };
+	class 10Rnd_86x70_MRAD		{typeI	buyA 3000 worth 	sellA 600 worth };
 };
 
 // Патр.Снайп.Винтовки
@@ -92,6 +103,8 @@ class Category_205
 	class 5Rnd_762x54_Mosin		{typeI	buyA 200 worth 		sellA 40 worth };
 	class 5Rnd_17HMR			{typeI	buyA 400 worth 		sellA 80 worth };
 	class 5Rnd_762x51_M24		{typeI	buyA 700 worth 		sellA 140 worth };
+	class 10Rnd_762x51_CZ750	{typeI	buyA 1400 worth 	sellA 280 worth };
+	class 20Rnd_762x51_DMR		{typeI	buyA 2800 worth 	sellA 560 worth };
 	class 10Rnd_762x54_SVD		{typeI	buyA 850 worth 		sellA 170 worth };
 	class 20Rnd_556x45_Stanag	{typeI	buyA 100 worth 		sellA 20 worth };
 	class 30Rnd_556x45_Stanag	{typeI	buyA 150 worth 		sellA 30 worth };

@@ -99,7 +99,7 @@ class Category_402
 	class ItemWaterBottleUnfilled	{typeI	buyFB 2500 worth 	sellFB 500 worth };
 };
 
-// Еда (Рюкзаки) - 1 слот (375)
+// Рюкзаки - 1 слот (375)
 class Category_403
 {
 	class GymBag_Camo_DZE1			{typeB	buyFB 3750 worth 	sellFB 750 worth };		// 10
