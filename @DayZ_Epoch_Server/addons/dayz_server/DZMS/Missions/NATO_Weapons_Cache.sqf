@@ -21,9 +21,6 @@ _coords = call DZMSFindPos;
 [_mission,_coords,DZMSLargeVic,[-6.2764,-14.086]] call DZMSSpawnVeh;
 
 [_mission,_coords,"USVehicleBox","weapons2",[0,0]] call DZMSSpawnCrate;
-//[_mission,_coords,"DZ_AmmoBoxUS","ammoUS",[-3.7251,-2.3614]] call DZMSSpawnCrate;
-[_mission,_coords,"DZ_AmmoBoxRU","ammoRU",[-3.4346,0]] call DZMSSpawnCrate;
-[_mission,_coords,"DZ_AmmoBoxUS","ammoUS",[4.0996,3.9072]] call DZMSSpawnCrate;
 
 //DZMSAISpawn spawns AI to the mission.
 //Usage: [_coords, count, skillLevel, Hero or Bandit, Mission Number]

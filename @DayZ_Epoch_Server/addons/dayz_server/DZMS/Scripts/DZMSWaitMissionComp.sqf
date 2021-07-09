@@ -1,82 +1,101 @@
-private["_staticGuns","_groups","_missionName","_playerNear","_text","_markerColor","_marker","_dot","_objects","_vehicles","_crates","_mission","_coords","_name","_msgwin","_msglose","_aiType","_numSpawned","_killReq","_complete","_startTime"];
+// Start mission monitoring thread
 
-_mission = _this select 0;
-_coords = _this select 1;
-_aiType = _this select 2;
-_name = _this select 3;
-_msgwin = _this select 4;
-_msglose = _this select 5;
-_complete = false;
-_startTime = diag_tickTime;
-_staticTime = diag_tickTime;
+local _mission = _this select 0;
+local _coords = _this select 1;
+local _aiType = _this select 2;
+local _name = _this select 3;
+local _msgwin = _this select 4;
+local _msglose = _this select 5;
+local _complete = false;
+local _startTime = diag_tickTime;
+local _staticTime = diag_tickTime;
 
 uiSleep 2; // This sleep is necessary to let the mission data array populate.
 
-_numSpawned = (DZMSMissionData select _mission) select 0;
-_objects = (DZMSMissionData select _mission) select 1;
-_vehicles = (DZMSMissionData select _mission) select 2;
-_crates = (DZMSMissionData select _mission) select 3;
-_groups = (DZMSMissionData select _mission) select 4;
-_staticGuns = (DZMSMissionData select _mission) select 5;
-_killReq = _numSpawned - (DZMSRequiredKillPercent * _numSpawned);
-_markerColor = if (_aiType == "Hero") then {"ColorBlue";} else {"ColorRed";};
-_missionName = if (_aiType == "Hero") then {"Hero " + _name;} else {"Bandit " + _name;};
+local _numSpawned = (DZMSMissionData select _mission) select 0;
+local _objects = (DZMSMissionData select _mission) select 1;
+local _vehicles = (DZMSMissionData select _mission) select 2;
+local _crates = (DZMSMissionData select _mission) select 3;
+local _groups = (DZMSMissionData select _mission) select 4;
+local _staticGuns = (DZMSMissionData select _mission) select 5;
+local _killReq = _numSpawned - (DZMSRequiredKillPercent * _numSpawned);
+local _markerColor = if (_aiType == "Hero") then {"ColorBlue";} else {"ColorRed";};
+local _missionName = if (_aiType == "Hero") then {"Hero " + _name;} else {"Bandit " + _name;};
+local _aiCount = 0;
+local _text = _name;
+local _playerNear = false;
+local _acMarker = "";
+local _acdot = "";
+local _closestPlayer = objNull;
+local _acArray = [];
+local _claimed = false;
+local _acTime = diag_tickTime;
+local _claimTime = 0;
+local _left = false;
+local _leftTime	= 0;
+local _warnArray = [];
 
 diag_log format["%1 spawned at %2",_missionName,_coords];
 
 // Create initial markers
-if (DZMSAICount) then {
-	_text = format["%1 (%2 %3s)",_name,_numSpawned,_aiType];
-} else {
-	_text = _name;
-};
-_marker = createMarker ["DZMS" + _aiType + str(_mission), _coords];
+if (DZMSAICount) then {_text = format["%1 (%2 %3s)",_name,_numSpawned,_aiType];};
+local _marker = createMarker ["DZMS" + _aiType + str(_mission), _coords];
 _marker setMarkerColor _markerColor;
 _marker setMarkerShape "ELLIPSE";
 _marker setMarkerBrush "Grid";
 _marker setMarkerAlpha 0.5;
 _marker setMarkerSize [175,175];
-_dot = createMarker ["DZMSDot" + _aiType + str(_mission), _coords];
+local _dot = createMarker ["DZMSDot" + _aiType + str(_mission), _coords];
 _dot setMarkerColor "ColorBlack";
 _dot setMarkerType "Vehicle";
 _dot setMarkerText _text;
+if (DZMSAutoClaim) then {
+	_acMarker = createMarker ["DZMS" + _aiType + str(_mission) + "auto", _coords];
+	_acMarker setMarkerShape "ELLIPSE";
+	_acMarker setMarkerBrush "Border";
+	_acMarker setMarkerColor "ColorRed";
+	_acMarker setMarkerSize [DZMSAutoClaimAlertDistance,DZMSAutoClaimAlertDistance];
+};
 
 DZMSMarkerReady = true;
 
 while {!_complete} do {
+	if (DZMSAutoClaim) then {
+		#include "\z\addons\dayz_server\DZMS\Scripts\DZMSAutoClaim.sqf"	
+	};
 	
 	_aiCount = (DZMSMissionData select _mission) select 0;
+	deleteMarker _marker;
+	deleteMarker _dot;
+	if (!isNil "_acMarker") then {deleteMarker _acMarker;};
+	if (!isNil "_acdot") then {deleteMarker _acdot;};
+	if (DZMSAICount) then {_text = format["%1 (%2 %3s)",_name,_aiCount,_aiType];};
+	_marker = createMarker ["DZMS" + _aiType + str(_mission), _coords];
+	_marker setMarkerColor _markerColor;
+	_marker setMarkerShape "ELLIPSE";
+	_marker setMarkerBrush "Grid";
+	_marker setMarkerAlpha 0.5;
+	_marker setMarkerSize [200,200];
+	_dot = createMarker ["DZMSDot" + _aiType + str(_mission), _coords];
+	_dot setMarkerColor "ColorBlack";
+	_dot setMarkerType "Vehicle";
+	_dot setMarkerText _text;
+	if (DZMSAutoClaim) then {
+		_acMarker = createMarker ["DZMS" + _aiType + str(_mission) + "auto", _coords];
+		_acMarker setMarkerShape "ELLIPSE";
+		_acMarker setMarkerBrush "Border";
+		_acMarker setMarkerColor "ColorRed";
+		_acMarker setMarkerSize [DZMSAutoClaimAlertDistance,DZMSAutoClaimAlertDistance];
 	
-	// Refresh markers
-	if (DZMSAICount) then {
-		deleteMarker _marker;
-		deleteMarker _dot;
-		_text = format["%1 (%2 %3s)",_name,_aiCount,_aiType];
-		_marker = createMarker ["DZMS" + _aiType + str(_mission), _coords];
-		_marker setMarkerColor _markerColor;
-		_marker setMarkerShape "ELLIPSE";
-		_marker setMarkerBrush "Grid";
-		_marker setMarkerAlpha 0.5;
-		_marker setMarkerSize [175,175];
-		_dot = createMarker ["DZMSDot" + _aiType + str(_mission), _coords];
-		_dot setMarkerColor "ColorBlack";
-		_dot setMarkerType "Vehicle";
-		_dot setMarkerText format["%1 (%2 %3s)",_name,_aiCount,_aiType];;
-	} else {
-		// Only reset every 30 seconds if AI counter is disabled to reduce network traffic
-		if (diag_tickTime - _startTime > 30) then {
-			deleteMarker _marker;
-			deleteMarker _dot;
-			_marker = createMarker ["DZMS" + _aiType + str(_mission), _coords];
-			_marker setMarkerColor _markerColor;
-			_marker setMarkerShape "ELLIPSE";
-			_marker setMarkerBrush "Grid";
-			_marker setMarkerAlpha 0.5;
-			_marker setMarkerSize [175,175];
-			_dot = createMarker ["DZMSDot" + _aiType + str(_mission), _coords];
-			_dot setMarkerColor "ColorBlack";
-			_dot setMarkerType "Vehicle";
-			_dot setMarkerText _name;
+		if (_claimed) then {
+			_acdot = createMarker ["DZMS" + str(_mission) + "autodot", [(_coords select 0) + 100, (_coords select 1) + 100]];
+			_acdot setMarkerColor "ColorBlack";
+			_acdot setMarkerType "mil_objective";
+			if (_left) then {
+				_acdot setMarkerText format["%1 Claim Timeout [%2]",(_acArray select 1),_leftTime];
+			} else {
+				_acdot setMarkerText format["Claimed by %1",(name _closestPlayer)];
+			};
 		};
 	};
 	
@@ -158,6 +177,8 @@ while {!_complete} do {
 	// Remove marker and mission data
 	deleteMarker _marker;
 	deleteMarker _dot;
+	if (!isNil "_acMarker") then {deleteMarker _acMarker;};
+	if (!isNil "_acdot") then {deleteMarker _acdot;};
 	DZMSMarkers = DZMSMarkers - [("DZMS" + _aiType + str(_mission))];
 	DZMSMissionData set [_mission, -1];
 

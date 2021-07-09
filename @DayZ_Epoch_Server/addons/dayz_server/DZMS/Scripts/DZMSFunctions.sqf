@@ -4,15 +4,12 @@
 */
 
 DZMSSpawnCrate = {
-	private ["_mission","_cratePos","_boxType","_lootType","_offset","_cratePosition","_crate"];
-
-	_mission = _this select 0;
-	_cratePos = _this select 1;
-	_boxType = _this select 2;
-	_lootType = _this select 3;
-	_offset = _this select 4;
-	
-	_cratePosition = [(_cratePos select 0) + (_offset select 0), (_cratePos select 1) + (_offset select 1), 0];
+	local _mission = _this select 0;
+	local _cratePos = _this select 1;
+	local _boxType = _this select 2;
+	local _lootType = _this select 3;
+	local _offset = _this select 4;
+	local _cratePosition = [(_cratePos select 0) + (_offset select 0), (_cratePos select 1) + (_offset select 1), 0];
 	
 	if (count _offset > 2) then {
 		_cratePosition set [2, (_offset select 2)];
@@ -20,12 +17,12 @@ DZMSSpawnCrate = {
 	
 	// Override regular crates because of Vanilla blacklisting
 	if (!DZMSEpoch) then {
-		if !(_boxType in ["DZ_AmmoBoxUS","DZ_AmmoBoxRU","DZ_MedBox"]) then {
+		if !(_boxType == "DZ_MedBox") then {
 			_boxType = "AmmoBoxBig";
 		};
 	};
 	
-	_crate = _boxType createVehicle _cratePosition;
+	local _crate = _boxType createVehicle _cratePosition;
 		
 	if (count _this > 5) then {
 		_crate setDir (_this select 5);
@@ -42,11 +39,9 @@ DZMSSpawnCrate = {
 };
 
 DZMSNearPlayer = {
-	private["_result","_position","_radius"];
-
-	_result 	= false;
-	_position 	= _this select 0;
-	_radius 	= _this select 1;
+	local _result = false;
+	local _position = _this select 0;
+	local _radius = _this select 1;
 
 	{
 		if ((isPlayer _x) && (_x distance _position <= _radius)) then {
@@ -58,18 +53,16 @@ DZMSNearPlayer = {
 };
 
 DZMSCleanupThread = {
-	private ["_staticGuns","_groups","_mission","_coords","_objects","_vehicles","_cleaned","_time","_crates","_time0ut"];
-	
-	_coords = _this select 0;
-	_mission = _this select 1;
-	_objects = _this select 2;
-	_vehicles = _this select 3;
-	_crates = _this select 4;
-	_groups = _this select 5;
-	_staticGuns = _this select 6;
-	_time0ut = _this select 7;
-	_cleaned = false;
-	_time = diag_tickTime;
+	local _coords = _this select 0;
+	local _mission = _this select 1;
+	local _objects = _this select 2;
+	local _vehicles = _this select 3;
+	local _crates = _this select 4;
+	local _groups = _this select 5;
+	local _staticGuns = _this select 6;
+	local _time0ut = _this select 7;
+	local _cleaned = false;
+	local _time = diag_tickTime;
 	
 	while {!_cleaned} do {
 		
@@ -145,15 +138,12 @@ DZMSCleanupThread = {
 
 // Generates the keys for mission vehicles - Epoch/Overpoch only
 DZMSVehKey = {
-	private ["_keyColor","_keyNumber","_vehicle","_keySelected","_characterID"];
-	
-	_vehicle = _this;
-	
-	_keyColor = DZE_keyColors call BIS_fnc_selectRandom;
-	_keyNumber = (floor(random 2500)) + 1;
-	_keySelected = format["ItemKey%1%2",_keyColor,_keyNumber];
-	_isKeyOK = isClass(configFile >> "CfgWeapons" >> _keySelected);
-	_characterID = str(getNumber(configFile >> "CfgWeapons" >> _keySelected >> "keyid"));
+	local _vehicle = _this;
+	local _keyColor = ["Green","Red","Blue","Yellow","Black"] call BIS_fnc_selectRandom;
+	local _keyNumber = (floor(random 2500)) + 1;
+	local _keySelected = format["ItemKey%1%2",_keyColor,_keyNumber];
+	local _isKeyOK = isClass(configFile >> "CfgWeapons" >> _keySelected);
+	local _characterID = str(getNumber(configFile >> "CfgWeapons" >> _keySelected >> "keyid"));
 	
 	if (_isKeyOK) then {
 		_vehicle addWeaponCargoGlobal [_keySelected,1];
@@ -165,10 +155,10 @@ DZMSVehKey = {
 };
 
 DZMSMessage = {
-	private ["_color","_title","_type","_message"];
-	_type = _this select 0;
-	_title = _this select 1;
-	_message = _this select 2;
+	local _type = _this select 0;
+	local _title = _this select 1;
+	local _message = _this select 2;
+	local _color = "";
 	
 	call {
 		if (DZMSAnnounceType == "Hint") exitWith {
@@ -188,6 +178,68 @@ DZMSMessage = {
 		};
 	};
 	publicVariable "RemoteMessage";
+};
+
+DZMSisClosest = {
+	local _position	= _this;
+	local _closest	= objNull;
+	local _scandist	= DZMSAutoClaimAlertDistance;
+	
+	{
+	local _dist = vehicle _x distance _position;
+	if (isPlayer _x && _dist < _scandist) then {
+		_closest = _x;
+		_scandist = _dist;
+	};
+	} count playableUnits;
+	
+	_closest
+};
+
+DZMSAutoClaimAlert = {
+	local _unit = _this select 0;
+	local _mission = _this select 1;
+	local _type = _this select 2;
+	local _name = "";
+	local _owner = objNull;
+	if (typeName _unit == "ARRAY") then {
+		_name = _unit select 1;
+	} else {
+		_owner = owner _unit;
+		_name = name _unit;
+	};
+	
+	_message = call {
+		if (_type == "Start") exitWith {["STR_CL_AUTOCLAIM_ANNOUNCE",_mission,DZMSAutoClaimDelayTime];};
+		if (_type == "Stop") exitWith {["STR_CL_AUTOCLAIM_NOCLAIM",_mission];};
+		if (_type == "Return") exitWith {["STR_CL_AUTOCLAIM_RETURN",DZMSAutoClaimTimeout];};
+		if (_type == "Reclaim") exitWith {"STR_CL_AUTOCLAIM_RECLAIM";};
+		if (_type == "Claimed") exitWith {["STR_CL_AUTOCLAIM_CLAIM",_name,_mission];};
+		if (_type == "Unclaim") exitWith {["STR_CL_AUTOCLAIM_ABANDON",_name,_mission];};
+	};
+	
+	if (_type == "Claimed" || _type == "Unclaim") exitWith {
+		RemoteMessage = ["IWAC",_message];
+		publicVariable "RemoteMessage";
+	};
+	
+	RemoteMessage = ["IWAC",_message];
+	(_owner) publicVariableClient "RemoteMessage";
+};
+
+DZMSCheckReturningPlayer = {
+	local _position 	= _this select 0;
+	local _acArray	= _this select 1;
+	local _playerUID	= _acArray select 0;
+	local _returningPlayer = objNull;
+
+	{
+		if ((isPlayer _x) && (_x distance _position <= DZMSAutoClaimAlertDistance) && (getplayerUID _x == _playerUID)) then {
+			_returningPlayer = _x;
+		};
+	} count playableUnits;
+	
+	_returningPlayer
 };
 
 //------------------------------------------------------------------//

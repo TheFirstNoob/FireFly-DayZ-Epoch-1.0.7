@@ -91,13 +91,15 @@ for "_x" from 1 to _unitcount do {
 	_unit addWeapon _weapon;
 	_unit selectWeapon _weapon;
 	
-
+	if (!DZMSOverwatch) then {
 		_attachments = configFile >> "CfgWeapons" >> _weapon >> "Attachments";
 		if (isClass _attachments && count _attachments > 0) then {
 			_attach = configName (_attachments call BIS_fnc_selectRandom);
-			_unit addMagazine _attach;
+			if !(_attach == "Attachment_Tws") then { // blacklist thermal scope
+				_unit addMagazine _attach;
+			};
 		};
-
+	};
 	
 	_unit addBackpack _aipack;
 	

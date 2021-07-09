@@ -7,6 +7,7 @@ call compile preprocessFileLineNumbers (PATH+"sched_safetyVehicle.sqf");
 call compile preprocessFileLineNumbers (PATH+"sched_event.sqf");
 call compile preprocessFileLineNumbers (PATH+"sched_traps.sqf");
 call compile preprocessFileLineNumbers (PATH+"sched_wai.sqf");
+call compile preprocessFileLineNumbers (PATH+"sched_dzms.sqf");
 
 [
 	// period	offset	code <-> ctx				init code ->ctx
@@ -14,6 +15,7 @@ call compile preprocessFileLineNumbers (PATH+"sched_wai.sqf");
 	 [ 60,	 	224,	sched_corpses ],
 	 [ 300,	 	336,	sched_lootpiles_5m,         sched_lootpiles_5m_init ],
 	 [ 90,		60,		sched_wai,					sched_wai_init ],
+	 [ 90,		60,		sched_dzms,					sched_dzms_init ],
 	 [ 6,	 	340,	sched_lootpiles ],
 	 [ 900,		0,		sched_sync ],
 	 [ 120,		48,		sched_safetyVehicle ],

@@ -167,7 +167,15 @@ DZMSBlacklistZones = [
     [[0,16000,0],[16000.0,12500,0]] // Top edge of map Chernarus
 ];
 
+DZMSDistanceBetweenMissions = 1000; // Minimum distance in meters to check for other missions.
+
+// Autoclaim is a PVE feature that lets players know who is currently engaged in a mission.
+DZMSAutoClaim = false;
+DZMSAutoClaimAlertDistance = 800; // Distance from the mission that auto-claim uses to alert closest player
+DZMSAutoClaimDelayTime = 30; // Time that the auto-claim waits until it declares a claim and places a marker - time in seconds
+DZMSAutoClaimTimeout = 60; // If the claimer leaves the mission area he/she has this much time to return - time in seconds
+
 /*=============================================================================================*/
 // Do Not Edit Below This Line
 /*=============================================================================================*/
-DZMSVersion = "2.0";
+DZMSVersion = "2.1";
