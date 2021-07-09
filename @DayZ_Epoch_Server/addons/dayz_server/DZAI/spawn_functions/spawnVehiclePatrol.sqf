@@ -79,7 +79,7 @@ if (_isAirVehicle) then {
 	_vehicle addEventHandler ["HandleDamage",{_this call DZAI_vHandleDamage}];
 };
 _vehicle allowCrewInImmobile (!_isAirVehicle);
-_vehicle setVehicleLock "LOCKED";
+_vehicle setVehicleLock "UNLOCKED";
 clearWeaponCargoGlobal _vehicle;
 clearMagazineCargoGlobal _vehicle;
 
