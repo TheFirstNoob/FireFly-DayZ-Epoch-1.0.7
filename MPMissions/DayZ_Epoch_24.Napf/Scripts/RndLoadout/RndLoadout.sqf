@@ -23,8 +23,8 @@ loadout_fnc_selectRandom 	=
 
 _primary 		=
 [
-	"AKS74_DZ","AKS_DZ","AKS_Silver_DZ","AKS_Gold_DZ","MAT49_DZ","M4A1_DZ","L85A2_DZ","G36C_DZ","ACR_BL_DZ","SA58_DZ","CTAR21_DZ","M31_DZ"
-	,"Bizon_DZ","UMP_DZ","TMP_DZ","Scorpion_Evo3_DZ","PDR_DZ","P90_DZ","MP7_DZ","MP5_DZ","Kriss_DZ","KAC_PDW_DZ"
+	"AKS74_DZ","AKS_DZ","AKS_Silver_DZ","AKS_Gold_DZ","MAT49_DZ","M4A1_DZ","M4A1_Rusty_DZ","L85A2_DZ","G36C_DZ","ACR_BL_DZ","MK16_DZ","SA58_DZ","CTAR21_DZ","M31_DZ"
+	,"Bizon_DZ","UMP_DZ","TMP_DZ","Scorpion_Evo3_DZ","PDR_DZ","P90_DZ","MP7_DZ","MP5_DZ","Kriss_DZ","KAC_PDW_DZ","Sten_MK_DZ"
 	,"Saiga12K_DZ","Remington870_DZ","MR43_DZ","M1014_DZ"
 	,"Winchester1866_DZ","Redryder","Mosin_DZ","LeeEnfield_DZ"
 	,"Crossbow_DZ"
