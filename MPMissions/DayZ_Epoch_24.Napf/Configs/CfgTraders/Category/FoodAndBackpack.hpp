@@ -76,7 +76,7 @@ class Category_401
 class Category_402
 {
 	class ItemSodaRbull				{typeI	buyFB 500 worth 	sellFB 100 worth };
-	class ItemSodaOrangeSherbet		{typeI	buyFB 500 worth 	sellFB 100 worth };
+	class ItemSodaOrangeSherbet		{typeI	buyFB 2500 worth 	sellFB 500 worth };
 	class ItemSherbet				{typeI	buyFB 500 worth 	sellFB 100 worth };
 	class ItemSodaGrapeDrink		{typeI	buyFB 500 worth 	sellFB 100 worth };
 	class ItemSodaRocketFuel		{typeI	buyFB 500 worth 	sellFB 100 worth };
@@ -92,7 +92,7 @@ class Category_402
 	class ItemSodaSmasht			{typeI	buyFB 500 worth 	sellFB 100 worth };
 	class ItemSodaClays				{typeI	buyFB 500 worth 	sellFB 100 worth };
 	class ItemSodaR4z0r				{typeI	buyFB 500 worth 	sellFB 100 worth };
-	class ItemSodaMtngreen			{typeI	buyFB 500 worth 	sellFB 100 worth };
+	class ItemSodaMtngreen			{typeI	buyFB 2500 worth 	sellFB 500 worth };
 	class ItemSodaMdew				{typeI	buyFB 500 worth 	sellFB 100 worth };
 	class ItemSodaPepsi				{typeI	buyFB 500 worth 	sellFB 100 worth };
 	class ItemSodaCoke				{typeI	buyFB 500 worth 	sellFB 100 worth };
