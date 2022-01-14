@@ -379,7 +379,7 @@ if (!isNull _cursorTarget && {!_inVehicle && !_isPZombie && _canDo && player dis
 
 	if (_player_deleteBuild) then {
 		if (s_player_deleteBuild < 0) then {
-			s_player_deleteBuild = player addAction [format[localize "STR_EPOCH_REMOVE",_text], "\z\addons\dayz_code\actions\remove.sqf",_cursorTarget, 1, false, true];
+			s_player_deleteBuild = player addAction [format[localize "STR_EPOCH_REMOVE",_text], "Fixes\actions\remove.sqf",_cursorTarget, 1, false, true];
 		};
 	} else {
 		player removeAction s_player_deleteBuild;
