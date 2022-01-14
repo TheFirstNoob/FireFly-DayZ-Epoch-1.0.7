@@ -60,7 +60,7 @@ server_obj_inv =
 			_key = format["CHILD:303:%1:",_objectID] + str _inventory + ":";
 		};
 
-		if (Z_SingleCurrency) then
+		if (Z_SingleCurrency && {(_class in DZE_MoneyStorageClasses) || {ZSC_VehicleMoneyStorage && (_object isKindOf "AllVehicles") && !(_object isKindOf "StaticWeapon")}}) then
 		{
 			local _coins = _object getVariable ["cashMoney", -1];
 			_key 	= 	_key + str _coins + ":";

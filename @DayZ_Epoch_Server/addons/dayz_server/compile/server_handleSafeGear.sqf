@@ -1,4 +1,4 @@
-private ["_exitReason","_clientKey","_backpacks","_charID","_clientID","_dir","_holder","_lockCode","_lockedClass","_magazines","_name","_obj","_objectID","_objectUID","_ownerID","_packedClass","_player","_playerUID","_pos","_status","_statusText","_type","_unlockedClass","_vector","_weapons","_message","_suppliedCode","_damage","_coins","_wealth"];
+private ["_isZSC","_exitReason","_clientKey","_backpacks","_charID","_clientID","_dir","_holder","_lockCode","_lockedClass","_magazines","_name","_obj","_objectID","_objectUID","_ownerID","_packedClass","_player","_playerUID","_pos","_status","_statusText","_type","_unlockedClass","_vector","_weapons","_message","_suppliedCode","_damage","_coins","_wealth"];
 
 _player 	= 	_this select 0;
 _obj 		= 	_this select 1;
@@ -61,6 +61,11 @@ if !(_type in DZE_DoorsLocked) then
 if (_exitReason != "") exitWith {diag_log _exitReason};
 
 call {
+	_isZSC 	= 	false;
+	if (Z_singleCurrency) then
+	{
+		_isZSC 	= 	_type in DZE_MoneyStorageClasses;
+	};
 	if (_status == 0) exitwith
 	{ //Unlocking
 		_unlockedClass 	= 	getText (configFile >> "CfgVehicles" >> _type >> "unlockedClass");
@@ -68,7 +73,7 @@ call {
 		_magazines 		= 	_obj getVariable ["MagazineCargo",[]];
 		_backpacks 		= 	_obj getVariable ["BackpackCargo",[]];
 		
-		if (Z_singleCurrency) then
+		if (_isZSC && {_unlockedClass in DZE_MoneyStorageClasses}) then
 		{
 			_coins 	= 	_obj getVariable ["cashMoney",0];
 		};
@@ -91,7 +96,7 @@ call {
 			_holder setVariable ["ownerPUID",_ownerID,true];
 		};
 
-		if (Z_singleCurrency) then
+		if (_isZSC && {_unlockedClass in DZE_MoneyStorageClasses}) then
 		{
 			_holder setVariable ["cashMoney",_coins,true];
 		};
@@ -110,7 +115,7 @@ call {
 		_magazines 	= getMagazineCargo _obj;
 		_backpacks 	= getBackpackCargo _obj;
 
-		if (Z_singleCurrency) then
+		if (_isZSC && {_lockedClass in DZE_MoneyStorageClasses}) then
 		{
 			_coins 	= 	_obj getVariable ["cashMoney",0];
 		};
@@ -133,7 +138,7 @@ call {
 			_holder setVariable ["ownerPUID",_ownerID,true];
 		};
 
-		if (Z_singleCurrency) then
+		if (_isZSC && {_lockedClass in DZE_MoneyStorageClasses}) then
 		{
 			_holder setVariable ["cashMoney",_coins,true];
 		};
@@ -159,7 +164,7 @@ call {
 		_magazines 	= 	getMagazineCargo _obj;
 		_backpacks 	= 	getBackpackCargo _obj;
 
-		if (Z_singleCurrency) then
+		if (_isZSC && {_packedClass in DZE_MoneyStorageClasses}) then
 		{
 			_coins = _obj getVariable ["cashMoney",0];
 		};
@@ -171,7 +176,7 @@ call {
 		_holder addMagazineCargoGlobal [getText(configFile >> "CfgVehicles" >> _packedClass >> "seedItem"),1];
 		[_weapons,_magazines,_backpacks,_holder] call fn_addCargo;
 
-		if (Z_singleCurrency && {_coins > 0}) then
+		if (_isZSC && {{_packedClass in DZE_MoneyStorageClasses} && {_coins > 0}}) then
 		{
 			private "_displayName";
 
