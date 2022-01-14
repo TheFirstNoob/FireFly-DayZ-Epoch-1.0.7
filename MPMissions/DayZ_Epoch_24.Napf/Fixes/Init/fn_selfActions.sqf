@@ -713,7 +713,7 @@ if (!isNull _cursorTarget && {!_inVehicle && !_isPZombie && _canDo && player dis
 			_hasAccess = [player, _cursorTarget] call FNC_check_access;
 			if ((_hasAccess select 0) || (_hasAccess select 2) || (_hasAccess select 3) || (_typeOfCursorTarget in DZE_UpgradableStorage) || (_typeOfCursorTarget isKindOf "DZ_storage_base")) then {
 				s_player_lastTarget set [0,_cursorTarget];
-				s_player_upgrade_build = player addAction [format[localize "STR_EPOCH_UPGRADE",_text], "\z\addons\dayz_code\actions\player_upgrade.sqf",_cursorTarget, -1, false, true];
+				s_player_upgrade_build = player addAction [format[localize "STR_EPOCH_UPGRADE",_text], "Fixes\actions\player_upgrade.sqf",_cursorTarget, -1, false, true];
 			};
 		};
 	} else {
@@ -734,12 +734,12 @@ if (!isNull _cursorTarget && {!_inVehicle && !_isPZombie && _canDo && player dis
 				_hasAccess = [player, _cursorTarget] call FNC_check_access;
 				if ((_hasAccess select 0) || {_hasAccess select 2} || {_hasAccess select 3}) then {
 					s_player_lastTarget set [1,_cursorTarget];
-					s_player_downgrade_build = player addAction [format[localize "STR_EPOCH_ACTIONS_REMLOCK",_text], "\z\addons\dayz_code\actions\player_buildingDowngrade.sqf",_cursorTarget, -2, false, true];
+					s_player_downgrade_build = player addAction [format[localize "STR_EPOCH_ACTIONS_REMLOCK",_text], "Fixes\actions\player_buildingDowngrade.sqf",_cursorTarget, -2, false, true];
 				};
 			};
 		};
 		if (s_player_changeDoorCode < 0 && {_typeOfCursorTarget in DZE_DoorsLocked}) then {
-			s_player_changeDoorCode = player addAction [format[localize "STR_CL_CC_CODE_CHANGE",_text], "\z\addons\dayz_code\actions\changeCode.sqf",_cursorTarget, 0, false, true];
+			s_player_changeDoorCode = player addAction [format[localize "STR_CL_CC_CODE_CHANGE",_text], "Fixes\actions\changeCode.sqf",_cursorTarget, 0, false, true];
 		};
 	} else {
 		player removeAction s_player_downgrade_build;
