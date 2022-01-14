@@ -27,3 +27,4 @@ ACTIONS: (Стандартный путь/Default Path: \z\addons\dayz_code\acti
 - player_upgrade.sqf - Смотри/Check fn_selfAction!!!
 - player_buildingDowngrade.sqf - Смотри/Check fn_selfAction!!!
 - player_emptyContainer.sqf
+- modular_build.sqf

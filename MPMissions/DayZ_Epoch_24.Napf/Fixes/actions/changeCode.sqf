@@ -73,7 +73,7 @@ if (_isStorage) then {
 	_vector = [vectorDir _cursorTarget,vectorUp _cursorTarget];
 
 	_object = createVehicle [_typeOf, [0,0,0], [], 0, "CAN_COLLIDE"];
-	_object setDir _dir;
+	// _object setDir _dir; setdir несовместим с setVectorDirAndUp и не должен использоваться вместе на одном и том же объекте https://community.bistudio.com/wiki/setVectorDirAndUp
 	_object setVectorDirAndUp _vector;
 	_object setPosATL _location;
 	_object setVariable ["memDir",_dir,true];

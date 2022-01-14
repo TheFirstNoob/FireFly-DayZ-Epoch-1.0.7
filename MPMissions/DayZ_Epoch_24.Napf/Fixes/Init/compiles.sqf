@@ -84,7 +84,7 @@ if (!isDedicated) then {
 	player_fillWater = compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\water_fill.sqf";
 	player_mineStone = compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\player_mineStone.sqf";
 	if (DZE_modularBuild) then {
-		player_build = compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\modular_build.sqf";
+		player_build = compile preprocessFileLineNumbers "Fixes\actions\modular_build.sqf";
 		call compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\snap_functions.sqf";
 		snap_build = compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\snap_build.sqf";
 		call compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\BuildVectors\vector_functions.sqf";

@@ -66,7 +66,7 @@ if (_isZSC) then
 [_objectID,_objectUID,_object] call server_deleteObjDirect;
 
 _holder 	= 	_lockedClass createVehicle [0,0,0];
-_holder setDir _dir;
+// _holder setDir _dir; setdir несовместим с setVectorDirAndUp и не должен использоваться вместе на одном и том же объекте https://community.bistudio.com/wiki/setVectorDirAndUp
 _holder setVariable ["memDir",_dir,true];
 _holder setVectorDirAndUp _vector;
 _holder setPosATL _pos;
