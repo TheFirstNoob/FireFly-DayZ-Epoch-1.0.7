@@ -25,7 +25,7 @@ if (!isDedicated) then {
 	player_attackdelay = compile preprocessFileLineNumbers "Fixes\compile\player_attackfsmdelay.sqf";
 	fnc_usec_damageActions = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_damageActions.sqf";		//Checks which actions for nearby casualty
 	fnc_inAngleSector = compile preprocessFileLineNumbers "Fixes\compile\fn_inAngleSector.sqf";		//Checks which actions for nearby casualty
-	fnc_usec_selfActions = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_selfActions.sqf";		//Checks which actions for self
+	fnc_usec_selfActions = compile preprocessFileLineNumbers "Fixes\init\fn_selfActions.sqf";		//Checks which actions for self
 	fnc_usec_unconscious = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_unconscious.sqf";
 	player_temp_calculation = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_temperatur.sqf";		//Temperatur System //TeeChange
 	player_weaponFiredNear = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_weaponFiredNear.sqf";
@@ -162,14 +162,14 @@ if (!isDedicated) then {
 	player_harvestPlant = compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\player_harvestPlant.sqf";
 	player_hasTools = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\fn_hasTools.sqf";
 	player_loadCrate = compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\player_loadCrate.sqf";
-	player_lockVault = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_lockVault.sqf";
+	player_lockVault = compile preprocessFileLineNumbers "Fixes\compile\player_lockVault.sqf";
 	player_packVault = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_packVault.sqf";
 	player_removeNearby = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\object_removeNearby.sqf";
 	player_removeObject = compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\remove.sqf";
 	player_surrender = compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\player_surrender.sqf";
 	player_traderCity = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_traderCity.sqf";
 	player_unlockDoor = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_unlockDoor.sqf";
-	player_unlockVault = compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_unlockVault.sqf";
+	player_unlockVault = compile preprocessFileLineNumbers "Fixes\compile\player_unlockVault.sqf";
 	player_upgradeVehicle =	compile preprocessFileLineNumbers "\z\addons\dayz_code\compile\player_upgradeVehicle.sqf";
 	if (DZE_permanentPlot) then {
 		PlotGetFriends = compile preprocessFileLineNumbers "\z\addons\dayz_code\actions\plotManagement\plotGetFriends.sqf";
