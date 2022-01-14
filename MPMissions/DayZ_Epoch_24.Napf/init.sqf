@@ -37,7 +37,7 @@ if (!isDedicated) then
 };
 
 initialized = false;
-call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\variables.sqf";
+call compile preprocessFileLineNumbers "Fixes\init\variables.sqf";
 dayz_progressBarValue = 0.05;
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
 dayz_progressBarValue = 0.1;
