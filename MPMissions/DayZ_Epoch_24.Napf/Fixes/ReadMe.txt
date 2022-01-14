@@ -13,6 +13,12 @@ COMPILE: (Стандартный путь/Default Path: \z\addons\dayz_code\comp
 - player_gearSet.sqf
 - player_unlockVault.sqf
 - player_lockVault.sqf
+- veh_handleKilled.sqf
+- fn_buildWeightedArray.sqf
+- fn_inString.sqf
+- player_projectileNear.sqf
+- fn_selectRandomLocation.sqf
+- fnc_getSetPos.sqf
 
 ACTIONS: (Стандартный путь/Default Path: \z\addons\dayz_code\actions\...)
 - changeCode.sqf - Смотри/Check fn_selfAction!!!
