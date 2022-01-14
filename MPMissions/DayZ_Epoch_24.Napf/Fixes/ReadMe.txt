@@ -23,3 +23,4 @@ COMPILE: (Стандартный путь/Default Path: \z\addons\dayz_code\comp
 
 ACTIONS: (Стандартный путь/Default Path: \z\addons\dayz_code\actions\...)
 - changeCode.sqf - Смотри/Check fn_selfAction!!!
+- player_emptyContainer.sqf
