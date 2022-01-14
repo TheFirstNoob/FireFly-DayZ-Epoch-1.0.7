@@ -4,3 +4,14 @@ DZE_Server_Config/HiveExt.ini
 DZE_Server_Config/arma2oaserver.RPT
 DZE_Server_Config/BattlEye/BEServer.cfg
 DZE_Server_Config/HiveExt.ini
+*.log
+DZE_Server_Config/HiveExt.ini
+DZE_Server_Config/server_log.txt
+MPMissions/readme.txt
+MPMissions/DayZ_Epoch_24.Napf/rules.sqf
+DZE_Server_Config/Users/server/server.vars.ArmA2OAProfile
+DZE_Server_Config/Users/server/server.ArmA2OAProfile
+DZE_Server_Config/Users/DZE_Server_Config/DZE_Server_Config.vars.ArmA2OAProfile
+DZE_Server_Config/Users/DZE_Server_Config/DZE_Server_Config.ArmA2OAProfile
+DZE_Server_Config/BattlEye/BEServer.cfg
+DZE_Server_Config/BattlEye/BEServer.dll
