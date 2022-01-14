@@ -12,6 +12,7 @@ COMPILE: (Default Path: \z\addons\dayz_code\compile\...)
 - fn_sunRise.sqf
 - player_gearSet.sqf
 - player_unlockVault.sqf
+- player_lockVault.sqf
 
 ACTIONS: (Default Path: \z\addons\dayz_code\actions\...)
 - changeCode.sqf
