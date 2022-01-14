@@ -271,6 +271,17 @@ if (!isDedicated) then
 		,"DeerStand_DZ"
 		,"MetalGate_DZ"
 		,"StickFence_DZ"
+		,"Garage_Green_DZ"
+		,"Garage_White_DZ"
+		,"Garage_Brown_DZ"
+		,"Garage_Grey_DZ"
+		,"CCTV_DZ"
+		,"Notebook_DZ"
+		,"Water_Pump_DZ"
+		,"Greenhouse_DZ"
+		,"Bed_DZ"
+		,"Table_DZ"
+		,"Office_Chair_DZ"
 	];
 
 	DZE_DisableUpgrade 		= 	[];		// Список Объектов которые не могут быть Улучшены. НАПРИМЕР: DZE_DisableUpgrade = ["WoodShack_DZ","StorageShed_DZ"];
