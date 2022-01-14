@@ -43,7 +43,7 @@ call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\publicEH.sqf";
 dayz_progressBarValue = 0.1;
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\medical\setup_functions_med.sqf";
 dayz_progressBarValue = 0.15;
-call compile preprocessFileLineNumbers "Fixes\Init\compiles.sqf";
+call compile preprocessFileLineNumbers "Fixes\init\compiles.sqf";
 call compile preprocessFileLineNumbers "Traders_Menu.sqf";
 dayz_progressBarValue = 0.25;
 initialized = true;

@@ -1,11 +1,9 @@
 
 @DayZ_Epoch_Server/addons/dayz_server.pbo
+*.log
 DZE_Server_Config/HiveExt.ini
 DZE_Server_Config/arma2oaserver.RPT
 DZE_Server_Config/BattlEye/BEServer.cfg
-DZE_Server_Config/HiveExt.ini
-*.log
-DZE_Server_Config/HiveExt.ini
 DZE_Server_Config/server_log.txt
 MPMissions/readme.txt
 MPMissions/DayZ_Epoch_24.Napf/rules.sqf
