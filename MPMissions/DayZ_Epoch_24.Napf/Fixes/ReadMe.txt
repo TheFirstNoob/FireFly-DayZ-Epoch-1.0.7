@@ -4,7 +4,7 @@
 WARNING: The accepted fixes have been aligned according to the GitHub DayZ Epoch under version 1.0.7.1.
 The following files may be removed and file paths may be set to default after the 1.0.7.1 release:
 
-COMPILE: (Default Path: \z\addons\dayz_code\compile\...)
+COMPILE: (Стандартный путь/Default Path: \z\addons\dayz_code\compile\...)
 - player_attackfsmdelay.sqf
 - fn_inAngleSector.sqf
 - player_music.sqf
@@ -14,5 +14,5 @@ COMPILE: (Default Path: \z\addons\dayz_code\compile\...)
 - player_unlockVault.sqf
 - player_lockVault.sqf
 
-ACTIONS: (Default Path: \z\addons\dayz_code\actions\...)
-- changeCode.sqf
+ACTIONS: (Стандартный путь/Default Path: \z\addons\dayz_code\actions\...)
+- changeCode.sqf - Смотри/Check fn_selfAction!!!
