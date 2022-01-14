@@ -650,7 +650,7 @@ if (!isNull _cursorTarget && {!_inVehicle && !_isPZombie && _canDo && player dis
 			s_player_packvault = player addAction [format["<t color='#ff0000'>%1</t>",format[localize "STR_EPOCH_ACTIONS_PACK",_text]], "\z\addons\dayz_code\actions\vault_pack.sqf",_cursorTarget, 0, false, true];
 		};
 		if (s_player_changeVaultCode < 0 && (_characterID == dayz_combination || _ownerID == _uid)) then {
-			s_player_changeVaultCode = player addAction [format[localize "STR_CL_CC_CODE_CHANGE",_text], "\z\addons\dayz_code\actions\changeCode.sqf",_cursorTarget, 0, false, true];
+			s_player_changeVaultCode = player addAction [format[localize "STR_CL_CC_CODE_CHANGE",_text], "Fixes\actions\changeCode.sqf",_cursorTarget, 0, false, true];
 		};
 	} else {
 		player removeAction s_player_packvault;
