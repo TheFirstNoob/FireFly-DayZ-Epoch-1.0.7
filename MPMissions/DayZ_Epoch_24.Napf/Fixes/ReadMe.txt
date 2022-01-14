@@ -19,6 +19,7 @@ COMPILE: (Стандартный путь/Default Path: \z\addons\dayz_code\comp
 - player_projectileNear.sqf
 - fn_selectRandomLocation.sqf
 - fnc_getSetPos.sqf
+- player_throwObject.sqf 
 
 ACTIONS: (Стандартный путь/Default Path: \z\addons\dayz_code\actions\...)
 - changeCode.sqf - Смотри/Check fn_selfAction!!!
