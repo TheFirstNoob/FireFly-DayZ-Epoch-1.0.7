@@ -47,15 +47,15 @@ DZAI_useHealthSystem = true;
 
 //Minimum and maximum AI blood level to spawn each unit with. Each individual unit will have a randomized blood level within this range. Upper limit: 12000 blood (Default: [10000,12000])
 //Note: No effect if DZAI_useHealthSystem is false
-DZAI_unitBloodLevel = [8000,10000];
+DZAI_unitBloodLevel = [5000,7000];
 
 //Amount of blood restored from a full self-heal. One-third of the total amount is restored 3 times every 3 seconds. Note: Applies to infantry-type AI units. (Default: 6000)
 //Note: No effect if DZAI_useHealthSystem is false
-DZAI_unitHealAmount = 5100;
+DZAI_unitHealAmount = 4000;
 
 //Below this blood level, AI may decide to heal themselves for amount specified by DZAI_unitHealAmount. Healing requires 9 seconds to fully complete and can be interrupted by knocking the unit unconscious. (Default: 5000)
 //Note: No effect if DZAI_useHealthSystem is false
-DZAI_lowBloodLevel = 4500;
+DZAI_lowBloodLevel = 4000;
 
 //Enable or disable zombie attraction to AI weapon sounds. No effect if DZAI_zombieEnemy is set to false. Enabling this option may impact server performance as a script is run for each AI bullet fired.
 //Note: AI cannot be attacked or damaged by zombies.(Default: false)		
@@ -103,7 +103,7 @@ DZAI_deathMessages = false;
 DZAI_staticAI = true;
 
 //Set minimum and maximum wait time in seconds to respawn an AI group after all units have been killed. Applies to both static AI and custom spawned AI (Default: Min 300, Max 600).									
-DZAI_respawnTimeMin = 1800;
+DZAI_respawnTimeMin = 2400;
 DZAI_respawnTimeMax = 3600;
 
 //Time to allow spawned AI units to exist in seconds before being despawned when no players are present in a trigger area. Applies to both static AI and custom spawned AI (Default: 120)										
@@ -116,10 +116,10 @@ DZAI_respawnLimit2 = -1; 	//Respawn limit for high level AI found in places with
 DZAI_respawnLimit3 = -1; 	//Respawn limit for very high level AI in places with high-grade military loot (Default: -1)
 
 //Spawn probabilities
-DZAI_spawnChance0 = 0.40;	//Spawn chance for low-skill AI typically found in small towns (Default: 0.40)
-DZAI_spawnChance1 = 0.60;	//Spawn chance for mid-level AI typically found in cities and large towns (Default: 0.60)
-DZAI_spawnChance2 = 0.80;	//Spawn chance for high-level AI typically found in places with military-grade loot (Default: 0.80)
-DZAI_spawnChance3 = 0.90;	//Spawn chance for expert-level AI found in areas with high-grade military loot (Default: 0.90)
+DZAI_spawnChance0 = 0.20;	//Spawn chance for low-skill AI typically found in small towns (Default: 0.40)
+DZAI_spawnChance1 = 0.35;	//Spawn chance for mid-level AI typically found in cities and large towns (Default: 0.60)
+DZAI_spawnChance2 = 0.50;	//Spawn chance for high-level AI typically found in places with military-grade loot (Default: 0.80)
+DZAI_spawnChance3 = 0.65;	//Spawn chance for expert-level AI found in areas with high-grade military loot (Default: 0.90)
 
 
 /*	Dynamic AI Spawning Settings
@@ -364,6 +364,48 @@ DZAI_gradeChancesDyn = [0.00,0.88,0.09,0.03];
 //AI skill settings level 0 (Skill, Minimum skill, Maximum skill). Baseline skill level: 0.50
 DZAI_skill0 = [	
 	["aimingAccuracy",0.10,0.125],
+	["aimingShake",0.20,0.29],
+	["aimingSpeed",0.20,0.29],
+	["endurance",0.20,0.29],
+	["spotDistance",0.20,0.29],
+	["spotTime",0.20,0.29],
+	["courage",0.20,0.29],
+	["reloadSpeed",0.20,0.29],
+	["commanding",0.20,0.29],
+	["general",0.30,0.39]
+];
+
+//AI skill settings level 1 (Skill, Minimum skill, Maximum skill). Baseline skill level: 0.60
+DZAI_skill1 = [	
+	["aimingAccuracy",0.125,0.15],
+	["aimingShake",0.30,0.39],
+	["aimingSpeed",0.30,0.39],
+	["endurance",0.30,0.39],
+	["spotDistance",0.60,0.39],
+	["spotTime",0.30,0.39],
+	["courage",0.30,0.39],
+	["reloadSpeed",0.30,0.39],
+	["commanding",0.40,0.49],
+	["general",0.40,0.49]
+];
+
+//AI skill settings level 2 (Skill, Minimum skill, Maximum skill). Baseline skill level: 0.70
+DZAI_skill2 = [	
+	["aimingAccuracy",0.175,0.225],
+	["aimingShake",0.40,0.49],
+	["aimingSpeed",0.40,0.49],
+	["endurance",0.40,0.49],
+	["spotDistance",0.40,0.49],
+	["spotTime",0.40,0.49],
+	["courage",0.40,0.49],
+	["reloadSpeed",0.40,0.49],
+	["commanding",0.50,0.59],
+	["general",0.50,0.59]
+];
+
+//AI skill settings level 3 (Skill, Minimum skill, Maximum skill). Baseline skill level: 0.80
+DZAI_skill3 = [	
+	["aimingAccuracy",0.225,0.250],
 	["aimingShake",0.50,0.59],
 	["aimingSpeed",0.50,0.59],
 	["endurance",0.50,0.59],
@@ -373,48 +415,6 @@ DZAI_skill0 = [
 	["reloadSpeed",0.50,0.59],
 	["commanding",0.60,0.69],
 	["general",0.60,0.69]
-];
-
-//AI skill settings level 1 (Skill, Minimum skill, Maximum skill). Baseline skill level: 0.60
-DZAI_skill1 = [	
-	["aimingAccuracy",0.125,0.15],
-	["aimingShake",0.60,0.69],
-	["aimingSpeed",0.60,0.69],
-	["endurance",0.60,0.69],
-	["spotDistance",0.60,0.69],
-	["spotTime",0.60,0.69],
-	["courage",0.60,0.69],
-	["reloadSpeed",0.60,0.69],
-	["commanding",0.70,0.79],
-	["general",0.70,0.79]
-];
-
-//AI skill settings level 2 (Skill, Minimum skill, Maximum skill). Baseline skill level: 0.70
-DZAI_skill2 = [	
-	["aimingAccuracy",0.175,0.225],
-	["aimingShake",0.70,0.79],
-	["aimingSpeed",0.70,0.79],
-	["endurance",0.70,0.79],
-	["spotDistance",0.70,0.79],
-	["spotTime",0.70,0.79],
-	["courage",0.70,0.79],
-	["reloadSpeed",0.70,0.79],
-	["commanding",0.80,0.89],
-	["general",0.80,0.89]
-];
-
-//AI skill settings level 3 (Skill, Minimum skill, Maximum skill). Baseline skill level: 0.80
-DZAI_skill3 = [	
-	["aimingAccuracy",0.225,0.250],
-	["aimingShake",0.80,0.89],
-	["aimingSpeed",0.80,0.89],
-	["endurance",0.80,0.89],
-	["spotDistance",0.80,0.89],
-	["spotTime",0.80,0.89],
-	["courage",0.80,0.89],
-	["reloadSpeed",0.80,0.89],
-	["commanding",0.90,0.99],
-	["general",0.90,0.99]
 ];
 
 
