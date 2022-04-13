@@ -9,7 +9,8 @@ DZMSSpawnCrate = {
 	local _boxType = _this select 2;
 	local _lootType = _this select 3;
 	local _offset = _this select 4;
-	local _cratePosition = [(_cratePos select 0) + (_offset select 0), (_cratePos select 1) + (_offset select 1), 0];
+	local _z = [0, (_cratePos select 2)] select (count _cratePos == 3);
+	local _cratePosition = [(_cratePos select 0) + (_offset select 0), (_cratePos select 1) + (_offset select 1), _z];
 	
 	if (count _offset > 2) then {
 		_cratePosition set [2, (_offset select 2)];
@@ -42,13 +43,11 @@ DZMSNearPlayer = {
 	local _result = false;
 	local _position = _this select 0;
 	local _radius = _this select 1;
-
 	{
 		if ((isPlayer _x) && (_x distance _position <= _radius)) then {
 			_result = true;
 		};
 	} count playableUnits;
-
 	_result
 };
 
@@ -60,7 +59,8 @@ DZMSCleanupThread = {
 	local _crates = _this select 4;
 	local _groups = _this select 5;
 	local _staticGuns = _this select 6;
-	local _time0ut = _this select 7;
+	local _posIndex = _this select 7;
+	local _time0ut = _this select 8;
 	local _cleaned = false;
 	local _time = diag_tickTime;
 	
@@ -70,21 +70,17 @@ DZMSCleanupThread = {
 			if ((diag_tickTime - _time) > DZMSSceneryDespawnTimer*60 || _time0ut) then {
 				
 				// delete mission objects
-				if (count _objects > 0) then {
-					{
-						_x call sched_co_deleteVehicle;
-					} count _objects;
-				};
+				{
+					_x call sched_co_deleteVehicle;
+				} count _objects;
 				
 				// delete vehicles if they are not claimed
-				if (count _vehicles > 0) then {
-					{
-						if (_x getVariable ["DZMSCleanup" + dayz_serverKey,false]) then {
-							_x call sched_co_deleteVehicle;
-						};
-					
-					} count _vehicles;
-				};
+				{
+					if (_x getVariable ["DZMSCleanup" + dayz_serverKey,false]) then {
+						_x call sched_co_deleteVehicle;
+					};
+				
+				} count _vehicles;
 				
 				// Delete Remaining AI that are alive
 				{
@@ -94,27 +90,9 @@ DZMSCleanupThread = {
 				} count allunits;
 				
 				// Delete Static Guns
-				if ((count _staticGuns) > 0) then {
-					{
-						_x call sched_co_deleteVehicle;
-					} count _staticGuns;
-				};
-				
-				uiSleep 10; // Need to sleep to let the group count get to zero
-				
-				// Remove AI groups if mission times out
-					if (count _groups > 0) then {
-						{
-							if (count units _x == 0) then {
-								deleteGroup _x;
-								_groups = _groups - [_x];
-								//diag_log format ["DZMS: Group %1 deleted.",_x];
-								if (count _groups > 0) then {
-									diag_log format ["DZMS: Group array %1",_groups];
-								};
-							};
-						} count _groups;
-					};
+				{
+					_x call sched_co_deleteVehicle;
+				} count _staticGuns;
 				
 				// delete mission crates if enabled
 				if (DZMSSceneryDespawnLoot || _time0ut) then {
@@ -133,6 +111,7 @@ DZMSCleanupThread = {
 			};
 		};
 	};
+	DZE_MissionPositions set [_posIndex, -1];
 	diag_log format ["DZMS: Cleanup for mission %1 complete.",_mission];
 };
 
@@ -200,16 +179,8 @@ DZMSAutoClaimAlert = {
 	local _unit = _this select 0;
 	local _mission = _this select 1;
 	local _type = _this select 2;
-	local _name = "";
-	local _owner = objNull;
-	if (typeName _unit == "ARRAY") then {
-		_name = _unit select 1;
-	} else {
-		_owner = owner _unit;
-		_name = name _unit;
-	};
-	
-	_message = call {
+	local _name = if (typeName _unit == "ARRAY") then {_unit select 1;} else {name _unit;};
+	local _message = call {
 		if (_type == "Start") exitWith {["STR_CL_AUTOCLAIM_ANNOUNCE",_mission,DZMSAutoClaimDelayTime];};
 		if (_type == "Stop") exitWith {["STR_CL_AUTOCLAIM_NOCLAIM",_mission];};
 		if (_type == "Return") exitWith {["STR_CL_AUTOCLAIM_RETURN",DZMSAutoClaimTimeout];};
@@ -224,7 +195,7 @@ DZMSAutoClaimAlert = {
 	};
 	
 	RemoteMessage = ["IWAC",_message];
-	(_owner) publicVariableClient "RemoteMessage";
+	(owner _unit) publicVariableClient "RemoteMessage";
 };
 
 DZMSCheckReturningPlayer = {
@@ -240,6 +211,79 @@ DZMSCheckReturningPlayer = {
 	} count playableUnits;
 	
 	_returningPlayer
+};
+
+DZMSAbortMission = {
+	local _mission = _this select 0;
+	local _aiType = _this select 1;
+	local _markerIndex = _this select 2;
+	local _posIndex = _this select 3;
+	local _remove = [];
+	
+	{
+		if (typeName _x == "ARRAY") then {
+			_remove set [count _remove, (_x select 1)];
+		};
+	} count (DZE_ServerMarkerArray select _markerIndex);
+	
+	PVDZ_ServerMarkerSend = ["end",_remove];
+	publicVariable "PVDZ_ServerMarkerSend";
+
+	if (_aiType == "Hero") then {
+		DZMSHeroEndTime = diag_tickTime;
+		DZMSHeroRunning = DZMSHeroRunning - 1;
+	} else {
+		DZMSBanditEndTime = diag_tickTime;
+		DZMSBanditRunning = DZMSBanditRunning - 1;
+	};
+	
+	DZMSMissionData set [_mission, -1];
+	DZE_ServerMarkerArray set [_markerIndex, -1];
+	DZE_MissionPositions set [_posIndex, -1];
+};
+
+DZMSFreeze = {
+	{
+		if !(_x getVariable ["DoNotFreeze", false]) then {
+			{
+				if (alive _x) then {
+					_x disableAI "TARGET";
+					_x disableAI "MOVE";
+					_x disableAI "FSM";
+					_x setVehicleInit "this hideObject true";
+				};
+			} count units _x;
+			processInitCommands;
+			
+			{
+				clearVehicleInit _x;
+			} count units _x;
+			
+			if (DZMSDebug) then {diag_log format ["DZMS: Freezing Units of Group: %1", _x];};
+		};
+	} count _this;
+};
+
+DZMSUnFreeze = {
+	{
+		if !(_x getVariable ["DoNotFreeze", false]) then {
+			{
+				if (alive _x) then {
+					_x enableAI "TARGET";
+					_x enableAI "MOVE";
+					_x enableAI "FSM";
+					_x setVehicleInit "this hideObject false";
+				};
+			} count units _x;
+			processInitCommands;
+				
+			{
+				clearVehicleInit _x;
+			} count units _x;
+			
+			if (DZMSDebug) then {diag_log format ["DZMS: Unfreezing Units of Group: %1", _x];};
+		};
+	} count _this;
 };
 
 //------------------------------------------------------------------//

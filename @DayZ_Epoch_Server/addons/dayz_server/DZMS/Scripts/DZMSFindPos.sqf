@@ -1,7 +1,6 @@
 local _pos = [0,0,0];
 local _num = 1;
 local _findRun = true;
-local _markers = [];
 local _playerNear = true;
 local _isTavi = toLower worldName == "tavi";
 
@@ -27,15 +26,12 @@ while {_findRun} do {
 		deleteVehicle _tavTest;
 	};
 	
-	// If WAI installed, include the markers
-	_markers = if (!isNil "wai_mission_markers") then {DZMSMarkers + wai_mission_markers} else {DZMSMarkers};
-	
-	//Lets check for minimum mission separation distance
+	// Check if position is far enough away from other missions
 	{
-		if (_pos distance (getMarkerPos _x) < DZMSDistanceBetweenMissions) exitWith {
+		if ((typeName _x) == "ARRAY" && {_pos distance _x < DZMSDistanceBetweenMissions}) exitWith {
 			_isOk = false;
 		};
-	} count _markers;
+	} count DZE_MissionPositions;
 	
 	// Check for near safezones if Epoch/Overpoch
 	if (DZMSEpoch) then {

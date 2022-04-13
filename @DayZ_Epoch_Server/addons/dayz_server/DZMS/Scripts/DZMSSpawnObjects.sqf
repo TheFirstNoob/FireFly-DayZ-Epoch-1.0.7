@@ -1,12 +1,11 @@
 // This is a modified version of the DayZ Epoch file fn_spawnObjects.sqf used to spawn mission objects.
 
-private ["_offset","_fires","_position","_object","_objects","_type","_pos","_mission"];
-
-_objects = _this select 0;
-_pos = _this select 1;
-_mission = _this select 2;
-
-_fires = [
+local _objects = _this select 0;
+local _pos = _this select 1;
+local _mission = _this select 2;
+local _object = objNull;
+local _list = [];
+local _fires = [
 	"Base_Fire_DZ",
 	"flamable_DZ",
 	"Land_Camp_Fire_DZ",
@@ -21,10 +20,9 @@ _fires = [
 ];
 
 {
-	_type = _x select 0;
-	_offset = _x select 1;
-	
-	_position = [(_pos select 0) + (_offset select 0), (_pos select 1) + (_offset select 1), 0];
+	local _type = _x select 0;
+	local _offset = _x select 1;
+	local _position = [(_pos select 0) + (_offset select 0), (_pos select 1) + (_offset select 1), 0];
 	
 	if (count _offset > 2) then {
 		_position set [2, (_offset select 2)];
@@ -44,7 +42,8 @@ _fires = [
 		if !(_type in _fires) then {_object enableSimulation false;};
 	};
 	
+	_list set [count _list, _object];
 	((DZMSMissionData select _mission) select 1) set [count ((DZMSMissionData select _mission) select 1), _object];
 } forEach _objects;
 
-_object // Return last object for the C130 crash mission
+_list

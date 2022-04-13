@@ -18,6 +18,10 @@
 						[_closestPlayer,_name,"Claimed"] call DZMSAutoClaimAlert; // Send alert to all players
 						diag_log text format ["DZMS Auto Claim: mission %1 has been claimed by %2",_name,(name _closestPlayer)];
 						_acArray = [getplayerUID _closestPlayer, name _closestPlayer]; // Add player UID and name to array
+						_markers set [3, [[(_coords select 0) + 100, (_coords select 1) + 100],_autoMarkDot,"ColorBlack","mil_objective","","",[],["STR_CL_CLAIM_MARKER",(name _closestPlayer)],0]];
+						DZE_ServerMarkerArray set [_markerIndex, _markers];
+						PVDZ_ServerMarkerSend = ["createSingle",(_markers select 3)];
+						publicVariable "PVDZ_ServerMarkerSend";
 					};
 				};
 			};
@@ -26,6 +30,15 @@
 				
 				// Used in the marker when a player has left the mission area
 				_leftTime = round (DZMSAutoClaimTimeout - (diag_tickTime - _claimTime));
+				
+				// This marker should run continuously until the mission is unclaimed or the player returns.
+				if (_left) then {
+					_autoText = ["STR_CL_TIMEOUT_MARKER",(_acArray select 1),_leftTime];
+					(_markers select 3) set [7, _autoText];
+					DZE_ServerMarkerArray set [_markerIndex, _markers];
+					PVDZ_ServerMarkerSend = ["textSingle",[_autoMarkDot,_autoText]];
+					publicVariable "PVDZ_ServerMarkerSend";
+				};
 				
 				// If the player dies at the mission, change marker to countdown and set player variable to null
 				if ((!alive _closestPlayer) && !_left) then {
@@ -50,12 +63,17 @@
 				if (!(isNull _closestPlayer) && _left && {(_closestPlayer distance _coords) < DZMSAutoClaimAlertDistance}) then {
 					[_closestPlayer,_name,"Reclaim"] call DZMSAutoClaimAlert;
 					_left = false; // Change the mission marker back to claim
+					_autoText = ["STR_CL_CLAIM_MARKER",(name _closestPlayer)];
+					(_markers select 3) set [7, _autoText];
+					DZE_ServerMarkerArray set [_markerIndex, _markers];
+					PVDZ_ServerMarkerSend = ["textSingle",[_autoMarkDot,_autoText]];
+					publicVariable "PVDZ_ServerMarkerSend";
 				};
 				
 				// Warn other players in mission area
 				{
 					if (!(_x in (units group _closestPlayer)) && {(_x distance _coords) < DZMSAutoClaimAlertDistance} && {!(_x in _warnArray)}) then {
-						RemoteMessage = ["rollingMessages", format["You are in %1's mission. Ask %1 for permission!",_acArray select 1]];
+						RemoteMessage = ["rollingMessages", ["STR_CL_CLAIM_WARNING",_acArray select 1]];
 						(owner _x) publicVariableClient "RemoteMessage";
 						_warnArray set [count _warnArray, _x]; // add player to temp array so it does not spam the message.
 					};
@@ -69,6 +87,10 @@
 					_left = false;
 					_acArray = [];
 					_warnArray = [];
+					PVDZ_ServerMarkerSend = ["removeSingle",_autoMarkDot];
+					publicVariable "PVDZ_ServerMarkerSend";
+					_markers set [3, 1];
+					DZE_ServerMarkerArray set [_markerIndex, _markers];
 				} else {
 					// Player is alive but did not return to the mission
 					if (((diag_tickTime - _claimTime) > DZMSAutoClaimTimeout) && {(_closestPlayer distance _coords) > DZMSAutoClaimAlertDistance}) then {
@@ -78,7 +100,10 @@
 						_left = false;
 						_acArray = [];
 						_warnArray = [];
-						
+						PVDZ_ServerMarkerSend = ["removeSingle",_autoMarkDot];
+						publicVariable "PVDZ_ServerMarkerSend";
+						_markers set [3, 1];
+						DZE_ServerMarkerArray set [_markerIndex, _markers];
 					};
 				};
 			};

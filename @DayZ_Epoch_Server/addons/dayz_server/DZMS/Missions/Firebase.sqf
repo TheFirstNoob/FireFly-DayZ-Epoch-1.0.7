@@ -4,12 +4,53 @@
 	Updated for DZMS 2.0 by JasonTM
 */
 
-private ["_name","_coords","_mission","_aiType"];
+local _mission = count DZMSMissionData -1;
+local _aiType = _this select 0;
+local _coords = call DZMSFindPos;
+local _name = "Firebase";
+local _localName = "STR_CL_DZMS_FB_TITLE";
+local _hero = _aiType == "Hero";
+local _markerColor = ["ColorRed","ColorBlue"] select _hero;
+local _localized = ["STR_CL_MISSION_BANDIT","STR_CL_MISSION_HERO"] select _hero;
+local _startTime = diag_tickTime;
 
-_mission = count DZMSMissionData -1;
-_aiType = _this select 0;
-_name = "Firebase";
-_coords = call DZMSFindPos;
+diag_log format["[DZMS]: %1 %2 starting at %3.",_aiType,_name,_coords];
+
+////////////////////// Do not edit this section ///////////////////////////
+//[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
+local _markers = [1,1,1,1];
+_markers set [0, [_coords,"DZMS" + str _mission,_markerColor,"","ELLIPSE","Grid",[200,200],[],0]];
+_markers set [1, [_coords,"DZMSDot" + str _mission,"ColorBlack","Vehicle","","",[],[_localized,_localName],0]];
+if (DZMSAutoClaim) then {_markers set [2, [_coords,"DZMSAuto" + str _mission,"ColorRed","","ELLIPSE","Border",[DZMSAutoClaimAlertDistance,DZMSAutoClaimAlertDistance],[],0]];};
+DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
+local _markerIndex = count DZE_ServerMarkerArray - 1;
+PVDZ_ServerMarkerSend = ["start",_markers];
+publicVariable "PVDZ_ServerMarkerSend";
+[_aiType,_localName,"STR_CL_DZMS_FB_START"] call DZMSMessage;
+DZMSMarkerReady = true;
+
+// Add the mission's position to the global array so that other missions do not spawn near it.
+DZE_MissionPositions set [count DZE_MissionPositions, _coords];
+local _posIndex = count DZE_MissionPositions - 1;
+
+// Wait until a player is within range or timeout is reached.
+local _playerNear = false;
+local _timeout = false;
+while {!_playerNear && !_timeout} do {
+	_playerNear = [_coords,DZMSTimeoutDistance] call DZMSNearPlayer;
+	
+	if (diag_tickTime - _startTime >= (DZMSMissionTimeOut * 60)) then {
+		_timeout = true;
+	};
+	uiSleep 1;
+};
+
+if (_timeout) exitWith {
+	[_mission, _aiType, _markerIndex, _posIndex] call DZMSAbortMission;
+	[_aiType,_localName,"STR_CL_DZMS_FB_FAIL"] call DZMSMessage;
+	diag_log format["DZMS: %1 %2 aborted.",_aiType,_name];
+};
+//////////////////////////////// End //////////////////////////////////////
 
 // Spawn Mission Objects
 [[
@@ -27,10 +68,10 @@ _coords = call DZMSFindPos;
 	["MAP_fort_watchtower",[-4.6,-14.1],-120]
 ],_coords,_mission] call DZMSSpawnObjects;
 
-[_mission,_coords,"USVehicleBox","supply",[2,-4],-30] call DZMSSpawnCrate;
-[_mission,_coords,"USVehicleBox","supply2",[-2,4],-30] call DZMSSpawnCrate;
-[_mission,_coords,"USBasicWeaponsBox","weapons",[-5,-2.5],60] call DZMSSpawnCrate;
-[_mission,_coords,"USBasicWeaponsBox","weapons",[5,3.3],60] call DZMSSpawnCrate;
+[_mission,_coords,"DZ_AmmoBoxMedium1US","supply",[2,-4],-30] call DZMSSpawnCrate;
+[_mission,_coords,"DZ_AmmoBoxMedium1US","supply2",[-2,4],-30] call DZMSSpawnCrate;
+[_mission,_coords,"DZ_AmmoBoxMedium1US","weapons",[-5,-2.5],60] call DZMSSpawnCrate;
+[_mission,_coords,"DZ_AmmoBoxMedium1US","weapons",[5,3.3],60] call DZMSSpawnCrate;
 
 //DZMSAISpawn spawns AI to the mission.
 //Usage: [_coords, count, skillLevel, Hero or Bandit, Mission Number]
@@ -55,9 +96,9 @@ if (DZMSM2Static) then {
 	_coords,
 	_aiType,
 	_name,
-	[_aiType,"STR_CL_DZMS_FB_TITLE","STR_CL_DZMS_FB_WIN"],
-	[_aiType,"STR_CL_DZMS_FB_TITLE","STR_CL_DZMS_FB_FAIL"]
+	_localName,
+	_markerIndex,
+	_posIndex,
+	"STR_CL_DZMS_FB_WIN",
+	"STR_CL_DZMS_FB_FAIL"
 ] spawn DZMSWaitMissionComp;
-
-// Send the start message
-[_aiType,"STR_CL_DZMS_FB_TITLE","STR_CL_DZMS_FB_START"] call DZMSMessage;

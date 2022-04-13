@@ -48,9 +48,6 @@ DZMSMarkerReady = true;
 // This array will store the data for missions
 DZMSMissionData = [];
 
-// This array will store the mission markers
-DZMSMarkers = [];
-
 // Let's initialize the mission count variables
 DZMSBanditRunning = 0;
 DZMSHeroRunning = 0;
@@ -76,7 +73,14 @@ if (DZMSVersion != "2.1") then {
 };
 
 // These variables are initialized here because they are not used in all versions.
-DZMSMakeVehKey = false; DZMSAICheckWallet = false; DZMSHighValue = []; DZMSUseRPG = false; DZMSM2Static = false;
+DZMSMakeVehKey = false;
+DZMSAICheckWallet = false;
+DZMSUseRPG = false;
+DZMSM2Static = false;
+DZMS_HeroDogTag = 0;
+DZMS_BanditDogTag = 0;
+DZMS_AllowThermal = false;
+DZMSHighValue = [];
 
 call {
 	// Epoch + Overwatch = Overpoch
@@ -104,9 +108,6 @@ DZMSSpawnVeh = compile preprocessFileLineNumbers "\z\addons\dayz_server\DZMS\Scr
 DZMSWaitMissionComp = compile preprocessFileLineNumbers "\z\addons\dayz_server\DZMS\Scripts\DZMSWaitMissionComp.sqf";
 DZMSFindPos = compile preprocessFileLineNumbers "\z\addons\dayz_server\DZMS\Scripts\DZMSFindPos.sqf";
 DZMSSpawnObjects = compile preprocessFileLineNumbers "\z\addons\dayz_server\DZMS\Scripts\DZMSSpawnObjects.sqf";
-
-// Let's get the clocks running!
-//execVM "\z\addons\dayz_server\DZMS\Scripts\DZMSTimer.sqf";
 
 // Get the static AI spawned (if applicable)
 if (DZMSStaticAI) then {

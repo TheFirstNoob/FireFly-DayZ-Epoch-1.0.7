@@ -5,7 +5,7 @@
 */
 
 // Generates keys for mission vehicles and places it in the gear. Only works if DZMSSaveVehicles is set to true and Epoch is detected.
-DZMSMakeVehKey = false;
+DZMSMakeVehKey = true;
 
 //If you have ZSC installed then you can set this to true to place money in ai wallets.
 DZMSAICheckWallet = true;
@@ -16,6 +16,9 @@ DZMSUseRPG = false;
 
 // Do you want static M2 heavy machine gunners at the missions? (Some of the easier missions don't have them).
 DZMSM2Static = true;
+
+// Attachment_Tws can spawn on the AI and in crates if true.
+DZMS_AllowThermal = false;
 
 ///////////////////////////////////////////////
 // Arrays of skin classnames for the AI to use
@@ -82,22 +85,22 @@ local _bloodbag = ["bloodBagONEG","ItemBloodbag"] select dayz_classicBloodBagSys
 /////////////////////////////////////////////////////////////
 // These are gear sets that will be randomly given to the AI
 DZMSGear0 = [
-	["ItemBandage","ItemBandage","ItemAntibiotic","ItemPainkiller","ItemSodaGrapeDrink","FoodBaconCooked"],
+	["ItemBandage","ItemSepsisBandage","ItemAntibiotic6","ItemPainkiller6","ItemSodaGrapeDrink","FoodBaconCooked"],
 	["ItemKnife","ItemFlashlight"]
 ];
 
 DZMSGear1 = [
-	["ItemBandage","ItemBandage","ItemPainkiller","ItemMorphine","ItemSodaRocketFuel","FoodGoatCooked"],
+	["ItemBandage","ItemSepsisBandage","ItemPainkiller6","ItemMorphine","ItemSodaRocketFuel","FoodGoatCooked"],
 	["ItemToolbox","ItemEtool"]
 ];
 
 DZMSGear2 = [
-	["ItemBandage","ItemAntibacterialWipe",_bloodbag,"ItemPainkiller","ItemSodaSacrite","FishCookedTrout"],
+	["ItemBandage","ItemAntibacterialWipe",_bloodbag,"ItemPainkiller6","ItemSodaSacrite","FishCookedTrout"],
 	["ItemMatchbox","ItemHatchet"]
 ];
 
 DZMSGear3 = [
-	["ItemBandage","ItemBandage","ItemMorphine","ItemHeatPack","ItemSodaRabbit","FoodMRE"],
+	["ItemBandage","ItemSepsisBandage","ItemMorphine","ItemHeatPack","ItemSodaRabbit","FoodMRE"],
 	["ItemCrowbar","ItemMachete"]
 ];
 
@@ -106,9 +109,12 @@ DZMSGear4 = [
 	["ItemGPS","Binocular_Vector"]
 ];
 
+// New to DayZ Epoch 1.0.7. "ItemDogTagHero" and "ItemDogTagBandit" can be traded at hero and bandit vendors for +/- humanity.
+DZMS_HeroDogTag = .15; // Chance for a dog tag to be added to the inventory of a hero NPC: Between 0 and 1.
+DZMS_BanditDogTag = .15; // Chance for a dog tag to be added to the inventory of a bandit NPC: Between 0 and 1.
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 // These are arrays of vehicle classnames for the missions.
-// Adjust to your liking.
 
 //Armed Choppers
 DZMSChoppers = ["BAF_Merlin_DZE","UH60M_MEV_EP1_DZ","CH_47F_EP1_DZE","UH1H_DZE","Mi17_DZE","UH60M_EP1_DZE","UH1Y_DZE","MH60S_DZE","UH1H_CDF_DZE","UH1H_WD_DZE","UH1H_2_DZE","UH1H_DES_DZE","UH1H_GREY_DZE","UH1H_BLACK_DZE","UH1H_SAR_DZE","Mi17_DZE","Mi17_TK_EP1_DZE","Mi17_UN_CDF_EP1_DZE","Mi17_CDF_DZE","Mi17_DES_DZE","Mi17_GREEN_DZE","Mi17_BLUE_DZE","Mi17_BLACK_DZE","Mi171Sh_CZ_EP1_DZE","MH60S_DZE","Ka60_GL_PMC_DZE","AW159_Lynx_BAF_DZE","UH60M_EP1_DZE","UH1Y_DZE","CH_47F_EP1_DZE","CH_47F_EP1_Black_DZE","CH_47F_EP1_GREY_DZE","CH_47F_EP1_DES_DZE","pook_transport_DZE","pook_transport_CDF_DZE","pook_gunship_DZE","pook_gunship_CDF_DZE"];
@@ -127,7 +133,7 @@ DZMSLMG = ["L110A1_DZ","M249_DZ","M240_DZ","Mk48_DZ","RPK_DZ","UK59_DZ","PKM_DZ"
 DZMSSMG = ["Bizon_DZ","Bizon_SD_DZ","MP5_DZ","MP5_SD_DZ","Scorpion_Evo3_DZ","Scorpion_Evo3_CCO_SD_DZ","Groza9_DZ","Groza1_DZ","KAC_PDW_DZ","Kriss_DZ","Kriss_SD_DZ","M31_DZ","MAT49_DZ","MP7_DZ","MP7_SD_DZ","P90_DZ","P90_SD_DZ","Sten_MK_DZ","TMP_DZ","TMP_SD_DZ","UMP_DZ","UMP_SD_DZ","VAL_DZ"];
 DZMSSniper = ["Mosin_PU_DZ","M4SPR_DZE","M14_DZ","M24_DZ","M24_DES_DZ","M40A3_DZ","SVD_DZ","SVD_PSO1_Gh_DES_DZ","FNFAL_DZ","DMR_DZ","L115A3_DZ","L115A3_2_DZ","Barrett_MRAD_Sniper_DZ","CZ750_DZ","Groza9_Sniper_DZ","Groza1_Sniper_DZ","HK417_Sniper_DZ","HK417_Sniper_SD_DZ","M1A_SC16_TAN_Sniper_DZ","M1A_SC16_BL_Sniper_DZ","M1A_SC2_BL_Sniper_DZ","M21_DZ","M21A5_DZ","M21A5_SD_DZ","M200_CheyTac_DZ","M200_CheyTac_SD_DZ","MK14_Sniper_DZ","MK14_Sniper_SD_DZ","MK17_Sniper_DZ","MK17_Sniper_SD_DZ","MSR_DZ","MSR_SD_DZ","MSR_NV_DZ","MSR_NV_SD_DZ","RSASS_DZ","RSASS_SD_DZ","SVU_PSO1_DZ","WA2000_DZ","XM8_Sharpsh_DZ","XM8_DES_Sharpsh_DZ","XM8_GREY_Sharpsh_DZ","XM2010_DZ","XM2010_SD_DZ","XM2010_NV_DZ","XM2010_NV_SD_DZ"];
 DZMSSingleShot = ["Remington870_DZ","M1014_DZ","Winchester1866_DZ","LeeEnfield_DZ","CZ550_DZ","USAS12_DZ"];
-DZMSThermal = ["ACR_SNOW_TWS_DZ","ACR_WDL_TWS_GL_SD_DZ","AKS_74_GOSHAWK","BAF_L85A2_RIS_TWS_DZ","M249_TWS_EP1_Small","m8_tws","m8_tws_sd","SCAR_L_STD_EGLM_TWS","SCAR_H_STD_TWS_SD","M110_TWS_EP1","MSR_TWS_DZ","MSR_TWS_SD_DZ","XM2010_TWS_DZ","XM2010_TWS_SD_DZ","RSASS_TWS_DZ","RSASS_TWS_SD_DZ","m107_TWS_EP1_Small","BAF_AS50_TWS"];
+DZMSThermal = ["BAF_L85A2_RIS_TWS_DZ","M249_TWS_EP1_Small","m8_tws","m8_tws_sd","SCAR_L_STD_EGLM_TWS","SCAR_H_STD_TWS_SD","M110_TWS_EP1","MSR_TWS_DZ","MSR_TWS_SD_DZ","XM2010_TWS_DZ","XM2010_TWS_SD_DZ","RSASS_TWS_DZ","RSASS_TWS_SD_DZ","m107_TWS_EP1_Small","BAF_AS50_TWS"];
 
 // Weapon arrays that can spawn on the AI
 DZMSAIWeps = [DZMSAssault,DZMSSMG,DZMSSingleShot,DZMSLMG,DZMSSniper];
@@ -136,14 +142,15 @@ DZMSAIWeps = [DZMSAssault,DZMSSMG,DZMSSingleShot,DZMSLMG,DZMSSniper];
 DZMSCrateWeps = [DZMSAssault,DZMSLMG,DZMSSniper];
 
 // Items and tools that can be added to crates
-DZMSGeneralStore = ["forest_net_kit","ItemMixOil","ItemWaterBottleSafe","ItemSodaCoke","ItemSodaPepsi","ItemSodaMdew","ItemSodaMtngreen","ItemSodaR4z0r","ItemSodaClays","ItemSodaSmasht","ItemSodaDrwaste","ItemSodaFranka","ItemSodaLemonade","ItemSodaLirik","ItemSodaLvg","ItemSodaMzly","ItemSodaPeppsy","ItemSodaRabbit","ItemSodaSacrite","ItemSodaRocketFuel","ItemSodaGrapeDrink","ItemSherbet","FoodPistachio","FoodNutmix","FoodChipsSulahoops","FoodChipsMysticales","FoodChipsChocolate","FoodCandyChubby","FoodCandyAnders","FoodCandyLegacys","FoodCandyMintception","FoodCakeCremeCakeClean","FoodCanBeef","FoodCanPotatoes","FoodCanGriff","FoodCanBadguy","FoodCanBoneboy","FoodCanCorn","FoodCanCurgon","FoodCanDemon","FoodCanFraggleos","FoodCanHerpy","FoodCanDerpy","FoodCanOrlok","FoodCanPowell","FoodCanTylers","FoodCanUnlabeled","FoodCanBakedBeans","FoodCanSardines","FoodCanFrankBeans","FoodCanPasta","FoodCanRusUnlabeled","FoodCanRusStew","FoodCanRusPork","FoodCanRusPeas","FoodCanRusMilk","FoodCanRusCorn","ItemJerrycan"];
-DZMSCrateTools = ["ItemToolbox","ItemFishingPole","ItemGPS","ItemMap","ItemMachete","ItemKnife","ItemFlashlight","ItemMatchbox","ItemHatchet","Binocular_Vector"];
-DZMSMeds = [_bloodbag,"ItemBandage","ItemAntibiotic","ItemPainkiller","ItemMorphine","ItemAntibacterialWipe","ItemEpinephrine","FoodMRE","ItemWaterBottleSafe"];
+DZMSGeneralStore = ["ItemTent","ItemTentWinter","forest_net_kit","ItemMixOil","ItemWaterBottleSafe","ItemSodaCoke","ItemSodaPepsi","ItemSodaMdew","ItemSodaMtngreen","ItemSodaR4z0r","ItemSodaClays","ItemSodaSmasht","ItemSodaDrwaste","ItemSodaFranka","ItemSodaLemonade","ItemSodaLirik","ItemSodaLvg","ItemSodaMzly","ItemSodaPeppsy","ItemSodaRabbit","ItemSodaSacrite","ItemSodaRocketFuel","ItemSodaGrapeDrink","ItemSherbet","FoodPistachio","FoodNutmix","FoodChipsSulahoops","FoodChipsMysticales","FoodChipsChocolate","FoodCandyChubby","FoodCandyAnders","FoodCandyLegacys","FoodCandyMintception","FoodCakeCremeCakeClean","FoodCanBeef","FoodCanPotatoes","FoodCanGriff","FoodCanBadguy","FoodCanBoneboy","FoodCanCorn","FoodCanCurgon","FoodCanDemon","FoodCanFraggleos","FoodCanHerpy","FoodCanDerpy","FoodCanOrlok","FoodCanPowell","FoodCanTylers","FoodCanUnlabeled","FoodCanBakedBeans","FoodCanSardines","FoodCanFrankBeans","FoodCanPasta","FoodCanRusUnlabeled","FoodCanRusStew","FoodCanRusPork","FoodCanRusPeas","FoodCanRusMilk","FoodCanRusCorn","ItemJerrycan"];
+DZMSCrateTools = ["ItemToolbox","ItemFishingPole","ItemGPS","ItemMap","ItemMachete","ItemKnife","ItemFlashlight","ItemMatchbox","ItemHatchet","Binocular_Vector","ItemKeyKit","Binocular","ItemCompass","NVGoggles_DZE","ItemRadio"];
+DZMSMeds = [_bloodbag,"ItemBandage","ItemAntibiotic6","ItemPainkiller6","ItemMorphine","ItemAntibacterialWipe","ItemEpinephrine","ItemSepsisBandage","equip_woodensplint","FoodMRE","ItemWaterBottleSafe"];
 DZMSPacks = ["Patrol_Pack_DZE1","Assault_Pack_DZE1","Czech_Vest_Pouch_DZE1","TerminalPack_DZE1","TinyPack_DZE1","ALICE_Pack_DZE1","TK_Assault_Pack_DZE1","CompactPack_DZE1","British_ACU_DZE1","GunBag_DZE1","NightPack_DZE1","SurvivorPack_DZE1","AirwavesPack_DZE1","CzechBackpack_DZE1","WandererBackpack_DZE1","LegendBackpack_DZE1","CoyoteBackpack_DZE1","LargeGunBag_DZE1"];
-
-// Items and tools that are only added to crates
 DZMSGrenades = ["HandGrenade_west","FlareGreen_M203","FlareWhite_M203"];
-DZMSBuildSupply = [[3,"CinderBlocks"],[1,"MortarBucket"],[3,"ItemPole"],[3,"PartPlywoodPack"],[3,"PartPlankPack"],[3,"ItemSandbag"],[3,"ItemWire"],[1,"ItemFireBarrel_kit"],[1,"forest_large_net_kit"],[1,"ItemComboLock"],[1,"ItemLockbox"],[3,"ItemTankTrap"]]; // [Number to add to crate,Item]
-DZMSBuildSupply2 = [[3,"CinderBlocks"],[1,"MortarBucket"],[3,"ItemPole"],[3,"PartPlywoodPack"],[3,"PartPlankPack"],[3,"ItemSandbag"],[3,"ItemWire"],[1,"ItemFireBarrel_kit"],[1,"forest_large_net_kit"],[1,"ItemComboLock"],[1,"ItemLockbox"],[3,"ItemTankTrap"]]; // [Number to add to crate,Item]
-DZMSBuildTools = ["ItemCrowbar","ItemEtool","ItemToolbox","ItemSledgeHammer","ChainSaw"];
-DZMSHighValue = ["ItemBriefcase100oz","ItemVault"];
+DZMSBuildSupply = [[7,"CinderBlocks"],[2,"MortarBucket"],[3,"ItemPole"],[3,"PartPlywoodPack"],[3,"PartPlankPack"],[3,"ItemSandbag"],[3,"ItemWire"],[1,"ItemFireBarrel_kit"],[1,"forest_large_net_kit"],[1,"ItemComboLock"],[3,"ItemTankTrap"],[1,"ItemRSJ"]]; // [Number to add to crate,Item]
+DZMSCraftingSupply = ["ItemCanvas","equip_tent_poles","equip_nails","ItemScrews","equip_scrapelectronics","equip_floppywire","equip_metal_sheet","equip_1inch_metal_pipe","equip_2inch_metal_pipe","equip_rope","ItemLightBulb","ItemCorrugated","ItemMetalSheet"];
+DZMSBuildTools = ["ItemCrowbar","ItemEtool","ItemToolbox","ItemSledgeHammer","ChainSaw","Hammer_DZE","ItemSledge","Handsaw_DZE","ItemSolder_DZE"];
+DZMSVehAmmo = ["100Rnd_762x51_M240","1500Rnd_762x54_PKT","2000Rnd_762x51_M134","100Rnd_762x54_PK","100Rnd_127x99_M2","150Rnd_127x107_DSHKM"];
+DZMSVehParts = ["PartEngine","PartFueltank","PartGeneric","PartGlass","PartVRotor","PartWheel","ItemFuelcan","ItemJerrycan","ItemFuelBarrel"];
+DZMSHighValue = ["ItemTallSafe","ItemVault","ItemVault2","ItemLockbox","ItemLockbox2","ItemLockboxWinter","ItemLockboxWinter2","plot_pole_kit"];
+
