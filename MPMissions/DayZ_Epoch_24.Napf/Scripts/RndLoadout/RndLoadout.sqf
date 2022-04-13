@@ -45,6 +45,6 @@ _drink 			= 	["ItemSodaCoke","ItemSodaMdew","ItemSodaOrangeSherbet","ItemSodaPep
 _backpack 		= 	["Patrol_Pack_DZE1","GymBag_Camo_DZE1","TerminalPack_DZE1","TinyPack_DZE1","Czech_Vest_Pouch_DZE1","Assault_Pack_DZE1","TK_Assault_Pack_DZE1","School_Bag_DZE1","ALICE_Pack_DZE1","CompactPack_DZE1"] call loadout_fnc_selectRandom;
 
 DefaultMagazines 		= 	["ItemBandage","ItemBandage","ItemMorphine","ItemPainkiller",_ammo,_ammos,_food,_drink]; 
-DefaultWeapons 			= 	["ItemWatch",_primary,_secondary]; 
+DefaultWeapons 			= 	["ItemWatch","ItemMap",_primary,_secondary]; 
 DefaultBackpack 		= 	_backpack; 
 DefaultBackpackItems 	= 	"";
