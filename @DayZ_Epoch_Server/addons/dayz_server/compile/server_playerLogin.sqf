@@ -229,3 +229,9 @@ if (count dayz_activeInvites > 0) then
 
 PVCDZ_plr_PlayerAccepted 	= 	[_playerName,diag_ticktime];
 (owner _playerObj) publicVariableClient "PVCDZ_plr_PlayerAccepted";
+
+if ((count DZE_ServerMarkerArray) > 0) then
+{
+	PVDZ_ServerMarkerSend 	= 	["JIP",DZE_ServerMarkerArray];
+	(owner _playerObj) publicVariableClient "PVDZ_ServerMarkerSend";
+};
