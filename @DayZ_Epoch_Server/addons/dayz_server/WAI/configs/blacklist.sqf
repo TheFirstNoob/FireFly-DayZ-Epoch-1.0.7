@@ -1,5 +1,5 @@
 
-wai_blacklist = call {
+waiBlackList = call {
     if (toLower worldName == "chernarus") exitWith {[
 		[[0,16000,0],[1000,-0,0]],	// Left edge of map
         [[0,16000,0],[16000.0,14580.3,0]] // Top edge of map
@@ -10,7 +10,7 @@ wai_blacklist = call {
     [];
 };
 
-if (count wai_blacklist > 0) then {
+if (count waiBlackList > 0) then {
 	diag_log "WAI: blacklist Loaded";
 } else {
 	diag_log "WAI: You are on an unsupported map! No blacklist available.";

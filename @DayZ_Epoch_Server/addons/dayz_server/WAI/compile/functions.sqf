@@ -1,30 +1,40 @@
-find_suitable_ammunition = {
+WAI_GetTurrets = {
+	// Adapted from KillZone Kid's KK_fnc_commonTurrets for Arma3.
+	local _array = [];
+	local _turrets = configFile >> "CfgVehicles" >> _this >> "Turrets";
+	
+	for "_i" from 0 to count _turrets - 1 do {
+		_array set [count _array, [_i]];
+	};
+	_array
+};
 
-	private["_weapon","_result","_ammoArray"];
+WAI_FindAmmo = {
+	local _result = "";
+	local _weapon = _this;
+	local _array = getArray (configFile >> "cfgWeapons" >> _weapon >> "magazines");
 
-	_result = false;
-	_weapon = _this;
-	_ammoArray = getArray (configFile >> "cfgWeapons" >> _weapon >> "magazines");
-
-	if (count _ammoArray > 0) then {_result = _ammoArray select 0;};
-	if (typeName _result == "BOOL") then {diag_log format["WAI: Cannot find magazine for weapon - %1.",_weapon];};
+	if (count _array > 0) then {
+		_result = _array select 0;
+	};
+	if (_result == "") then {
+		diag_log format["WAI: Cannot find magazine for weapon - %1.", _weapon];
+	};
 	_result
 };
 
-wai_spawnCrate = {
-	private ["_pos","_crate","_mission","_offset","_type","_loot","_position","_crates"];
-	_crates = _this select 0;
-	_pos = _this select 1;
-	if (count _this > 2) then {
-		_mission = _this select 2;
-	};
+WAI_SpawnCrate = {
+	local _crates = _this select 0;
+	local _pos = _this select 1;
+	local _mission = _this select 2;
+	local _z = [0, (_pos select 2)] select (count _pos == 3);
 	
 	{	
-		_loot = _x select 0;
-		_type = _x select 1;
-		_offset = _x select 2;
+		local _loot = _x select 0;
+		local _type = _x select 1;
+		local _offset = _x select 2;
 		
-		_position = [(_pos select 0) + (_offset select 0), (_pos select 1) + (_offset select 1), 0];
+		local _position = [(_pos select 0) + (_offset select 0), (_pos select 1) + (_offset select 1), _z];
 		
 		if (count _offset > 2) then {
 			_position set [2, (_offset select 2)];
@@ -34,7 +44,7 @@ wai_spawnCrate = {
 			_type = _type call BIS_fnc_selectRandom;
 		};
 		
-		_crate = _type createVehicle [0,0,0];
+		local _crate = _type createVehicle [0,0,0];
 		
 		if (count _x > 3) then {
 			_crate setDir (_x select 3);
@@ -51,64 +61,45 @@ wai_spawnCrate = {
 		clearMagazineCargoGlobal _crate;
 		_crate addEventHandler ["HandleDamage", {0}];
 		_crate enableSimulation false;
-		if (!isNil "_mission") then {
-			((wai_mission_data select _mission) select 3) set [count ((wai_mission_data select _mission) select 3), [_crate,_loot]];
-		} else {
-			(wai_static_data select 3) set [count (wai_static_data select 3), [_crate,_loot]];
-		};
+		((WAI_MissionData select _mission) select 2) set [count ((WAI_MissionData select _mission) select 2), [_crate,_loot]];
 	} count _crates;
 };
 
-wai_server_message = {
-	private ["_color","_params","_type"];
-	_type = _this select 0;
-	_message = _this select 1;
+WAI_Message = {
+	local _type = _this select 0;
+	local _message = _this select 1;
 	
 	call {
-		if (wai_mission_announce == "Radio") exitWith {
+		if (WAI_MessageType == "Radio") exitWith {
 			RemoteMessage = ["radio",_message];
 		};		
-		if (wai_mission_announce == "DynamicText") exitWith {
-			_color = call {
+		if (WAI_MessageType == "DynamicText") exitWith {
+			local _color = call {
 				if(_type == "Easy") exitWith {"#00cc00"};
 				if(_type == "Medium") exitWith {"#ffff66"};
 				if(_type == "Hard") exitWith {"#990000"};
 				if(_type == "Extreme") exitWith {"#33334d"};
+				"#3339FF";
 			};
-			_params = ["0.40","#FFFFFF","0.60",_color,0,-.35,10,0.5];
+			local _params = ["0.40","#FFFFFF","0.60",_color,0,-.35,10,0.5];
 			RemoteMessage = ["dynamic_text", ["STR_CL_MISSION_ANNOUNCE",_message],_params];
 		};		
-		if (wai_mission_announce == "titleText") exitWith {
+		if (WAI_MessageType == "titleText") exitWith {
 			RemoteMessage = ["titleText",_message];
 		};
 	};
 	publicVariable "RemoteMessage";
 };
 
-wai_minefield_warning = {
-	private ["_owner","_params"];
-	_owner = (owner _this);
-	_params = ["0","#FFFFFF","0.50","#ff3300",0,.3,10,0.5];
-	RemoteMessage = ["dynamic_text",["","STR_CL_MINEFIELD_WARNING"],_params];
-	(_owner) publicVariableClient "RemoteMessage";
-};
-
-wai_AutoClaimAlert = {
-	private ["_unit","_owner","_mission","_type","_message","_name"];
-	_unit = _this select 0;
-	_mission = _this select 1;
-	_type = _this select 2;
-	if (typeName _unit == "ARRAY") then {
-		_name = _unit select 1;
-	} else {
-		_owner = owner _unit;
-		_name = name _unit;
-	};
-	
-	_message = call {
-		if (_type == "Start") exitWith {["STR_CL_AUTOCLAIM_ANNOUNCE",_mission,ac_delay_time];};
+WAI_AutoClaimAlert = {
+	local _unit = _this select 0;
+	local _mission = _this select 1;
+	local _type = _this select 2;
+	local _name = if (typeName _unit == "ARRAY") then {_unit select 1;} else {name _unit;};
+	local _message = call {
+		if (_type == "Start") exitWith {["STR_CL_AUTOCLAIM_ANNOUNCE",_mission,WAI_AcDelayTime];};
 		if (_type == "Stop") exitWith {["STR_CL_AUTOCLAIM_NOCLAIM",_mission];};
-		if (_type == "Return") exitWith {["STR_CL_AUTOCLAIM_RETURN",ac_timeout];};
+		if (_type == "Return") exitWith {["STR_CL_AUTOCLAIM_RETURN",WAI_AcTimeout];};
 		if (_type == "Reclaim") exitWith {"STR_CL_AUTOCLAIM_RECLAIM";};
 		if (_type == "Claimed") exitWith {["STR_CL_AUTOCLAIM_CLAIM",_name,_mission];};
 		if (_type == "Unclaim") exitWith {["STR_CL_AUTOCLAIM_ABANDON",_name,_mission];};
@@ -120,65 +111,101 @@ wai_AutoClaimAlert = {
 	};
 	
 	RemoteMessage = ["IWAC",_message];
-	(_owner) publicVariableClient "RemoteMessage";
+	(owner _unit) publicVariableClient "RemoteMessage";
 };
 
-wai_monitor_ai_vehicles = {
-	private "_vehicle";
+WAI_VehMonitor = {
 	{
-		_vehicle = _x;
-		if (alive _vehicle && ({alive _x} count crew _vehicle > 0)) then {
-			_vehicle setVehicleAmmo 1;
-			_vehicle setFuel 1;
+		if (alive _x && ({alive _x} count crew _x > 0)) then {
+			_x setVehicleAmmo 1;
+			_x setFuel 1;
 		} else {
-			_vehicle setDamage 1;
+			_x setDamage 1;
 		};
 	} count _this;
 };
 
-wai_fnc_remove = {
-	{
-		deleteVehicle _x;
-	} count _this;
-};
-
-wai_remove_vehicles = {
-    private ["_mission","_vehicles"];
-    _mission = _this select 0;
-    _vehicles = _this select 1;
-    
-    {
-        if (_x getVariable ["mission" + dayz_serverKey, nil] == _mission) then {
-            deleteVehicle _x;
-        };
-    } count _vehicles;
-};
-
-wai_remove_ai = {
-    {
-        if (_x getVariable ["mission" + dayz_serverKey, nil] == _this) then {
-            deleteVehicle _x;
-        };
-    } count allUnits;
-};
-
-wai_generate_vehicle_key = {
-	private ["_isKeyOK","_crates","_keyColor","_keyNumber","_vehicle","_crate","_keySelected","_mission","_unit","_ailist","_characterID"];
+WAI_CleanUp = {
+	local _position = _this select 0;
+	local _mission = _this select 1;
+	local _objects = _this select 2;
+	local _vehicles = _this select 3;
+	local _crates = _this select 4;
+	local _groups = _this select 5;
+	local _aiVehicles = _this select 6;
+	local _posIndex = _this select 7;
+	local _time0ut = _this select 8;
+	local _cleaned = false;
+	local _time = diag_tickTime;
 	
-	_vehicle = _this select 0;
-	_mission = _this select 1;
-	_crates = _this select 2;
+	while {!_cleaned} do {
+		if (count _aiVehicles > 0) then {
+			_aiVehicles call WAI_VehMonitor;
+		};
+		uiSleep 3;	
+		if (WAI_CleanMissionTime > 0 || _time0ut) then {
+			if ((diag_tickTime - _time) > (WAI_CleanMissionTime * 60) || _time0ut) then {
+				
+				// delete mission objects
+				{
+					deleteVehicle _x;
+				} count _objects;
+				
+				// delete vehicles if they are not claimed
+				{
+					if (_x getVariable ["mission" + dayz_serverKey, nil] == _mission) then {
+						_x call sched_co_deleteVehicle;
+					};
+				} count _vehicles;
+				
+				// Delete Remaining AI that are alive
+				{
+					if (_x getVariable ["mission" + dayz_serverKey, nil] == _mission) then {
+						_x call sched_co_deleteVehicle;
+					};
+				} count allunits;
+				
+				// Delete AI Vehicles
+				{
+					_x call sched_co_deleteVehicle;
+				} count _aiVehicles;
+				
+				// delete mission crates if enabled
+				if (WAI_CleanMissionCrate || _time0ut) then {
+					if (count _crates > 0) then {
+						// Wait until players are at least 50 meters away
+						if !([_position,50] call isNearPlayer) then {
+							{
+								deleteVehicle (_x select 0);
+							} count _crates;
+							_cleaned = true;
+						};
+					};
+				} else {
+					_cleaned = true;
+				};
+			};
+		};
+	};
+	DZE_MissionPositions set [_posIndex, -1];
+	diag_log format ["[WAI]: Cleanup for mission %1 complete.",_mission];
+};
+
+WAI_GenerateVehKey = {
+	local _vehicle = _this select 0;
+	local _mission = _this select 1;
+	local _crates = _this select 2;
 		
-	if (wai_vehicle_keys == "NoVehicleKey") exitWith {
+	if (WAI_VehKeys == "NoVehicleKey") exitWith {
 		_vehicle setVariable ["CharacterID","0",true];
 		_vehicle setVehicleLock "unlocked";
 	};
 	
-	_keyColor = ["Green","Red","Blue","Yellow","Black"] call BIS_fnc_selectRandom;
-	_keyNumber = (ceil(random 2500)) + 1;
-	_keySelected = format["ItemKey%1%2",_keyColor,_keyNumber];
-	_isKeyOK = isClass(configFile >> "CfgWeapons" >> _keySelected);
-	_characterID = str(getNumber(configFile >> "CfgWeapons" >> _keySelected >> "keyid"));
+	local _keyColor = ["Green","Red","Blue","Yellow","Black"] call BIS_fnc_selectRandom;
+	local _keyNumber = (ceil(random 2500)) + 1;
+	local _keySelected = format["ItemKey%1%2",_keyColor,_keyNumber];
+	local _isKeyOK = isClass(configFile >> "CfgWeapons" >> _keySelected);
+	local _characterID = str(getNumber(configFile >> "CfgWeapons" >> _keySelected >> "keyid"));
 	
 	if !(_isKeyOK) exitWith {
 		_vehicle setVariable ["CharacterID","0",true];
@@ -188,62 +215,60 @@ wai_generate_vehicle_key = {
 	
 	_vehicle setVariable ["CharacterID",_characterID,true];
 	
-	if (wai_vehicle_keys == "KeyinVehicle") exitWith {
+	if (WAI_VehKeys == "KeyinVehicle") exitWith {
 		_vehicle addWeaponCargoGlobal [_keySelected,1];
 		_vehicle setVehicleLock "unlocked";
 	};
-	if (wai_vehicle_keys == "KeyinCrate") exitWith {
-		_crate = (_crates select 0) select 0;
+	if (WAI_VehKeys == "KeyinCrate") exitWith {
+		local _crate = (_crates select 0) select 0;
 		_crate addWeaponCargoGlobal [_keySelected, 1];
 	};			
-	if (wai_vehicle_keys == "KeyonAI") exitWith {
-		_ailist = [];
+	if (WAI_VehKeys == "KeyonAI") exitWith {
+		local _ailist = [];
 		{
 			if ((_x getVariable ["mission" + dayz_serverKey,nil] == _mission) && (_x getVariable ["bodyName",nil] == "mission_ai") && !(_x getVariable ["noKey", false])) then {
 				_ailist set [count _ailist, _x];
 			};
 		} count allDead;
 		
-		_unit = _ailist call BIS_fnc_selectRandom;
+		local _unit = _ailist call BIS_fnc_selectRandom;
 		_unit addWeapon _keySelected;
 		
-		if(wai_debug_mode) then {
+		if(WAI_DebugMode) then {
 			diag_log format["There are %1 Dead AI for mission %2 vehicle key",_ailist,_mission];
 			diag_log format["Key added to %1 for vehicle %2",_unit,_vehicle];
 		};
 	};
 };
 
-wai_completion_check = {
-	private ["_completionType","_complete","_position","_mission","_killpercent","_objectivetarget"];
-	
-	_mission = _this select 0;
-	_completionType = _this select 1;
-	_killpercent = _this select 2;
-	_position = _this select 3;
-	_complete = false;
+WAI_CompletionCheck = {
+	local _mission = _this select 0;
+	local _completionType = _this select 1;
+	local _killpercent = _this select 2;
+	local _position = _this select 3;
+	local _complete = false;
 	
 	call
 	{
 		if (_completionType select 0 == "crate") exitWith {
 
-			if(wai_kill_percent == 0) then {
+			if (WAI_KillPercent == 0) then {
 				_complete = [_position,20] call isNearPlayer;
 			} else {
-				if(((wai_mission_data select _mission) select 0) <= _killpercent) then {
+				if (((WAI_MissionData select _mission) select 0) <= _killpercent) then {
 					_complete = [_position,20] call isNearPlayer;
 				};
 			};
 		};
 		
 		if (_completionType select 0 == "kill") exitWith {
-			if(((wai_mission_data select _mission) select 0) == 0) then {
+			if(((WAI_MissionData select _mission) select 0) == 0) then {
 				_complete = true;
 			};
 		};
 		
 		if (_completionType select 0 == "assassinate") exitWith {
-			_objectivetarget = _completionType select 1;
+			local _objectivetarget = _completionType select 1;
 			{
 				if !(alive _x) exitWith {_complete = true;};
 			} count units _objectivetarget;
@@ -251,8 +276,8 @@ wai_completion_check = {
 
 		/* no missions are using this function at the moment
 		if (_completionType == "resource") exitWith {
-			_node 		= _completionType select 1;
-			_resource 	= _node getVariable ["Resource", 0];
+			_node = _completionType select 1;
+			_resource = _node getVariable ["Resource", 0];
 			if (_resource == 0) then {
 				if ([_position,80] call isNearPlayer) then {
 					_complete = true;
@@ -265,12 +290,9 @@ wai_completion_check = {
 	_complete
 };
 
-wai_clean_aircraft = {
-	private ["_veh","_position","_group"];
-	_veh = _this select 0;
-	_position = _this select 1;
-	_group = _this select 2;
-	
+WAI_CleanAircraft = {
+	local _veh = _this select 0;
+	local _group = _this select 1;
 	uiSleep 60;
 	deleteVehicle _veh;
 	
@@ -281,7 +303,96 @@ wai_clean_aircraft = {
 	{
 		deleteVehicle _x;
 	} count (units _group);
-	uiSleep 5;
+	uiSleep 10;
 	deleteGroup _group;
-	if(wai_debug_mode) then {diag_log "WAI: Aircraft Cleaned";};
+	if (WAI_DebugMode) then {diag_log "WAI: Aircraft Cleaned";};
 };
+
+WAI_MineField = {
+	local _position = _this select 0;
+	local _min = _this select 1;
+	local _max = _this select 2;
+	local _num = _this select 3;
+	local _mines = [];
+	
+	for "_x" from 1 to _num do {
+		local _pos = [_position,_min,_max,10,0,2000,0] call BIS_fnc_findSafePos;
+		local _mine = "Mine" createVehicle _pos;
+		_mines set [count _mines, _mine];
+	};
+	_mines
+};
+
+WAI_Freeze = {
+	{
+		if !(_x getVariable ["DoNotFreeze", false]) then {
+			{
+				if (alive _x) then {
+					_x disableAI "TARGET";
+					_x disableAI "MOVE";
+					_x disableAI "FSM";
+					_x setVehicleInit "this hideObject true";
+				};
+			} count units _x;
+			processInitCommands;
+			
+			{
+				clearVehicleInit _x;
+			} count units _x;
+			
+			if (WAI_DebugMode) then {diag_log format ["WAI: Freezing Units of Group: %1", _x];};
+		};
+	} count _this;
+};
+
+WAI_UnFreeze = {
+	{
+		if !(_x getVariable ["DoNotFreeze", false]) then {
+			{
+				if (alive _x) then {
+					_x enableAI "TARGET";
+					_x enableAI "MOVE";
+					_x enableAI "FSM";
+					_x setVehicleInit "this hideObject false";
+				};
+			} count units _x;
+			processInitCommands;
+				
+			{
+				clearVehicleInit _x;
+			} count units _x;
+			
+			if (WAI_DebugMode) then {diag_log format ["WAI: Unfreezing Units of Group: %1", _x];};
+		};
+	} count _this;
+};
+
+WAI_AbortMission = {
+	local _mission = _this select 0;
+	local _aiType = _this select 1;
+	local _markerIndex = _this select 2;
+	local _posIndex = _this select 3;
+	local _remove = [];
+	
+	{
+		if (typeName _x == "ARRAY") then {
+			_remove set [count _remove, (_x select 1)];
+		};
+	} count (DZE_ServerMarkerArray select _markerIndex);
+	
+	PVDZ_ServerMarkerSend = ["end",_remove];
+	publicVariable "PVDZ_ServerMarkerSend";
+
+	if (_aiType == "Hero") then {
+		WAI_HeroRunning = WAI_HeroRunning - 1;
+		WAI_HeroStartTime = diag_tickTime;
+	} else {
+		WAI_BanditRunning = WAI_BanditRunning - 1;
+		WAI_BanditStartTime = diag_tickTime;
+	};
+	
+	WAI_MissionData set [_mission, -1];
+	DZE_ServerMarkerArray set [_markerIndex, -1];
+	DZE_MissionPositions set [_posIndex, -1];
+};
+ 

@@ -1,61 +1,42 @@
-private ["_ainum","_unarmed","_aicskill","_aitype","_mission","_aipack","_class","_position2","_static","_position","_unitnumber","_skill","_gun","_mags","_backpack","_skin","_gear","_aiweapon","_aigear","_aiskin","_skillarray","_unitGroup","_weapon","_magazine","_gearmagazines","_geartools","_unit"];
+if (!WAI_EnableStaticGuns) exitWith {};
 
-if (!wai_enable_static_guns) exitWith {};
+local _position = _this select 0;
+local _class = _this select 1;
+local _skill = _this select 2;
+local _skin = _this select 3;
+local _aitype = _this select 4;
+local _gun = _this select 5;
+local _backpack = _this select 6;
+local _gear = _this select 7;
+local _mission = _this select 8;
+local _hero = _aitype == "Hero";
+local _bandit = _aitype == "Bandit";
+local _unitGroup = [createGroup EAST, createGroup RESISTANCE] select _hero;
+local _weapon = "";
+local _unarmed = false;
+local _pack = _backpack;
 
-_position 	  = _this select 0;
-_class 		  = _this select 1;
-_skill 		  = _this select 2;
-_skin 		  = _this select 3;
-_aitype		  = _this select 4;
-
-if (ai_static_useweapon) then {
-	_gun 	  = _this select 5;
-	_mags 	  = _this select 6;
-	_backpack = _this select 7;
-	_gear 	  = _this select 8;
-};
-
-if ((count _this == 10) OR (count _this == 6)) then {
-	if (count _this == 10) 	then { _mission = _this select 9; };
-	if (count _this == 6) 	then { _mission = _this select 5; };
-} else {
-	_mission = nil;
-};
-
-_aiweapon = [];
-_aigear = [];
-_aiskin = "";
-_aipack = "";
-_unarmed = false;
-_unitnumber = count _position;
-
-_unitGroup = if(_aitype == "Hero") then {createGroup RESISTANCE;} else {createGroup EAST;};
-
-if (!isNil "_mission") then {
-	((wai_mission_data select _mission) select 1) set [count ((wai_mission_data select _mission) select 1), _unitGroup];
-} else {
-	(wai_static_data select 1) set [count (wai_static_data select 1), _unitGroup];
-};
+((WAI_MissionData select _mission) select 1) set [count ((WAI_MissionData select _mission) select 1), _unitGroup];
 
 {
-
-	call {
-		if(_skin == "random") 	exitWith { _aiskin = ai_all_skin call BIS_fnc_selectRandom;};
-		if(_skin == "hero") 	exitWith { _aiskin = ai_hero_skin call BIS_fnc_selectRandom;};
-		if(_skin == "bandit") 	exitWith { _aiskin = ai_bandit_skin call BIS_fnc_selectRandom;};
-		if(_skin == "special") 	exitWith { _aiskin = ai_special_skin call BIS_fnc_selectRandom;};
-		_aiskin = _skin;
-	};
-	
-	if(typeName _aiskin == "ARRAY") then {
-		_aiskin = _aiskin call BIS_fnc_selectRandom;
+	local _aiskin = call {
+		if (typeName _skin == "ARRAY") then {
+			_skin call BIS_fnc_selectRandom;
+		} else {
+			if (_skin == "hero") exitWith {WAI_HeroSkin call BIS_fnc_selectRandom;};
+			if (_skin == "bandit") exitWith {WAI_BanditSkin call BIS_fnc_selectRandom;};
+			_skin;
+		};
 	};
 
-	if (_class == "Random") then {_class = ai_static_weapons call BIS_fnc_selectRandom;};
+	if (_class == "Random") then {_class = WAI_StaticWeapons call BIS_fnc_selectRandom;};
 
-	_unit = _unitGroup createUnit [_aiskin, [0,0,0], [], 10, "PRIVATE"];
+	local _unit = _unitGroup createUnit [_aiskin, [0,0,0], [], 10, "PRIVATE"];
 	
-	_static = _class createVehicle _x;
+	removeAllWeapons _unit;
+	removeAllItems _unit;
+	
+	local _static = _class createVehicle _x;
 	
 	if (surfaceIsWater _x) then {
 		_static setPosASL _x;
@@ -65,102 +46,118 @@ if (!isNil "_mission") then {
 	
 	[_unit] joinSilent _unitGroup;
 
-	call {
-		if (_aitype == "hero") exitWith {_unit setVariable ["Hero",true,false]; _unit setVariable ["humanity", ai_remove_humanity]; };
-		if (_aitype == "bandit") exitWith {_unit setVariable ["Bandit",true,false]; _unit setVariable ["humanity", ai_add_humanity]; };
-		if (_aitype == "special") exitWith {_unit setVariable ["Special",true,false]; _unit setVariable ["humanity", ai_special_humanity]; };
-	};
+	if (_hero) then {_unit setVariable ["Hero",true,false]; _unit setVariable ["humanity", WAI_RemoveHumanity];};
+	if (_bandit) then {_unit setVariable ["Bandit",true,false]; _unit setVariable ["humanity", WAI_AddHumanity];};
 	
-	_unit enableAI "TARGET";
-	_unit enableAI "AUTOTARGET";
-	_unit enableAI "MOVE";
-	_unit enableAI "ANIM";
-	_unit enableAI "FSM";
-	
-	removeAllWeapons _unit;
-	removeAllItems _unit;
-	
-	if (ai_static_useweapon) then {
+	if (WAI_StaticUseWeapon) then {
 	
 		call {
-			if(typeName(_gun) == "SCALAR") then {
-				if(_gun == 0) 			exitWith { _aiweapon = ai_wep_random call BIS_fnc_selectRandom; };
-				if(_gun == 1) 			exitWith { _aiweapon = ai_wep_machine;};
-				if(_gun == 2) 			exitWith { _aiweapon = ai_wep_sniper;};
+			if (typeName _gun == "ARRAY") then {
+				_weapon = _gun call BIS_fnc_selectRandom;
 			} else {
-				if(_gun == "random") 	exitWith { _aiweapon = ai_wep_random call BIS_fnc_selectRandom; };
-				if(_gun == "unarmed") 	exitWith { _unarmed = true; };
+				if (_gun == "Random") exitWith {_weapon = WAI_RandomWeapon call BIS_fnc_selectRandom;};
+				if (_gun == "Unarmed") exitWith {_unarmed = true;};
+				_weapon = _gun;
 			};
 		};
 		
 		if (!_unarmed) then {
-			_weapon = if (typeName (_aiweapon) == "ARRAY") then {_aiweapon select (floor (random (count _aiweapon)))} else {_aiweapon};
-			_magazine = _weapon call find_suitable_ammunition;
-		};
-
-		_weapon 	= _aiweapon call BIS_fnc_selectRandom;
-		if !(isClass (configFile >> "CfgWeapons" >> _weapon)) then {
-			diag_log text format ["WAI Error: Weapon classname (%1) is not valid!",_weapon];
-			_weapon = "M16A2_DZ"; // Replace with known good classname.
-		};
-		_magazine 	= _weapon call find_suitable_ammunition;
-		
-		_aigear = call {
-			if(typeName(_gear) == "SCALAR") then {
-				if(_gear == 0) exitWith {ai_gear0;};
-				if(_gear == 1) exitWith {ai_gear1;};
-				if(_gear == 2) exitWith {ai_gear2;};
-				if(_gear == 3) exitWith {ai_gear3;};
-				if(_gear == 4) exitWith {ai_gear4;};
-			} else {
-				if(_gear == "random") exitWith {ai_gear_random select (floor (random (count ai_gear_random)));};
+			if (typeName _weapon == "ARRAY") then {
+				_weapon = _weapon call BIS_fnc_selectRandom;
 			};
-		};
-
-		call {
-			if(_backpack == "random") exitWith {_aipack = ai_packs call BIS_fnc_selectRandom;};
-			if(_backpack == "none") exitWith {};
-			_aipack = _backpack;
-		};
-
-		_gearmagazines = _aigear select 0;
-		_geartools = _aigear select 1;
-
-		if (!_unarmed) then {
+			
+			if !(isClass (configFile >> "CfgWeapons" >> _weapon)) then {
+				diag_log text format ["WAI Error: Weapon classname (%1) is not valid!",_weapon];
+				_weapon = "M16A2_DZ"; // Replace with known good classname.
+			};
+			
+			local _magazine = _weapon call WAI_FindAmmo;
+			local _mags = (round (random((WAI_AIMags select 1) - (WAI_AIMags select 0))) + (WAI_AIMags select 0));
 			for "_i" from 1 to _mags do {
 				_unit addMagazine _magazine;
 			};
 			_unit addWeapon _weapon;
+			_unit selectWeapon _weapon;
+			
+			local _aigear = call {
+				if (typeName _gear == "SCALAR") then {
+					if (_gear == 0) exitWith {WAI_Gear0;};
+					if (_gear == 1) exitWith {WAI_Gear1;};
+					if (_gear == 2) exitWith {WAI_Gear2;};
+					[];
+				} else {
+					if (_gear == "random") exitWith {WAI_GearRandom call BIS_fnc_selectRandom;};
+					[];
+				};
+			};
+	
+			if (count _aigear > 0) then {		
+				for "_i" from 1 to (_aigear select 0) do {
+					_unit addMagazine (WAI_Food call BIS_fnc_selectRandom);
+				};
+				
+				for "_i" from 1 to (_aigear select 1) do {
+					_unit addMagazine (WAI_Drink call BIS_fnc_selectRandom);
+				};
+				
+				for "_i" from 1 to (_aigear select 2) do {
+					_unit addMagazine (WAI_Medical call BIS_fnc_selectRandom);
+				};
+				
+				local _tools = []; // tools cannot be duplicated in inventory so we add them to a temp array when selected
+				local _i = 0;
+				while {_i < (_aigear select 3)} do {
+					local _tool = WAI_ToolsAll call BIS_fnc_selectRandom;
+					if !(_tool in _tools) then {
+						_unit addWeapon _tool;
+						_tools set [count _tools, _tool];
+						_i = _i + 1;
+					};
+				};
+				
+				if (random 1 <= (_aigear select 4)) then {
+					_unit addMagazine "ItemDocument";
+				};
+			};
+			
+			call {
+				if (typeName _backpack == "ARRAY") then {
+					_pack = _backpack call BIS_fnc_selectRandom;
+				} else {
+					if (_backpack == "random") exitWith {_pack = WAI_PacksAll call BIS_fnc_selectRandom;};
+					if (_backpack == "none") exitWith {_pack = "";};
+				};
+			};
+			
+			if (_pack != "") then {
+				_unit addBackpack _pack;
+			};
 		};
-
-		if (_backpack != "none") then {
-			_unit addBackpack _aipack;
-		};
-
-		{
-			_unit addMagazine _x
-		} count _gearmagazines;
-
-		{
-			_unit addWeapon _x
-		} count _geartools;
 	};
 	
-	if (ai_static_skills) then {
-
+	// New for 1.0.7 - Hero and bandit dog tags that can be traded for +/- humanity.
+	if (_hero) then {
+		if (random 1 <= WAI_HeroDogtagChance) then {
+			_unit addMagazine "ItemDogTagHero";
+		};
+	};
+	if (_bandit) then {
+		if (random 1 <= WAI_BanditDogtagChance) then {
+			_unit addMagazine "ItemDogTagBandit";
+		};
+	};
+			
+	if (WAI_StaticSkills) then {
 		{
 			_unit setSkill [(_x select 0),(_x select 1)]
-		} count ai_static_array;
-
+		} count WAI_StaticSkillArray;
 	} else {
-
-		_aicskill = call {
-			if (_skill == "easy") exitWith {ai_skill_easy;};
-			if (_skill == "medium") exitWith {ai_skill_medium;};
-			if (_skill == "hard") exitWith {ai_skill_hard;};
-			if (_skill == "extreme") exitWith {ai_skill_extreme;};
-			if (_skill == "random") exitWith {ai_skill_random call BIS_fnc_selectRandom; };
-			ai_skill_random call BIS_fnc_selectRandom;
+		local _aicskill = call {
+			if (_skill == "easy") exitWith {WAI_SkillEasy;};
+			if (_skill == "medium") exitWith {WAI_SkillMedium;};
+			if (_skill == "hard") exitWith {WAI_SkillHard;};
+			if (_skill == "extreme") exitWith {WAI_SkillExtreme;};
+			WAI_SkillRandom call BIS_fnc_selectRandom;
 		};
 
 		{
@@ -168,7 +165,7 @@ if (!isNil "_mission") then {
 		} count _aicskill;
 	};
 	
-	_unit addEventHandler ["Killed",{[_this select 0, _this select 1] call on_kill;}];
+	_unit addEventHandler ["Killed",{[_this select 0, _this select 1] call WAI_Onkill;}];
 	
 	_static addEventHandler ["GetOut",{
 		_unit = _this select 2;
@@ -178,34 +175,30 @@ if (!isNil "_mission") then {
 		
 	dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_static];
 		
-	if (sunOrMoon != 1) then {
+	if (sunOrMoon != 1 && {!("NVGoggles" in (weapons _unit))} && {!("NVGoggles_DZE" in (weapons _unit))}) then {
 		_unit addWeapon "NVGoggles";
 	};
 	
+	_unit assignAsGunner _static;
 	_unit moveInGunner _static;
 	_unit setVariable ["noKey",true];
 
-	if (!isNil "_mission") then {
-		_ainum = (wai_mission_data select _mission) select 0;
-		wai_mission_data select _mission set [0, (_ainum + 1)];
-		((wai_mission_data select _mission) select 4) set [count ((wai_mission_data select _mission) select 4), _static];
-		_static setVariable ["mission" + dayz_serverKey, _mission, false];
-		_unit setVariable ["mission" + dayz_serverKey, _mission, false];
-	} else {
-		wai_static_data set [0, ((wai_static_data select 0) + 1)];
-		(wai_static_data select 2) set [count (wai_static_data select 2), _static];
-	};
+	WAI_MissionData select _mission set [0, (((WAI_MissionData select _mission) select 0) + 1)];
+	((WAI_MissionData select _mission) select 3) set [count ((WAI_MissionData select _mission) select 3), _static];
+	_static setVariable ["mission" + dayz_serverKey, _mission, false];
+	_unit setVariable ["mission" + dayz_serverKey, _mission, false];
 
 } forEach _position;
 
 _unitGroup selectLeader ((units _unitGroup) select 0);
+_unitGroup setVariable ["DoNotFreeze", true];
 
-if(_aitype == "Hero") then {
-	_unitGroup setCombatMode ai_hero_combatmode;
-	_unitGroup setBehaviour ai_hero_behaviour;
+if(_hero) then {
+	_unitGroup setCombatMode WAI_HeroCombatmode;
+	_unitGroup setBehaviour WAI_HeroBehaviour;
 } else {
-	_unitGroup setCombatMode ai_bandit_combatmode;
-	_unitGroup setBehaviour ai_bandit_behaviour;
+	_unitGroup setCombatMode WAI_BanditCombatMode;
+	_unitGroup setBehaviour WAI_BanditBehaviour;
 };
 
-if (wai_debug_mode) then {diag_log format ["WAI: Spawned in %1 %2",_unitnumber,_class];};
+if (WAI_DebugMode) then {diag_log format ["WAI: Spawned in %1 %2",(count _position),_class];};

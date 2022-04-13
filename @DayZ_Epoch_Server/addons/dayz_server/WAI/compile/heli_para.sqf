@@ -1,392 +1,383 @@
-private ["_rocket","_unarmed","_launcher","_starttodrop","_timebtwdrops","_flyinheight","_distance","_heliStartDir","_start_position","_diag_distance","_rndnum","_mission_data","_pos_x","_pos_y","_ainum","_missionrunning","_aitype","_helipos1","_geartools","_gearmagazines","_cleanheli","_drop","_helipos","_gunner2","_gunner","_player_present","_skillarray","_aicskill","_aiskin","_aigear","_wp","_helipatrol","_gear","_skin","_backpack","_mags","_gun","_triggerdis","_startingpos","_aiweapon","_mission","_heli_class","_aipack","_helicopter","_unitGroup","_pilot","_skill","_paranumber","_position","_wp1"];
+if (!WAI_EnableParadrops) exitWith {};
 
-if (!wai_enable_paradrops) exitWith {};
+local _position = _this select 0;
+local _triggerdis = _this select 1;
+local _heliClass = _this select 2;
+local _heliStartDir = _this select 3;
+local _distance = _this select 4;
+local _flyinheight = _this select 5;
+local _timebtwdrops = _this select 6;
+local _starttodrop = _this select 7;
+local _paranumber = _this select 8;
+local _skill = _this select 9;
+local _gun = _this select 10;
+local _launcher = _this select 11;
+local _backpack = _this select 12;
+local _skin = _this select 13;
+local _gear = _this select 14;
+local _aitype = _this select 15;
+local _helipatrol = _this select 16;
+local _mission = _this select 17;
+local _missionrunning = true;
+local _playerPresent = false;
+local _hero = _aitype == "Hero";
+local _bandit = _aitype == "Bandit";
+local _pack = _backpack;
 
-_position 		= _this select 0;
-_pos_x			= _position select 0;
-_pos_y			= _position select 1;
-_triggerdis 	= _this select 1;
-_heli_class 	= _this select 2;
-_heliStartDir	= _this select 3;
-_distance		= _this select 4;
-_flyinheight	= _this select 5;
-_timebtwdrops	= _this select 6;
-_starttodrop	= _this select 7;
-_paranumber 	= _this select 8;
-_skill 			= _this select 9;
-_gun 			= _this select 10;
-_mags 			= _this select 11;
-_backpack 		= _this select 12;
-_skin 			= _this select 13;
-_gear 			= _this select 14;
-_aitype			= _this select 15;
-_helipatrol 	= _this select 16;
-_aipack 		= "";
-_player_present = false;
+if (WAI_DebugMode) then {diag_log "WAI: Paradrop waiting for player";};
 
-if (count _this > 17) then {
-	_mission = _this select 17;
-} else {
-	_mission = nil;
-};
-
-if (typeName _gun == "ARRAY") then {
-	_launcher = _gun select 1;
-	_gun = _gun select 0;
-};
-
-_aiweapon = [];
-_aigear = [];
-_aiskin = "";
-_aicskill = [];
-_skillarray = ["aimingAccuracy","aimingShake","aimingSpeed","endurance","spotDistance","spotTime","courage","reloadSpeed","commanding","general"];
-_unarmed = false;
-
-if(wai_debug_mode) then {diag_log "WAI: Paradrop waiting for player";};
-
-
-// Wait until a player is within the trigger distance
-while {!_player_present} do {
-	_player_present = [[_pos_x,_pos_y,0],_triggerdis] call isNearPlayer;
+// Wait until a player is within the trigger distance or mission times out.
+while {!_playerPresent && _missionrunning} do {
+	_playerPresent = [_position,_triggerdis] call isNearPlayer;
+	_missionrunning = (typeName (WAI_MissionData select _mission) == "ARRAY");
 	uiSleep 5;
 };
 
-_aiskin = call {
-	if (_skin == "random") 	exitWith {ai_all_skin select (floor (random (count ai_all_skin)));};
-	if (_skin == "hero") 	exitWith {ai_hero_skin select (floor (random (count ai_hero_skin)));};
-	if (_skin == "bandit") 	exitWith {ai_bandit_skin select (floor (random (count ai_bandit_skin)));};
-	if (_skin == "special") exitWith {ai_special_skin select (floor (random (count ai_special_skin)));};
-	_skin;
+if (!_missionrunning) exitWith {
+	if (WAI_DebugMode) then {diag_log format["WAI: Mission at %1 already ended, aborting para drop",_position];};
 };
 
-if(typeName _aiskin == "ARRAY") then {
-	_aiskin = _aiskin select (floor (random (count _aiskin)));
+local _aicskill = call {
+	if (_skill == "easy") exitWith {WAI_SkillEasy;};
+	if (_skill == "medium") exitWith {WAI_SkillMedium;};
+	if (_skill == "hard") exitWith {WAI_SkillHard;};
+	if (_skill == "extreme") exitWith {WAI_SkillExtreme;};
+	WAI_SkillRandom call BIS_fnc_selectRandom;
 };
 
-if(!isNil "_mission") then {
-	_missionrunning = (typeName (wai_mission_data select _mission) == "ARRAY");
-} else {
-	_missionrunning = true;
+local _aiskin = call {
+	if (typeName _skin == "ARRAY") then {
+		_skin call BIS_fnc_selectRandom;
+	} else {
+		if (_skin == "Hero") exitWith {WAI_HeroSkin call BIS_fnc_selectRandom;};
+		if (_skin == "Bandit") exitWith {WAI_BanditSkin call BIS_fnc_selectRandom;};
+		if (_skin == "Random") exitWith {WAI_AllSkin call BIS_fnc_selectRandom;};
+		_skin;
+	};
 };
 
-if(!_missionrunning) exitWith {if (wai_debug_mode) then {diag_log format["WAI: Mission at %1 already ended, aborting para drop",_position];};};
-
-if(wai_debug_mode) then {diag_log format ["WAI: Spawning a %1 with %2 units to be para dropped at %3",_heli_class,_paranumber,_position];};
-
-if(_aitype == "Hero") then {
-	_unitGroup = createGroup RESISTANCE;
-} else {
-	_unitGroup = createGroup EAST;
+if (typeName _aiskin == "ARRAY") then {
+	_aiskin = _aiskin call BIS_fnc_selectRandom;
 };
 
-_pilot = _unitGroup createUnit [_aiskin,[0,0,0],[],1,"NONE"];
+if (WAI_DebugMode) then {diag_log format ["WAI: Spawning a %1 with %2 units to be para dropped at %3",_heliClass,_paranumber,_position];};
+
+local _unitGroup = [createGroup EAST, createGroup RESISTANCE] select _hero;
+
+local _pilot = _unitGroup createUnit [_aiskin,[0,0,0],[],1,"NONE"];
 [_pilot] joinSilent _unitGroup;
 
 // This random number is used to start the helicopter a random distance from the mission
-_rndnum = (random ((_distance select 1) - (_distance select 0)) + (_distance select 0));
+local _rndnum = (random ((_distance select 1) - (_distance select 0)) + (_distance select 0));
 
-call
-{
-	if (_heliStartDir == "North") exitWith {_helicopter = createVehicle [_heli_class,[(_position select 0),(_position select 1) + _rndnum,100],[],0,"FLY"];};
-	if (_heliStartDir == "South") exitWith {_helicopter = createVehicle [_heli_class,[(_position select 0),(_position select 1) - _rndnum,100],[],0,"FLY"];};
-	if (_heliStartDir == "East") exitWith {_helicopter = createVehicle [_heli_class,[(_position select 0) + _rndnum,(_position select 1),100],[],0,"FLY"];};
-	if (_heliStartDir == "West") exitWith {_helicopter = createVehicle [_heli_class,[(_position select 0) - _rndnum,(_position select 1),100],[],0,"FLY"];};
+local _heliPos = call {
+	if (_heliStartDir == "North") exitWith {[(_position select 0),(_position select 1) + _rndnum,100];};
+	if (_heliStartDir == "South") exitWith {[(_position select 0),(_position select 1) - _rndnum,100];};
+	if (_heliStartDir == "East") exitWith {[(_position select 0) + _rndnum,(_position select 1),100];};
+	if (_heliStartDir == "West") exitWith {[(_position select 0) - _rndnum,(_position select 1),100];};
 };
 
-_start_position = position _helicopter;
+local _helicopter = createVehicle [_heliClass, _heliPos, [], 0, "FLY"];
+local _startPos = position _helicopter;
+local _turrets = _heliClass call WAI_GetTurrets;
 
-if (wai_debug_mode) then {
-	_diag_distance = _helicopter distance _position;
+dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_helicopter];
+
+if (WAI_DebugMode) then {
+	local _diag_distance = _helicopter distance _position;
 	diag_log format["WAI: the Paratrooper Drop has started %1 from the mission",_diag_distance];
 };
 
-//_helicopter setFuel 1;
-_helicopter engineOn true;
-//_helicopter setVehicleAmmo 1;
 _helicopter flyInHeight _flyinheight;
-_helicopter addEventHandler ["GetOut",{(_this select 0) setFuel 0;(_this select 0) setDamage 1;}];
+_helicopter addEventHandler ["GetOut",{(_this select 0) setDamage 1;}];
 
 _pilot assignAsDriver _helicopter;
 _pilot moveInDriver _helicopter;
 
-_gunner = _unitGroup createUnit [_aiskin,[0,0,0],[],1,"NONE"];
-_gunner assignAsGunner _helicopter;
-_gunner moveInTurret [_helicopter,[0]];
-[_gunner] joinSilent _unitGroup;
+{
+	_pilot setSkill [_x,1];
+} count ["aimingAccuracy","aimingShake","aimingSpeed","endurance","spotDistance","spotTime","courage","reloadSpeed","commanding","general"];
 
-_gunner2 = _unitGroup createUnit [_aiskin,[0,0,0],[],1,"NONE"];
-_gunner2 assignAsGunner _helicopter;
-_gunner2 moveInTurret [_helicopter,[1]];
-[_gunner2] joinSilent _unitGroup;
-
-call {
-	if (_aitype == "Hero") 		exitWith {{ _x setVariable ["Hero",true]; _x setVariable ["humanity", ai_add_humanity]; } count [_pilot, _gunner, _gunner2];};
-	if (_aitype == "Bandit") 	exitWith {{ _x setVariable ["Bandit",true]; _x setVariable ["humanity", ai_remove_humanity]; } count [_pilot, _gunner, _gunner2];};
-	if (_aitype == "Special") 	exitWith {{ _x setVariable ["Special",true]; _x setVariable ["humanity", ai_special_humanity]; } count [_pilot, _gunner, _gunner2];};
+local _gunner = objNull;
+if (count _turrets > 0) then {
+	local _gunner = _unitGroup createUnit [_aiskin, [0,0,0], [], 1, "NONE"];
+	//_gunner assignAsGunner _helicopter;
+	_gunner moveInTurret [_helicopter,(_turrets select 0)];
+	[_gunner] joinSilent _unitGroup;
+	{
+		_gunner setSkill [(_x select 0),(_x select 1)];
+	} count _aicskill;
 };
 
-{
-	_pilot setSkill [_x,1]
-} count _skillarray;
-
-{
-	_gunner 	setSkill [_x,0.7];
-	_gunner2 	setSkill [_x,0.7];
-} count _skillarray;
-
+local _gunner2 = objNull;
+if (count _turrets > 1) then {
+	_gunner2 = _unitGroup createUnit [_aiskin,[0,0,0],[],1,"NONE"];
+	//_gunner2 assignAsGunner _helicopter; -  Not necessary. Used with orderGetIn command
+	_gunner2 moveInTurret [_helicopter,(_turrets select 1)];
+	[_gunner2] joinSilent _unitGroup;
+	{
+		_gunner2 setSkill [(_x select 0),(_x select 1)];
+	} count _aicskill;
+};
 
 {
 	_x addWeapon "Makarov_DZ";
 	_x addMagazine "8Rnd_9x18_Makarov";
 	_x addMagazine "8Rnd_9x18_Makarov";
-} count (units _unitgroup);
+	if (_hero) then {_x setVariable ["Hero", true]; _x setVariable ["humanity", WAI_RemoveHumanity];};
+	if (_bandit) then {_x setVariable ["Bandit", true]; _x setVariable ["humanity", WAI_AddHumanity];};
+} forEach (units _unitgroup);
 
-dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_helicopter];
-
-if (!isNil "_mission") then {
-	((wai_mission_data select _mission) select 1) set [count ((wai_mission_data select _mission) select 1), _unitGroup];
-	((wai_mission_data select _mission) select 4) set [count ((wai_mission_data select _mission) select 4), _helicopter];
-} else {
-	(wai_static_data select 1) set [count (wai_static_data select 1), _unitGroup];
-	(wai_static_data select 2) set [count (wai_static_data select 2), _helicopter];
-};
+((WAI_MissionData select _mission) select 1) set [count ((WAI_MissionData select _mission) select 1), _unitGroup];
+((WAI_MissionData select _mission) select 3) set [count ((WAI_MissionData select _mission) select 3), _helicopter];
 
 _unitGroup allowFleeing 0;
 _unitGroup setBehaviour "CARELESS";
-_unitGroup setSpeedMode "FULL";
-
-if(_aitype == "Hero") then {
-	_unitGroup setCombatMode ai_hero_combatmode;
-	_unitGroup setBehaviour ai_hero_behaviour;
-} else {
-	_unitGroup setCombatMode ai_bandit_combatmode;
-	_unitGroup setBehaviour ai_bandit_behaviour;
-};
+_unitGroup setCombatMode "BLUE";
+_unitGroup setVariable ["DoNotFreeze", true];
 
 // Add waypoints to the chopper group.
-_wp = _unitGroup addWaypoint [[(_position select 0), (_position select 1)], 0];
+local _wp = _unitGroup addWaypoint [[(_position select 0), (_position select 1)], 0];
 _wp setWaypointType "MOVE";
 _wp setWaypointCompletionRadius 100;
 
-_drop = true;
-//_helipos = getPos _helicopter;
+local _drop = true;
+local _weapon = "";
+local _unarmed = false;
+local _para = objNull;
 
-while {(alive _helicopter) && (_drop)} do {
-	private ["_magazine","_weapon","_weapon","_chute","_para","_pgroup"];
+while {(alive _helicopter) && _drop} do {
 	uiSleep 1;
-	_helipos = getPos _helicopter;
+	_heliPos = getPos _helicopter;
 
-	if (_helipos distance [(_position select 0),(_position select 1),100] <= _starttodrop) then {
-
-		if(_aitype == "Hero") then {
-			_pgroup	= createGroup RESISTANCE;
-		} else {
-			_pgroup	= createGroup EAST;
-		};
+	if (_heliPos distance [(_position select 0),(_position select 1),100] <= _starttodrop) then {
+	
+		local _pgroup = [createGroup EAST, createGroup RESISTANCE] select _hero;
 		
-		if (!isNil "_mission") then {
-			((wai_mission_data select _mission) select 1) set [count ((wai_mission_data select _mission) select 1), _pgroup];
-		} else {
-			(wai_static_data select 1) set [count (wai_static_data select 1), _pgroup];
+		if (typeName (WAI_MissionData select _mission) == "ARRAY") then {
+			((WAI_MissionData select _mission) select 1) set [count ((WAI_MissionData select _mission) select 1), _pgroup];
 		};
 
 		for "_x" from 1 to _paranumber do {
 
-			_helipos = getPos _helicopter;
+			_heliPos = getPos _helicopter;
 
-			call {
-				if(typeName(_gun) == "SCALAR") then {
-					if(_gun == 0) exitWith {_aiweapon = ai_wep_random select (floor (random (count ai_wep_random)));};
-					if(_gun == 1) exitWith {_aiweapon = ai_wep_machine;};
-					if(_gun == 2) exitWith {_aiweapon = ai_wep_sniper;};
+			local _aiskin = call {
+				if (typeName _skin == "ARRAY") then {
+					_skin call BIS_fnc_selectRandom;
 				} else {
-					if(_gun == "random") exitWith {_aiweapon = ai_wep_random select (floor (random (count ai_wep_random)));};
-					if(_gun == "unarmed") exitWith {_unarmed = true;};
-					_aiweapon = _gun;
+					if (_skin == "Hero") exitWith {WAI_HeroSkin call BIS_fnc_selectRandom;};
+					if (_skin == "Bandit") exitWith {WAI_BanditSkin call BIS_fnc_selectRandom;};
+					if (_skin == "Random") exitWith {WAI_AllSkin call BIS_fnc_selectRandom;};
+					_skin;
+				};
+			};
+
+			if(typeName _aiskin == "ARRAY") then {
+				_aiskin = _aiskin call BIS_fnc_selectRandom;
+			};
+
+			_para = _pgroup createUnit [_aiskin,[0,0,0],[],1,"FORM"];
+			
+			removeAllWeapons _para;
+			removeAllItems _para;
+			
+			call {
+				if (typeName _gun == "ARRAY") then {
+					_weapon = _gun call BIS_fnc_selectRandom;
+				} else {
+					if (_gun == "random") exitWith {_weapon = WAI_RandomWeapon call BIS_fnc_selectRandom;};
+					if (_gun == "unarmed") exitWith {_unarmed = true;};
+					_weapon = _gun;
 				};
 			};
 
 			if (!_unarmed) then {
-				_weapon = if (typeName (_aiweapon) == "ARRAY") then {_aiweapon select (floor (random (count _aiweapon)))} else {_aiweapon};
+				if (typeName _weapon == "ARRAY") then {
+					_weapon = _weapon select (floor (random (count _weapon)));
+				};
+				
 				if !(isClass (configFile >> "CfgWeapons" >> _weapon)) then {
 					diag_log text format ["WAI Error: Weapon classname (%1) is not valid!",_weapon];
 					_weapon = "M16A2_DZ"; // Replace with known good classname.
 				};
-				_magazine = _weapon call find_suitable_ammunition;
-			};
-			
-			_aigear = call {
-				if (typeName(_gear) == "SCALAR") then {
-					if(_gear == 0) exitWith {ai_gear0;};
-					if(_gear == 1) exitWith {ai_gear1;};
-					if(_gear == 2) exitWith {ai_gear2;};
-					if(_gear == 3) exitWith {ai_gear3;};
-					if(_gear == 4) exitWith {ai_gear4;};
-				} else {
-					if(_gear == "random") exitWith {ai_gear_random select (floor (random (count ai_gear_random)));};
+				
+				local _magazine = _weapon call WAI_FindAmmo;
+				local _mags = (round (random((WAI_AIMags select 1) - (WAI_AIMags select 0))) + (WAI_AIMags select 0));
+				for "_i" from 1 to _mags do {
+					_para addMagazine _magazine;
+				};
+				_para addWeapon _weapon;
+				_para selectWeapon _weapon;
+				
+				// New for 1.0.7 - Hero and bandit dog tags that can be traded for +/- humanity.
+				if (_hero) then {
+					if (random 1 <= WAI_HeroDogtagChance) then {
+						_para addMagazine "ItemDogTagHero";
+					};
+				};
+				if (_bandit) then {
+					if (random 1 <= WAI_BanditDogtagChance) then {
+						_para addMagazine "ItemDogTagBandit";
+					};
+				};
+				
+				local _aigear = call {
+					if (typeName _gear == "SCALAR") then {
+						if (_gear == 0) exitWith {WAI_Gear0;};
+						if (_gear == 1) exitWith {WAI_Gear1;};
+						if (_gear == 2) exitWith {WAI_Gear2;};
+						[];
+					} else {
+						if (_gear == "random") exitWith {WAI_GearRandom call BIS_fnc_selectRandom;};
+						[];
+					};
+				};
+		
+				if (count _aigear > 0) then {
+					
+					for "_i" from 1 to (_aigear select 0) do {
+						_para addMagazine (WAI_Food call BIS_fnc_selectRandom);
+					};
+					
+					for "_i" from 1 to (_aigear select 1) do {
+						_para addMagazine (WAI_Drink call BIS_fnc_selectRandom);
+					};
+					
+					for "_i" from 1 to (_aigear select 2) do {
+						_para addMagazine (WAI_Medical call BIS_fnc_selectRandom);
+					};
+					
+					local _tools = []; // tools cannot be duplicated in inventory so we add them to a temp array when selected
+					local _i = 0;
+					while {_i < (_aigear select 3)} do {
+						local _tool = WAI_ToolsAll call BIS_fnc_selectRandom;
+						if !(_tool in _tools) then {
+							_para addWeapon _tool;
+							_tools set [count _tools, _tool];
+							_i = _i + 1;
+						};
+					};
+					
+					if (random 1 <= (_aigear select 4)) then {
+						_para addMagazine "ItemDocument";
+					};
 				};
 			};
-
-			_gearmagazines = _aigear select 0;
-			_geartools = _aigear select 1;
 			
 			call {
-				if(_backpack == "random") exitWith {_aipack = ai_packs select (floor (random (count ai_packs)));};
-				if(_backpack == "none") exitWith {};
-				_aipack = _backpack;
-			};
-				
-			_aiskin = call {
-				if (_skin == "random") 	exitWith {ai_all_skin select (floor (random (count ai_all_skin)));};
-				if (_skin == "hero") 	exitWith {ai_hero_skin select (floor (random (count ai_hero_skin)));};
-				if (_skin == "bandit") 	exitWith {ai_bandit_skin select (floor (random (count ai_bandit_skin)));};
-				if (_skin == "special") exitWith {ai_special_skin select (floor (random (count ai_special_skin)));};
-				_skin;
-			};
-
-			//if(typeName _aiskin == "ARRAY") then {
-				//_aiskin = _aiskin select (floor (random (count _aiskin)));
-			//};
-
-			_para = _pgroup createUnit [_aiskin,[0,0,0],[],1,"FORM"];
-			
-			_para enableAI "TARGET";
-			_para enableAI "AUTOTARGET";
-			_para enableAI "MOVE";
-			_para enableAI "ANIM";
-			_para enableAI "FSM";
-
-			removeAllWeapons _para;
-			removeAllItems _para;
-			
-			_para addWeapon _weapon;
-			
-			for "_i" from 1 to _mags do {
-				_para addMagazine _magazine;
+				if (typeName _backpack == "ARRAY") then {
+					_pack = _backpack call BIS_fnc_selectRandom;
+				} else {
+					if (_backpack == "random") exitWith {_pack = WAI_PacksAll call BIS_fnc_selectRandom;};
+					if (_backpack == "none") exitWith {_pack = "";};
+				};
 			};
 			
-			if(_backpack != "none") then {
-				_para addBackpack _aipack;
+			if (typeName _pack == "ARRAY") then {
+				_pack = _pack call BIS_fnc_selectRandom;
 			};
 			
-			{
-				_para addMagazine _x
-			} count _gearmagazines;
-			
-			{
-				_para addWeapon _x
-			} count _geartools;
-			
-			if (sunOrMoon != 1) then {
+			if (_pack != "") then {
+				_para addBackpack _pack;
+			};
+	
+			if (sunOrMoon != 1 && {!("NVGoggles" in (weapons _unit))} && {!("NVGoggles_DZE" in (weapons _unit))}) then {
 				_para addWeapon "NVGoggles";
-			};
-			
-			_aicskill = call {
-				if(_skill == "easy") exitWith {ai_skill_easy;};
-				if(_skill == "medium") exitWith {ai_skill_medium;};
-				if(_skill == "hard") exitWith {ai_skill_hard;};
-				if(_skill == "extreme") exitWith {ai_skill_extreme;};
-				if(_skill == "random") exitWith {ai_skill_random select (floor (random (count ai_skill_random)));};
-				ai_skill_random select (floor (random (count ai_skill_random)));
 			};
 			
 			{
 				_para setSkill [(_x select 0),(_x select 1)]
 			} count _aicskill;
 			
-			_para addEventHandler ["Killed",{[_this select 0, _this select 1] call on_kill;}];
-			_chute = createVehicle ["ParachuteWest", [(_helipos select 0), (_helipos select 1), (_helipos select 2)], [], 0, "NONE"];
+			_para addEventHandler ["Killed",{[_this select 0, _this select 1] call WAI_Onkill;}];
+			local _chute = createVehicle ["ParachuteWest", _heliPos, [], 0, "NONE"];
 			_para moveInDriver _chute;
 			[_para] joinSilent _pgroup;
 			
 			// Adjusting this number changes the spread of the AI para drops
 			uiSleep _timebtwdrops;
 			
-			if(!isNil "_mission") then {
-				_mission_data = (wai_mission_data select _mission);
-
-				if (typeName _mission_data == "ARRAY") then {
-					_ainum = _mission_data select 0;
-					wai_mission_data select _mission set [0, (_ainum + 1)];
-					_para setVariable ["mission" + dayz_serverKey, _mission, false];
-				};
-			} else {
-				wai_static_data set [0, ((wai_static_data select 0) + 1)];
+			_para setVariable ["mission" + dayz_serverKey, _mission, false];
+			if (typeName (WAI_MissionData select _mission) == "ARRAY") then {
+				WAI_MissionData select _mission set [0, (((WAI_MissionData select _mission) select 0) + 1)];
 			};
 		};
 		
-		if (!isNil "_launcher" && wai_use_launchers) then {
-			call {
-				//if (_launcher == "Random") exitWith { _launcher = (ai_launchers_AT + ai_launchers_AA) call BIS_fnc_selectRandom; };
-				if (_launcher == "at") exitWith {_launcher = ai_wep_launchers_AT select (floor (random (count ai_wep_launchers_AT)));};
-				if (_launcher == "aa") exitWith {_launcher = ai_wep_launchers_AA select (floor (random (count ai_wep_launchers_AA)));};
+		if (_launcher != "" && WAI_UseLaunchers) then {
+			_launcher = call {
+				if (_launcher == "AT") exitWith {WAI_LaunchersAT call BIS_fnc_selectRandom;};
+				if (_launcher == "AA") exitWith {WAI_LaunchersAA call BIS_fnc_selectRandom;};
+				"M136";
 			};
-			_rocket = _launcher call find_suitable_ammunition;
+			local _rocket = _launcher call WAI_FindAmmo;
 			_para addMagazine _rocket;
 			_para addMagazine _rocket;
 			_para addWeapon _launcher;
 		};
 
-		call {
-			if (_aitype == "Hero") exitWith {{_x setVariable ["Hero",true,false];  _x setVariable ["humanity", ai_remove_humanity];} count (units _pgroup);};
-			if (_aitype == "Bandit") exitWith {{_x setVariable ["Bandit",true,false]; _x setVariable ["humanity", ai_add_humanity];} count (units _pgroup);};
-			if (_aitype == "Special") exitWith {{_x setVariable ["Special",true,false]; _x setVariable ["humanity", ai_special_humanity];} count (units _pgroup);};
-		};
+		if (_hero) then {{_x setVariable ["Hero",true,false];  _x setVariable ["humanity", WAI_RemoveHumanity];} count (units _pgroup);};
+		if (_bandit) then {{_x setVariable ["Bandit",true,false]; _x setVariable ["humanity", WAI_AddHumanity];} count (units _pgroup);};
 		
 		_drop = false;
 		_pgroup selectLeader ((units _pgroup) select 0);
 
-		if(wai_debug_mode) then {diag_log format ["WAI: Spawned in %1 ai units for paradrop",_paranumber];};
+		if (WAI_DebugMode) then {diag_log format ["WAI: Spawned in %1 units for paradrop",_paranumber];};
 
-		[_pgroup,_position,_skill] call group_waypoints;
+		[_pgroup,_position,_skill] call WAI_SetWaypoints;
 		
-		if(_aitype == "Hero") then {
-			_pgroup setCombatMode ai_hero_combatmode;
-			_pgroup setBehaviour ai_hero_behaviour;
+		if(_hero) then {
+			_pgroup setCombatMode WAI_HeroCombatmode;
+			_pgroup setBehaviour WAI_HeroBehaviour;
 		} else {
-			_pgroup setCombatMode ai_bandit_combatmode;
-			_pgroup setBehaviour ai_bandit_behaviour;
+			_pgroup setCombatMode WAI_BanditCombatMode;
+			_pgroup setBehaviour WAI_BanditBehaviour;
 		};
 	};
 };
 
-if (_helipatrol) then { 
+if (_helipatrol) then {
 	
-	_wp1 = _unitGroup addWaypoint [[(_position select 0),(_position select 1)], 100];
+	// Experimental below
+	local _wp_rad = 500;
+	local _pos_x = _position select 0;
+	local _pos_y = _position select 1;
+	_unitGroup setBehaviour "AWARE";
+	_unitGroup setCombatMode "RED";
+	
+	{
+		_wp = _unitGroup addWaypoint [_x,0];
+		_wp setWaypointType "SAD";
+		_wp setWaypointCompletionRadius 100;
+
+	} count [[_pos_x,(_pos_y+_wp_rad),0],[_pos_x,(_pos_y-_wp_rad),0],[(_pos_x-_wp_rad),_pos_y,0],[(_pos_x+_wp_rad),_pos_y,0]];
+	/*
+	local _wp1 = _unitGroup addWaypoint [[(_position select 0),(_position select 1)], 100];
 	_wp1 setWaypointType "SAD";
 	_wp1 setWaypointCompletionRadius 150;
 	_unitGroup setBehaviour "AWARE";
 	_unitGroup setSpeedMode "FULL";
+	*/
 	
 	{
-		_x addEventHandler ["Killed",{[_this select 0, _this select 1] call on_kill;}];
+		_x addEventHandler ["Killed",{[_this select 0, _this select 1] call WAI_Onkill;}];
 	} forEach (units _unitgroup);
-
 } else {
-
 	{
-		_x doMove [(_start_position select 0), (_start_position select 1), 100]
+		_x doMove [(_startPos select 0), (_startPos select 1), 100]
 	} count (units _unitGroup);
 	
-	_unitGroup setBehaviour "CARELESS";
-	_unitGroup setSpeedMode "FULL";
-
 	_cleanheli = true;
-	
 	while {_cleanheli} do {
-
 		uiSleep 5;
-		_helipos1 = getPos _helicopter;
-		
-		if ((_helipos1 distance [(_start_position select 0),(_start_position select 1),100] <= 2000) || (!alive _helicopter)) then {
-			
+		if (((getPos _helicopter) distance [(_startPos select 0),(_startPos select 1),100] <= 2000) || (!alive _helicopter)) then {
 			deleteVehicle _helicopter;
 			{
 				deleteVehicle _x;
 			} count (units _unitgroup);
-
+			uiSleep 10;
 			deleteGroup _unitGroup;
-			if(wai_debug_mode) then { diag_log "WAI: Paradrop helicopter cleaned"; };
+			if (WAI_DebugMode) then { diag_log "WAI: Paradrop helicopter cleaned"; };
 			_cleanheli = false;
 		};
 
