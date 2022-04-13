@@ -30,10 +30,11 @@ AllowedVehiclesList =
 	,["HMMWV_M1151_M2_CZ_DES_EP1_DZE",	_Ratio1]	// Хаммер (с М2 бронь)
 	
 	,["Ural_CDF_DZE",			_Ratio1]	// Урал (CDF)
-	,["UralOpen_CDF_DZE",	_Ratio2]	// Урал-Открытый (CDF)
-	,["Ural_INS_DZE",		_Ratio1]	// Урал (INS)
-	,["UralCivil_DZE",		_Ratio1]	// Урал Гражданский Желтый
-	,["UralCivil2_DZE",		_Ratio1]	// Урал Гражданский Синий
+	,["UralOpen_CDF_DZE",		_Ratio2]	// Урал-Открытый (CDF)
+	,["Ural_INS_DZE",			_Ratio1]	// Урал (INS)
+	,["UralCivil_DZE",			_Ratio1]	// Урал Гражданский Желтый
+	,["UralCivil2_DZE",			_Ratio1]	// Урал Гражданский Синий
+	,["UralRefuel_CDF_DZE",		_Ratio1]	// Урал (Заправочный) (CDF)
 	
 	,["Skoda_DZE",			_Ratio4]	// Шкода Белая
 	,["SkodaBlue_DZE",		_Ratio4]	// Шкода Синий
@@ -54,9 +55,11 @@ AllowedVehiclesList =
 	,["car_hatchback_red_DZE",	_Ratio4]	// Хэтчбэг
 	,["car_sedan_DZE",			_Ratio4]	// Седан
 	
-	,["Lada1_DZE",	_Ratio4]	// Лада
-	,["Lada2_DZE",	_Ratio4]	// Лада
-	,["LadaLM_DZE",	_Ratio4]	// Лада
+	,["Lada1_DZE",				_Ratio4]	// Лада
+	,["Lada1_TK_CIV_EP1_DZE",	_Ratio4]	// Лада
+	,["Lada2_DZE",				_Ratio4]	// Лада
+	,["Lada2_TK_CIV_EP1_DZE",	_Ratio4]	// Лада
+	,["LadaLM_DZE",				_Ratio4]	// Лада
 	
 	,["hilux1_civil_1_open_DZE",	_Ratio3]	// ХайЛюкс Внежорожник Открытый
 	,["hilux1_civil_2_covered_DZE",	_Ratio3]	// ХайЛюкс Внежорожник Крытый
@@ -83,16 +86,18 @@ AllowedVehiclesList =
 	,["Ikarus_Armored_DZE",		_Ratio1]	// Автобус (Бронированный)
 	
 	,["Kamaz_DZE",		_Ratio1]	// Камаз
-	,["KamazOpen_DZE",	_Ratio2]	// Камаз открытый
-	,["KamazRefuel_DZ",	_Ratio1]	// Камаз открытый
+	,["KamazOpen_DZE",	_Ratio2]	// Камаз (Открытый)
+	,["KamazRefuel_DZ",	_Ratio1]	// Камаз (Заправочный)
 	
 	,["MTVR_DZE",		_Ratio1]	// Камаз MTVR
 	,["MTVR_Open_DZE",	_Ratio1]	// Камаз MTVR (Открытый)
+	,["MtvrRefuel_DZ",	_Ratio1]	// Камаз MTVR (Заправочный)
 	
-	,["V3S_Civ_DZE",				_Ratio2]	// V3S
+	,["V3S_Civ_DZE",				_Ratio1]	// V3S
 	,["V3S_TK_EP1_DZE",				_Ratio1]	// V3S
-	,["V3S_Open_TK_EP1_DZE",		_Ratio2]	// V3S
-	,["V3S_Open_TK_CIV_EP1_DZE",	_Ratio2]	// V3S
+	,["V3S_Open_TK_EP1_DZE",		_Ratio1]	// V3S
+	,["V3S_Open_TK_CIV_EP1_DZE",	_Ratio1]	// V3S
+	,["V3S_Refuel_TK_GUE_EP1_DZ",	_Ratio1]	// V3S
 	
 	,["VWGolf_DZE",			_Ratio4]	// Хэтчбэг
 	,["Mini_Cooper_DZE",	_Ratio4]	// Миникупер
@@ -117,16 +122,17 @@ AllowedVehiclesList =
 	,["Volha_2_TK_CIV_EP1_DZE",		_Ratio4]	// Волга Серый
 	,["VolhaLimo_TK_CIV_EP1_DZE",	_Ratio4]	// Волга Лимо
 	
-	,["SUV_Camo",		_Ratio1]	// Сув
-	,["SUV_Blue",		_Ratio1]	// Сув
-	,["SUV_Green",		_Ratio1]	// Сув
-	,["SUV_Yellow",		_Ratio1]	// Сув
-	,["SUV_Red",		_Ratio1]	// Сув
-	,["SUV_White",		_Ratio1]	// Сув
-	,["SUV_Pink",		_Ratio1]	// Сув
-	,["SUV_Charcoal",	_Ratio1]	// Сув
-	,["SUV_Orange",		_Ratio1]	// Сув
-	,["SUV_Silver",		_Ratio1]	// Сув
+	,["SUV_Camo",			_Ratio1]	// Сув
+	,["SUV_Blue",			_Ratio1]	// Сув
+	,["SUV_Green",			_Ratio1]	// Сув
+	,["SUV_Yellow",			_Ratio1]	// Сув
+	,["SUV_Red",			_Ratio1]	// Сув
+	,["SUV_White",			_Ratio1]	// Сув
+	,["SUV_Pink",			_Ratio1]	// Сув
+	,["SUV_Charcoal",		_Ratio1]	// Сув
+	,["SUV_Orange",			_Ratio1]	// Сув
+	,["SUV_Silver",			_Ratio1]	// Сув
+	,["SUV_TK_CIV_EP1_DZE",	_Ratio1]	// Сув
 	
 	,["MTVR_Bird_DZE",			_Ratio1]	// Литл из MTVR
 	,["Mi17_BLACK_DZE",			_Ratio1]	// Ми17 гражданский
