@@ -25,6 +25,7 @@ AllowedVehiclesList =
 	,["HMMWV_Ambulance_DZE",	_Ratio2]	// Хаммер (медицинский)
 	,["HMMWV_Armored_DZE",		_Ratio1]	// Хаммер (c М240)
 	,["HMMWV_M2_DZ",			_Ratio1]	// Хаммер (с М2)
+	,["HMMWV_MK19_DZE",			_Ratio1]	// Хаммер (с MK19)
 	
 	,["HMMWV_M1035_DES_EP1_DZE",		_Ratio2]	// Хаммер
 	,["HMMWV_M1151_M2_CZ_DES_EP1_DZE",	_Ratio1]	// Хаммер (с М2 бронь)
@@ -46,6 +47,7 @@ AllowedVehiclesList =
 	,["UAZ_INS_DZE",		_Ratio3]	// УАЗ (INS)
 	,["UAZ_MG_CDF_DZE",		_Ratio1]	// УАЗ (CDF с ДШКМ)
 	,["UAZ_MG_INS_DZE",		_Ratio1]	// УАЗ (INS с ДШКМ)
+	,["UAZ_AGS30_RU_DZE",	_Ratio1]	// УАЗ (РУ АГС)
 	
 	,["datsun1_civil_1_open_DZE",		_Ratio3]	// Пикап Открытый
 	,["datsun1_civil_2_covered_DZE",	_Ratio3]	// Пикап Крытый
@@ -61,9 +63,9 @@ AllowedVehiclesList =
 	,["Lada2_TK_CIV_EP1_DZE",	_Ratio4]	// Лада
 	,["LadaLM_DZE",				_Ratio4]	// Лада
 	
-	,["hilux1_civil_1_open_DZE",	_Ratio3]	// ХайЛюкс Внежорожник Открытый
-	,["hilux1_civil_2_covered_DZE",	_Ratio3]	// ХайЛюкс Внежорожник Крытый
-	,["hilux1_civil_3_open_DZE",	_Ratio3]	// ХайЛюкс Внежорожник с трубой
+	,["hilux1_civil_1_open_DZE",	_Ratio3]	// ХайЛюкс Внежорожник (Открытый)
+	,["hilux1_civil_2_covered_DZE",	_Ratio3]	// ХайЛюкс Внежорожник (Крытый)
+	,["hilux1_civil_3_open_DZE",	_Ratio3]	// ХайЛюкс Внежорожник (C трубой)
 	
 	,["Pickup_PK_GUE_DZE",	_Ratio1]	// Пикап с ПКМ
 	,["Pickup_PK_INS_DZE",	_Ratio1]	// Пикап с ПКМ
@@ -86,7 +88,7 @@ AllowedVehiclesList =
 	,["Ikarus_Armored_DZE",		_Ratio1]	// Автобус (Бронированный)
 	
 	,["Kamaz_DZE",		_Ratio1]	// Камаз
-	,["KamazOpen_DZE",	_Ratio2]	// Камаз (Открытый)
+	,["KamazOpen_DZE",	_Ratio1]	// Камаз (Открытый)
 	,["KamazRefuel_DZ",	_Ratio1]	// Камаз (Заправочный)
 	
 	,["MTVR_DZE",		_Ratio1]	// Камаз MTVR
@@ -95,9 +97,9 @@ AllowedVehiclesList =
 	
 	,["V3S_Civ_DZE",				_Ratio1]	// V3S
 	,["V3S_TK_EP1_DZE",				_Ratio1]	// V3S
-	,["V3S_Open_TK_EP1_DZE",		_Ratio1]	// V3S
-	,["V3S_Open_TK_CIV_EP1_DZE",	_Ratio1]	// V3S
-	,["V3S_Refuel_TK_GUE_EP1_DZ",	_Ratio1]	// V3S
+	,["V3S_Open_TK_EP1_DZE",		_Ratio1]	// V3S (Открытый)
+	,["V3S_Open_TK_CIV_EP1_DZE",	_Ratio1]	// V3S (Открытый)
+	,["V3S_Refuel_TK_GUE_EP1_DZ",	_Ratio1]	// V3S (Заправочный)
 	
 	,["VWGolf_DZE",			_Ratio4]	// Хэтчбэг
 	,["Mini_Cooper_DZE",	_Ratio4]	// Миникупер
@@ -111,6 +113,11 @@ AllowedVehiclesList =
 	,["BTR40_TK_INS_EP1_DZE",		_Ratio3]	// БТР-40
 	,["BTR40_MG_TK_GUE_EP1_DZE",	_Ratio1]	// БТР-40 (c ДШКМ)
 	,["BTR40_MG_TK_INS_EP1_DZE",	_Ratio1]	// БТР-40 (c ДШКМ)
+	
+	,["BRDM2_HQ_TK_GUE_EP1_DZE",	_Ratio1]	// БРДМ-2 (ПКМ Открытый)
+	,["BRDM2_TK_GUE_EP1_DZE",		_Ratio1]	// БРДМ-2 (ПКМ Закрытый)
+	
+	,["BTR60_Gue_DZE",	_Ratio1]	// БТР-60 (ПКМ)
 	
 	,["LandRover_TK_CIV_EP1_DZE",	_Ratio3]	// Военный оффроад
 	,["LandRover_MG_TK_EP1_DZE",	_Ratio1]	// Военный оффроад с М2
