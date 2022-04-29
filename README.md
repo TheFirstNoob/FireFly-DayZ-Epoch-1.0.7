@@ -29,14 +29,17 @@ FireFly - Это российский сервер с упором на хард
 В сборке имеется:
 --------------------------
 
-* [Epoch AntiHack & AdminTools by BigEgg17](https://github.com/BigEgg17/Epoch-Antihack-Admin-Tools) Ver: 1.0.4 Compiled
-* [DZAI](https://github.com/oiad/DZAI) Ver: 2.2.6
-* [DZMS](https://github.com/worldwidesorrow/DZMS-DayZMissionSystem) Ver: 2.1+
-* [WAI](https://github.com/worldwidesorrow/WICKED-AI) Ver: 2.3
-* EVENT: [Анимированный ХелиКраш](https://github.com/worldwidesorrow/Animated-Crash-Spawner)
-* EVENT: [Дополнительные Ивенты](https://github.com/worldwidesorrow/Epoch-Server-Events)
-* SCRIPT: Случайный стартовый лут (DayZ_Epoch_24.Napf\Scripts\RndLoadout)
-* CUSTOM: Торговля и Лут (Все еще дополняется!)
+* [Epoch AntiHack & AdminTools](https://github.com/BigEgg17/Epoch-Antihack-Admin-Tools) Ver: 1.0.4 Compiled by BigEgg17
+* [DZAI](https://github.com/oiad/DZAI) Ver: 2.2.6 by oiad
+* [DZMS](https://github.com/worldwidesorrow/DZMS-DayZMissionSystem) Ver: 2.1+ Updates: worldwidesorrow
+* [WAI](https://github.com/worldwidesorrow/WICKED-AI) Ver: 2.3 Updates: worldwidesorrow
+* EVENT: [Анимированный ХелиКраш](https://github.com/worldwidesorrow/Animated-Crash-Spawner) by worldwidesorrow
+* EVENT: [Дополнительные Ивенты](https://github.com/worldwidesorrow/Epoch-Server-Events) by worldwidesorrow
+* SCRIPT: Случайный стартовый лут (DayZ_Epoch_24.Napf\Scripts\RndLoadout) by Unknown...
+* SCRIPT: [Client Side Markers](https://github.com/worldwidesorrow/Client-Side-Marker-Manager/) by worldwidesorrow
+* SCRIPT HPP: [Debug Monitor HPP](https://github.com/ch0c/debug-monitor-display) by ch0c
+* SCRIPT HPP: [Preview Buiding/Recipes](https://github.com/ch0c/epoch-recipes) by ch0c
+* CUSTOM: Торговля и Лут (Config/CfgTrader | Config/CfgLoot)
 * CUSTOM: Переделанные точки спавна (Mission.sqm)
 * CUSTOM: Переделанные Торговые зоны (Mission.sqm + dayz_server\buildings + dayz_server\Traders)
 * FIXES: 1.0.7.1 RC2
