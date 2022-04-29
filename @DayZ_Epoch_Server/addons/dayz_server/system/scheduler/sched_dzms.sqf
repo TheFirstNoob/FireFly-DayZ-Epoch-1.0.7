@@ -20,24 +20,22 @@ sched_dzms = {
 	if (((diag_tickTime - DZMSBanditEndTime) >= _timeBandit) && {DZMSBanditRunning < DZMSBanditLimit} && {DZMSMarkerReady}) then {
 		DZMSMarkerReady = false;
 		_varName = _array call BIS_fnc_selectRandom;
-		["Bandit"] execVM format ["\z\addons\dayz_server\DZMS\Missions\%1.sqf",_varName];
-		diag_log text format ["[DZMS]: Running Bandit Mission %1.",_varName];
-		DZMSMarkers set [(count DZMSMarkers), ("DZMSBandit" + str(count DZMSMissionData))];
 		DZMSMissionData = DZMSMissionData + [[0,[],[],[],[],[]]];
 		DZMSBanditEndTime = diag_tickTime;
 		DZMSBanditRunning = DZMSBanditRunning + 1;
+		["Bandit"] execVM format ["\z\addons\dayz_server\DZMS\Missions\%1.sqf",_varName];
+		if (DZMSDebug) then {diag_log text format ["[DZMS]: Running Bandit Mission %1.",_varName];};
 	};
 	
 	// Hero mission timer
 	if (((diag_tickTime - DZMSHeroEndTime) >= _timeHero) && {DZMSHeroRunning < DZMSHeroLimit} && {DZMSMarkerReady}) then {
 		DZMSMarkerReady = false;
 		_varName = _array call BIS_fnc_selectRandom;
-		["Hero"] execVM format ["\z\addons\dayz_server\DZMS\Missions\%1.sqf",_varName];
-		diag_log text format ["[DZMS]: Running Hero Mission %1.",_varName];
-		DZMSMarkers set [(count DZMSMarkers), ("DZMSHero" + str(count DZMSMissionData))];
 		DZMSMissionData = DZMSMissionData + [[0,[],[],[],[],[]]];
 		DZMSHeroEndTime = diag_tickTime;
 		DZMSHeroRunning = DZMSHeroRunning + 1;
+		["Hero"] execVM format ["\z\addons\dayz_server\DZMS\Missions\%1.sqf",_varName];
+		if (DZMSDebug) then {diag_log text format ["[DZMS]: Running Hero Mission %1.",_varName];};
 	};
 	
 	// Remove mission from array and reset array if necessary
