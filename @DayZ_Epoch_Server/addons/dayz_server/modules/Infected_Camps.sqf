@@ -9,25 +9,25 @@ Author:
 #include "\z\addons\dayz_code\loot\Loot.hpp"
 
 //Number of infected camps to spawn
-#define CAMP_NUM 3
+#define CAMP_NUM 6
 
 //Minimum distance between camps
 #define CAMP_MIN_DIST 700
 
 //Base class of objects to add loot to
-#define CAMP_CONTAINER_BASE "TentStorage"
+#define CAMP_CONTAINER_BASE "IC_Tent"
 
 //Loot per tent
-#define LOOT_MIN 2
-#define LOOT_MAX 6
+#define LOOT_MIN 4
+#define LOOT_MAX 7
 
 //Random objects per camp
-#define OBJECT_MIN 1
-#define OBJECT_MAX 3
+#define OBJECT_MIN 4
+#define OBJECT_MAX 12
 
 //Radius around the camp in which random objects are spawned
-#define OBJECT_RADIUS_MIN 10
-#define OBJECT_RADIUS_MAX 40
+#define OBJECT_RADIUS_MIN 8
+#define OBJECT_RADIUS_MAX 15
 
 #define SEARCH_CENTER getMarkerPos "center"
 #define SEARCH_RADIUS (getMarkerSize "center") select 0
@@ -47,7 +47,8 @@ private
 	"_objectPos",
 	"_marker",
 	"_marker_position",
-	"_starttime"
+	"_starttime",
+	"_markerdot","_missiontype","_refreshmarker"
 ];
 
 _typeGroup = Loot_GetGroup("InfectedCampType");
@@ -67,9 +68,14 @@ for "_i" from 1 to (CAMP_NUM) do
 	{
 		_position = ((selectBestPlaces [SEARCH_CENTER, SEARCH_RADIUS, SEARCH_EXPRESSION, SEARCH_PRECISION, 1]) select 0) select 0;
 		_position set [2, 0];
-		_marker_position = [_position,80,300,0,0,2000,0] call BIS_fnc_findSafePos;
-		_marker = createMarker [ format ["InfectedCamp_%1", _startTime], _marker_position];
-		_marker setMarkerType "mil_box";
+		_marker_position = [_position,10,300,0,0,1500,0] call BIS_fnc_findSafePos;
+		//_marker = createMarker [ format ["InfectedCamp_%1", _startTime], _marker_position];
+		//_marker setMarkerType "mil_box";
+		
+		_markerdot = "mil_triangle";
+		_missiontype = 1; //0=EPOCH_EVENT_RUNNING 1=SPECIAL_EVENT_RUNNING
+		uiSleep 1;
+		_refreshmarker = [_marker_position,_markerdot,_missiontype] execVM "\z\addons\dayz_server\modules\RefreshMarkers.sqf";
 		
 		//Check if a camp already exists within the minimum distance
 		if (count (_position nearObjects [CAMP_CONTAINER_BASE,CAMP_MIN_DIST]) < 1) exitWith {};

@@ -1,24 +1,29 @@
-local _cycle = true; // If this is set to true, then the missions will not repeat before all are spawned
+local _cycle 	= 	true; // Если установлено true, то миссии не будут повторяться до тех пор, пока не будут созданы все
 
-if (isNil "Server_Events_Array") then {
-	Server_Events_Array = [
-		"building_supplies",
-		"pirate_treasure",
-		"special_forces",
-		"un_supply",
-		"labyrinth",
-		"rubble_town",
-		"abandoned_vaults",
-		"fuelstationbomb"
+if (isNil "Server_Events_Array") then
+{
+	Server_Events_Array =
+	[
+		"building_supplies"
+		,"pirate_treasure"
+		,"special_forces"
+		,"un_supply"
+		,"labyrinth"
+		,"rubble_town"
+		,"fuelstationbomb"
+		,"mechanics_truck"
 	];
 };
 
-local _event = Server_Events_Array call BIS_fnc_selectRandom;
+local _event 	= 	Server_Events_Array call BIS_fnc_selectRandom;
 execVM format ["\z\addons\dayz_server\modules\%1.sqf",_event];
 
-if (_cycle) then {
+if (_cycle) then
+{
 	Server_Events_Array = Server_Events_Array - [_event];
-	if (count Server_Events_Array == 0) then {
-		Server_Events_Array = nil;
+
+	if (count Server_Events_Array == 0) then
+	{
+		Server_Events_Array 	= 	nil;
 	};
 };
