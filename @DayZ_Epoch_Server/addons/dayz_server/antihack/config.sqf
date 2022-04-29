@@ -10,21 +10,23 @@ local _menuKey = 0x3C; //---Key that will open the menu.
 local _mod = []; //---Add moderators here - don't forget commas!
 local _admin = []; //---Add admins here - don't forget commas!
 local _headAdmin = []; //---Add head admins here - don't forget commas!
-local _owner = [["", "76561198072428132", true, false, true, ""]
+local _owner = [
+					["", "76561198072428132", true, false, true, ""]
+					,["", "76561198220205177", true, false, true, ""]
+					,["", "76561198120841853", true, false, true, ""]
 	//["", "76561198115492831", true, false, true, "Test"],
 	//[["BigEgg", "FatEgg", "TwinkieDestroyer"], "76561198115492831", true, false, true, ""]
 ]; //---Add owners here - don't forget commas!
 
 /* ***************** Server Configuration **************** */
 
-local _diag_prefix = "[СЕРВЕР]: [EPOCH ANTIHACK]:"; //---This prefix will appear before all diag_log messages on all clients and the server
-local _rptall = true; //---If true, all logs will be sent to the rpt as well as their respective designations
+local _diag_prefix = "[СЕРВЕР]: [EPOCH ANTIHACK]: "; //---This prefix will appear before all diag_log messages on all clients and the server
+local _rptall = false; //---If true, all logs will be sent to the rpt as well as their respective designations
 
 local _headless = []; //---List UIDs of headless clients here. They will be sent no client code and global code will be terminated
 
 local _apj = true; //---If true, announces when a player has connected or disconnected in systemChat
 local _bvc = true; //---If true, will delete any vehicles not in server traders or the whitelist below
-local _egb = false; //---If true, syncs KFC global bans. Useful for banning hackers from other servers. Will likely be depricated in the future - disabled by default
 local _wai = true; //---If true, enables compatibility with Wicked AI (https://github.com/f3cuk/WICKED-AI)
 
 local _vehWhiteList = []; //---Add any additional vehicles that shouldn't be deleted here (special mission vehicles etc...). Only used if _bvc = true
@@ -37,7 +39,7 @@ local _votepercent = 0.5; //---Percentage of the server population that must vot
 
 /* **************** Client Configuration ***************** */
 
-local _chat_prefix = "[FireFly Server]:"; //---This prefix will appear before all systemChat messages on clients
+local _chat_prefix = "[FireFly Server]: "; //---This prefix will appear before all systemChat messages on clients
 
 local _viewDistance = 2500; //---Default view distance. This will only be set on login (set to -1 to disable)
 local _grassLevel = 3.125; //---Default grass level. Options are: 3.125 (Highest performance hit), 6.25, 12.5, 25 (multiplayer default), and 50 (No grass). This will only be set on login (set to -1 to disable)
@@ -48,9 +50,8 @@ local _oef = true; //---If true, makes sure that onEachFrame isn't modified (esp
 local _bdc = true; //---If true, checks for bad displays listed in _badDisplays
 local _bsc = true; //---If true, makes sure the player isn't wearing a forbidden skin listed in _badSkins
 local _upc = true; //---If true, prevents urban prone actions near plot poles
-local _mic = false; //---If true, checks the integrity of the mission file. If a file is modified, the player is banned
+local _mic = true; //---If true, checks the integrity of the mission file. If a file is modified, the player is banned
 local _bwc = true; //---If true, makes sure the player doesn't have an illegal weapon listed in _badWeapons
-//local _mev = true; //---If true, monitors unsecure Epoch variables - Removed for 107
 local _sev = true; //---If true, switches client to 3rd person automatically upon login
 
 local _badDisplays = [30, 32, 45, 125, 140, 155, 156, 1001, 2929, 3030, 6969, 6970, 6971]; //---List of bad displays
@@ -69,10 +70,10 @@ local _chatbanned = [ //---List of UIDs that are banned from chatting in any cha
 
 /* ******************** Debug Monitor ******************** */
 
-local _debug = true; //---Determines if debug monitor will be used (true = enabled | false = disabled)
+local _debug = false; //---Determines if debug monitor will be used (true = enabled | false = disabled)
 local _dkey = 0xD2; //---Key used to activate / deactivate debug monitor
-local _drestart = 360; //---Restart time in minutes (will be used to calculate time till restart on debug monitor)
-local _dtext = "Нажмите Insert - Убрать Дебаг"; //---This text will appear at the bottom of the debug monitor
+local _drestart = 120; //---Restart time in minutes (will be used to calculate time till restart on debug monitor)
+local _dtext = "www.epochmod.com"; //---This text will appear at the bottom of the debug monitor
 
 /* ********************* Safe Zones ********************** */
 
@@ -81,7 +82,7 @@ local _bubbles = true; //---If true, marks safe zone boundaries with bubbles
 local _antized = true; //---If true, deletes zombies that walk into the safe zone
 local _antiai = true; //---If true, delete AI that walk into the safe zone
 local _antitheft = true; //---If true, prevents theft of vehicles and gear in the safe zones
-local _speedLimit = 45; //---If greater than 0, speed of vehicles in the safe zone will be limited to this number
+local _speedLimit = 30; //---If greater than 0, speed of vehicles in the safe zone will be limited to this number
 local _timer = 10; //---If greater than 0, safe zone protection will remain in affect for this number of seconds after leaving
 
 local _disableWeps = true; //---If true, makes the player drop any weapon listed in _dropWeps while in safe zone
@@ -102,6 +103,24 @@ local _escLUPC = [1,1,1,1]; //---Color of the lower-upper text of the escape men
 
 local _escLBOT = "Автор: [BE]First"; //---Lower-bottom text of the escape menu
 local _escLBOC = [1,1,1,1]; //---Color of the lower-bottom text of the escape menu
+
+/* ******************** Menu Loadouts ******************** */
+
+local _loadouts = [ //---List of defined loadouts that will appear in target menus if configured (by default, only Owner and Head Admin ranks will see)
+	[
+		"MK48", //---Loadout name - will appear as "Give MK48 Loadout" in admin menus
+		["Mk48_CCO_DZ", "UZI_SD_EP1", "ItemFlashlight", "ItemHatchet", "ItemRadio", "ItemMap", "ItemToolbox", "ItemKnife", "ItemGPS", "Binocular_Vector", "NVGoggles", "ItemEtool", "ItemCrowbar", "ItemCompass"], //---Loadout Weapons
+		["ItemAntibiotic", "ItemPainkiller", "ItemMorphine", "ItemBloodbag", "FishCookedTuna", "ItemSodaOrangeSherbet", "Skin_Sniper1_DZ", ["100Rnd_762x51_M240", 4], ["ItemBandage", 4], ["30Rnd_9x19_UZI_SD", 4]], //---Loadout Magazines
+		"DZ_Backpack_EP1" //---Loadout backpack
+	],
+	["Anzio",["Anzio_20_DZ", "UZI_SD_EP1", "ItemFlashlight", "ItemHatchet", "ItemRadio", "ItemMap", "ItemToolbox", "ItemKnife", "ItemGPS", "Binocular_Vector", "NVGoggles", "ItemEtool", "ItemCrowbar", "ItemCompass"],["ItemAntibiotic", "ItemPainkiller", "ItemMorphine", "ItemBloodbag", "FishCookedTuna", "ItemSodaOrangeSherbet", "Skin_Sniper1_DZ", ["3rnd_Anzio_20x102mm", 4], ["ItemBandage", 4], ["30Rnd_9x19_UZI_SD", 4]],"DZ_Backpack_EP1"],
+	["G36K",["G36K_Camo_DZ", "UZI_SD_EP1", "ItemFlashlight", "ItemHatchet", "ItemRadio", "ItemMap", "ItemToolbox", "ItemKnife", "ItemGPS", "Binocular_Vector", "NVGoggles", "ItemEtool", "ItemCrowbar", "ItemCompass"],["ItemAntibiotic", "ItemPainkiller", "ItemMorphine", "ItemBloodbag", "FishCookedTuna", "ItemSodaOrangeSherbet", "Skin_Sniper1_DZ", ["30Rnd_556x45_G36", 4], ["ItemBandage", 4], ["30Rnd_9x19_UZI_SD", 4]],"DZ_Backpack_EP1"],
+	["DMR",["DMR_DZ", "UZI_SD_EP1", "ItemFlashlight", "ItemHatchet", "ItemRadio", "ItemMap", "ItemToolbox", "ItemKnife", "ItemGPS", "Binocular_Vector", "NVGoggles", "ItemEtool", "ItemCrowbar", "ItemCompass"],["ItemAntibiotic", "ItemPainkiller", "ItemMorphine", "ItemBloodbag", "FishCookedTuna", "ItemSodaOrangeSherbet", "Skin_Sniper1_DZ", ["20Rnd_762x51_DMR", 4], ["ItemBandage", 4], ["30Rnd_9x19_UZI_SD", 4]],"DZ_Backpack_EP1"],
+	["LeeEnfield",["Mk48_CCO_DZ", "UZI_SD_EP1", "ItemFlashlight", "ItemHatchet", "ItemRadio", "ItemMap", "ItemToolbox", "ItemKnife", "ItemGPS", "Binocular_Vector", "NVGoggles", "ItemEtool", "ItemCrowbar", "ItemCompass"],["ItemAntibiotic", "ItemPainkiller", "ItemMorphine", "ItemBloodbag", "FishCookedTuna", "ItemSodaOrangeSherbet", "Skin_Sniper1_DZ", ["10Rnd_303British", 4], ["ItemBandage", 4], ["30Rnd_9x19_UZI_SD", 4]],"DZ_Backpack_EP1"],
+	["M240",["M240_DZ", "UZI_SD_EP1", "ItemFlashlight", "ItemHatchet", "ItemRadio", "ItemMap", "ItemToolbox", "ItemKnife", "ItemGPS", "Binocular_Vector", "NVGoggles", "ItemEtool", "ItemCrowbar", "ItemCompass"],["ItemAntibiotic", "ItemPainkiller", "ItemMorphine", "ItemBloodbag", "FishCookedTuna", "ItemSodaOrangeSherbet", "Skin_Sniper1_DZ", ["100Rnd_762x51_M240", 4], ["ItemBandage", 4], ["30Rnd_9x19_UZI_SD", 4]],"DZ_Backpack_EP1"],
+	["M24",["M24_DZ", "UZI_SD_EP1", "ItemFlashlight", "ItemHatchet", "ItemRadio", "ItemMap", "ItemToolbox", "ItemKnife", "ItemGPS", "Binocular_Vector", "NVGoggles", "ItemEtool", "ItemCrowbar", "ItemCompass"],["ItemAntibiotic", "ItemPainkiller", "ItemMorphine", "ItemBloodbag", "FishCookedTuna", "ItemSodaOrangeSherbet", "Skin_Sniper1_DZ", ["5Rnd_762x51_M24", 4], ["ItemBandage", 4], ["30Rnd_9x19_UZI_SD", 4]],"DZ_Backpack_EP1"],
+	["M4A1",["M4A1_DZ", "UZI_SD_EP1", "ItemFlashlight", "ItemHatchet", "ItemRadio", "ItemMap", "ItemToolbox", "ItemKnife", "ItemGPS", "Binocular_Vector", "NVGoggles", "ItemEtool", "ItemCrowbar", "ItemCompass"],["ItemAntibiotic", "ItemPainkiller", "ItemMorphine", "ItemBloodbag", "FishCookedTuna", "ItemSodaOrangeSherbet", "Skin_Sniper1_DZ", ["30Rnd_556x45_Stanag", 4], ["ItemBandage", 4], ["30Rnd_9x19_UZI_SD", 4]],"DZ_Backpack_EP1"]
+];
 
 /* ********************* Build Boxes ********************* */
 
@@ -196,9 +215,8 @@ local _largeSafe = _largeBox; //---Items in the large build safe
 
 /* ********************* Large Lists ********************* */
 
-local _missionFiles =
-[ //---List of files within your mission. Antihack will make sure that none have been changed.
-	"configVariables.sqf","description.ext","init.sqf","loadingscreen.jpg","mission.sqm","rules.sqf","Traders_Menu.sqf","DZAI_Client\dzai_client_config.sqf","DZAI_Client\dzai_initclient.sqf","Scripts\RndLoadout\RndLoadout.sqf"
+local _missionFiles = [ //---List of files within your mission. Antihack will make sure that none have been changed.
+	"description.ext", "init.sqf", "mission.sqm", "rules.sqf"
 ];
 
 local _badChat = [ //---List of chat commands that will be logged in surveillance log
