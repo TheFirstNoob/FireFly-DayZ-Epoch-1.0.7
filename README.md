@@ -29,17 +29,17 @@ FireFly - Это российский сервер с упором на хард
 В сборке имеется:
 --------------------------
 
-* [Epoch AntiHack & AdminTools by BigEgg17](https://github.com/BigEgg17/Epoch-Antihack-Admin-Tools) Ver: 1.0.2 TBD
-* DZAI (Обновлятеся согласно: https://github.com/oiad/DZAI) Ver: 2.2.4
-* DZMS (Обновляется согласно: https://github.com/worldwidesorrow/DZMS-DayZMissionSystem) Ver: 2.1
-* WAI (Обновляется согласно: https://github.com/f3cuk/WICKED-AI) Ver: 2.2.7 TBD
-* EVENT: Анимированный ХелиКраш (https://github.com/worldwidesorrow/Animated-Crash-Spawner)
-* EVENT: Дополнительные Ивенты: (https://github.com/worldwidesorrow/Epoch-Server-Events)
+* [Epoch AntiHack & AdminTools by BigEgg17](https://github.com/BigEgg17/Epoch-Antihack-Admin-Tools) Ver: 1.0.4 Compiled
+* [DZAI](https://github.com/oiad/DZAI) Ver: 2.2.6
+* [DZMS](https://github.com/worldwidesorrow/DZMS-DayZMissionSystem) Ver: 2.1+
+* [WAI](https://github.com/worldwidesorrow/WICKED-AI) Ver: 2.3
+* EVENT: [Анимированный ХелиКраш](https://github.com/worldwidesorrow/Animated-Crash-Spawner)
+* EVENT: [Дополнительные Ивенты](https://github.com/worldwidesorrow/Epoch-Server-Events)
 * SCRIPT: Случайный стартовый лут (DayZ_Epoch_24.Napf\Scripts\RndLoadout)
 * CUSTOM: Торговля и Лут (Все еще дополняется!)
 * CUSTOM: Переделанные точки спавна (Mission.sqm)
 * CUSTOM: Переделанные Торговые зоны (Mission.sqm + dayz_server\buildings + dayz_server\Traders)
-* FIXES: 1.0.7.1 Fixes Update (Временно не добавлены!)
+* FIXES: 1.0.7.1 RC2
 
 --------------------------
 Тестеры:
