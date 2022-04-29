@@ -6,4 +6,5 @@ class CfgTradercategory
 	#include "Category\FoodAndBackpack.hpp"
 	#include "Category\MedicSmokeLight.hpp"
 	#include "Category\ConstuctionAndVehPart.hpp"
+	#include "Category\Misc.hpp"
 };

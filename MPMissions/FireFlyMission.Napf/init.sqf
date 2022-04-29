@@ -92,9 +92,10 @@ if (!isDedicated) then
 	};
 	
 	call compile preprocessFileLineNumbers "Scripts\ClientMarkerSystem\ClientMarkerSystem.sqf";
+	call compile preprocessFileLineNumbers "Scripts\RecipesPreview\RecipesPreview.sqf";
 	execFSM "\z\addons\dayz_code\system\player_monitor.fsm";
 
-	[] call compile preprocessFileLineNumbers "DZAI_Client\dzai_initclient.sqf";
+	[] call compile preprocessFileLineNumbers "Scripts\DZAIClient\dzai_initclient.sqf";
 	execVM "Scripts\RndLoadout\RndLoadout.sqf";
 
 	if (DZE_R3F_WEIGHT) then

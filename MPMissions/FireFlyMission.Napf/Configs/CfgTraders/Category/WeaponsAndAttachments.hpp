@@ -491,7 +491,7 @@ class Category_112
 	class CZ750_DZ					{typeW		buyWA 12000 worth 		sellWA 2400 worth };
 	class SVD_DZ					{typeW		buyWA 8000 worth 		sellWA 1600 worth };
 	class SVD_Gh_DZ					{typeW		buyWA 8220 worth 		sellWA 1644 worth };
-	class SVD_Gold_DZ				{typeW		buyWA 999999999 worth 	sellWA 25000 worth };
+	class SVD_Gold_DZ				{typeW		buyWA 999999999 worth 	sellWA 50000 worth };
 	class DMR_DZ					{typeW		buyWA 14000 worth 		sellWA 2800 worth };
 	class DMR_Gh_DZ					{typeW		buyWA 14220 worth 		sellWA 2844 worth };
 	class SVD_PSO1_DZ				{typeW		buyWA 8250 worth 		sellWA 1650 worth };

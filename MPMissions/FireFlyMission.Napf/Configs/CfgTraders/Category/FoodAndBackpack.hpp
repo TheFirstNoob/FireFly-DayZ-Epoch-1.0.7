@@ -32,6 +32,7 @@ class Category_400
 	class FoodCanSardines			{typeI	buyFB 600 worth 	sellFB 120 worth };
 	class FoodCanFrankBeans			{typeI	buyFB 600 worth 	sellFB 120 worth };
 	class FoodCanPasta				{typeI	buyFB 600 worth 	sellFB 120 worth };
+	class FoodCanBoneboy			{typeI	buyFB 600 worth 	sellFB 120 worth };
 	class FoodChipsSulahoops		{typeI	buyFB 600 worth 	sellFB 120 worth };
 	class FoodChipsMysticales		{typeI	buyFB 600 worth 	sellFB 120 worth };
 	class FoodChipsChocolate		{typeI	buyFB 600 worth 	sellFB 120 worth };
@@ -41,6 +42,9 @@ class Category_400
 	class FoodCakeCremeCakeClean	{typeI	buyFB 600 worth 	sellFB 120 worth };
 	class FoodCandyMintception		{typeI	buyFB 600 worth 	sellFB 120 worth };
 	class FoodPumpkin				{typeI	buyFB 400 worth 	sellFB 80 worth };
+	class FoodCarrot				{typeI	buyFB 400 worth 	sellFB 80 worth };
+	class FoodPotatoRaw				{typeI	buyFB 200 worth 	sellFB 40 worth };
+	class FoodPotatoBaked			{typeI	buyFB 500 worth 	sellFB 200 worth };
 	class FoodSunFlowerSeed			{typeI	buyFB 400 worth 	sellFB 80 worth };
 	class FoodPistachio				{typeI	buyFB 400 worth 	sellFB 80 worth };
 	class FoodNutmix				{typeI	buyFB 400 worth 	sellFB 80 worth };

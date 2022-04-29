@@ -91,15 +91,20 @@ class Category_304
 	class HMMWV_Armored_DZE				{typeVeh	buyV 25000 worth 	sellV 5000 worth };
 	class HMMWV_M2_DZE					{typeVeh	buyV 27500 worth 	sellV 5500 worth };
 	class HMMWV_M1151_M2_CZ_DES_EP1_DZE	{typeVeh	buyV 23500 worth 	sellV 4700 worth };
+	class HMMWV_MK19_DZE				{typeVeh	buyV 33000 worth 	sellV 6600 worth };
 	class UAZ_MG_CDF_DZE				{typeVeh	buyV 22700 worth 	sellV 4540 worth };
 	class UAZ_MG_INS_DZE				{typeVeh	buyV 22700 worth 	sellV 4540 worth };
+	class UAZ_AGS30_RU_DZE				{typeVeh	buyV 32500 worth 	sellV 6500 worth };
 	class Pickup_PK_GUE_DZE				{typeVeh	buyV 21500 worth 	sellV 4300 worth };
 	class Pickup_PK_INS_DZE				{typeVeh	buyV 21500 worth 	sellV 4300 worth };
 	class Offroad_DSHKM_Gue_DZE			{typeVeh	buyV 22700 worth 	sellV 4540 worth };
 	class BTR40_MG_TK_GUE_EP1_DZE		{typeVeh	buyV 21000 worth 	sellV 4200 worth };
 	class BTR40_MG_TK_INS_EP1_DZE		{typeVeh	buyV 21000 worth 	sellV 4200 worth };
 	class LandRover_MG_TK_EP1_DZE		{typeVeh	buyV 21500 worth 	sellV 4300 worth };
+	class BRDM2_HQ_TK_GUE_EP1_DZE		{typeVeh	buyV 60000 worth 	sellV 12000 worth };
+	class BRDM2_TK_GUE_EP1_DZE			{typeVeh	buyV 80000 worth 	sellV 16000 worth };
 	class GAZ_Vodnik_DZE				{typeVeh	buyV 75000 worth 	sellV 15000 worth };
+	class BTR60_Gue_DZE					{typeVeh	buyV 120000 worth 	sellV 24000 worth };
 };
 
 // Грузовики и Автобусы

@@ -31,20 +31,16 @@ if (isServer) then
 	EpochEvents =
 	[
 		// ФОРМАТ: [Год,месяц,день,минуты,Имя файла - .sqf] Установите где время -1, тогда сервер запустит ивент сразу. Используйте "any" для любой даты.
-		// ["any","any","any","any",-1,"Infected_Camps"], // (Кушает прилично FPS)
+		// ["any","any","any","any",-1,"Infected_Camps"],
 		["any","any","any","any",-1,"animated_crash_spawner"]
-		,["any","any","any","any",180,"animated_crash_spawner"]
 		,["any","any","any","any",-1,"Infected_Camps"]
 		,["any","any","any","any",-1,"Care_Packages"]
+		,["any","any","any","any",180,"animated_crash_spawner"]
+		,["any","any","any","any",180,"abandoned_vaults"]
 		
-		,["any","any","any","any",-1,"event_init"]
-		,["any","any","any","any",45,"event_init"]
-		,["any","any","any","any",90,"event_init"]
-		,["any","any","any","any",135,"event_init"]
-		,["any","any","any","any",180,"event_init"]
-		,["any","any","any","any",225,"event_init"]
-		,["any","any","any","any",270,"event_init"]
-		,["any","any","any","any",315,"event_init"]
+		,["any","any","any","any",150,"event_init"]
+		,["any","any","any","any",250,"event_init"]
+		,["any","any","any","any",350,"event_init"]
 	];
 
 	DZE_TRADER_SPAWNMODE 	=	false;	// Купленная техника будет появляться на парашюте? / True - Да, False - Нет
@@ -70,7 +66,7 @@ if (!isDedicated) then
 		,(localize "str_channel_command")
 	];
 	dayZ_serverName 		= 	"FireFly"; 		// Показывает Водяной знак внизу слева экрана
-	dayz_enableRules 		= 	false; 			// Включить Приветственное сообщение при входе игрока (Они же правила или новости. Файл Rules.sqf)
+	dayz_enableRules 		= 	true; 			// Включить Приветственное сообщение при входе игрока (Они же правила или новости. Файл Rules.sqf)
 	
 	// Прочие параметры (Не сортируемые)
 	DZE_Hide_Body 				= 	true; 		// Можно Прятать трупы? (В том числе удаляет маркер трупа)
@@ -235,16 +231,7 @@ if (!isDedicated) then
 	];
 	
 	// Цены за Руду при обмене с Торговцем. Установите DZE_GemWorthArray = []; чтобы отключить этот параметр.
-	DZE_GemWorthArray 		= 
-	[
-		["ItemTopaz",15000]
-		, ["ItemObsidian",20000]
-		, ["ItemSapphire",25000]
-		, ["ItemAmethyst",30000]
-		, ["ItemEmerald",35000]
-		, ["ItemCitrine",40000]
-		, ["ItemRuby",45000]
-	];
+	DZE_GemWorthArray 	= 	[];
 	
 	DZE_SaleRequiresKey 			= 	true; 		// Требуется Ключ от техники чтобы продать ее? True - Да / False - Нет. Ключ может быть где угодно у Игрока или в его Технике.
 	DZE_keepVehicleKey 				= 	false; 		// Оставлять Ключ после продажи техники? True - Да / False - Нет. (Полезно для Скрипта с Key Changer)
@@ -460,7 +447,7 @@ DZE_WeatherVariables = [
 	2 // Winter Breath Fog Effects. Options: 0 - no breath fog, 1 - anytime, 2 - only when snowing or blizzard. Note: breath fog is only available with winter weather enabled.
 ];
 
-setViewDistance 2500;	// Дальность прорисовки Сервера
+setViewDistance 3000;	// Дальность прорисовки Сервера
 setTerrainGrid 3.125;	// Дальность травы и геометрии (Установите 50 - Отключить траву и Геометрию и повысит FPS. Значение 25 - Стандарт).
 
 diag_log '[СЕРВЕР]: [МИССИЯ]: [ConfigVariables.sqf]: ВСЕ параметры и значения были получены.';
