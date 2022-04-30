@@ -22,12 +22,13 @@ sched_wai = {
 	if (WAI_MarkerReady  && {diag_tickTime - WAI_BanditStartTime >= _bTime} && {WAI_BanditRunning < WAI_BanditLimit}) then {	
 		WAI_MarkerReady = false;
 		local _selected = false;
+		_bTime = (random ((WAI_Timer select 1) - (WAI_Timer select 0)) + (WAI_Timer select 0)) * 60;
 		
 		while {!_selected} do {
 			if (WAI_DebugMode) then {diag_log format["WAI: Bandit Array: %1",_bArray];};
-			_mission = _bArray call BIS_fnc_selectRandom;
-			_index = [_bArray, (_mission select 0)] call BIS_fnc_findNestedElement select 0;
-			_bArray = [_bArray,_index] call fnc_deleteAt;
+			_bArray = [_bArray, 25] call fn_shuffleArray;
+			_mission = _bArray select 0;
+			_bArray = [_bArray, 0] call fnc_deleteAt;
 			if (count _bArray == 0) then {_bArray = +WAI_BanditMissions;};
 			if ((_mission select 1) >= random 1) then {
 				_selected = true;
@@ -47,12 +48,13 @@ sched_wai = {
 	if (WAI_MarkerReady  && {diag_tickTime - WAI_HeroStartTime >= _hTime} && {WAI_HeroRunning < WAI_HeroLimit}) then {
 		WAI_MarkerReady = false;
 		local _selected = false;
+		_hTime = (random ((WAI_Timer select 1) - (WAI_Timer select 0)) + (WAI_Timer select 0)) * 60;
 		
 		while {!_selected} do {
 			if (WAI_DebugMode) then {diag_log format["WAI: Hero Array: %1",_hArray];};
-			_mission = _hArray call BIS_fnc_selectRandom;
-			_index = [_hArray, (_mission select 0)] call BIS_fnc_findNestedElement select 0;
-			_hArray = [_hArray,_index] call fnc_deleteAt;
+			_hArray = [_hArray, 25] call fn_shuffleArray;
+			_mission = _hArray select 0;
+			_hArray = [_hArray, 0] call fnc_deleteAt;
 			if (count _hArray == 0) then {_hArray = +WAI_HeroMissions;};
 			if ((_mission select 1) >= random 1) then {
 				_selected = true;
@@ -67,10 +69,6 @@ sched_wai = {
 		WAI_MissionData = WAI_MissionData + [[0,[],[],[],[],[]]]; // [AI Count, UnitGroups, Crates, AI Vehicles, Vehicles, Objects]
 		["Hero"] execVM format ["\z\addons\dayz_server\WAI\missions\missions\%1.sqf",(_mission select 0)];
 	};
-	
-	// Reset times
-	_hTime = (random ((WAI_Timer select 1) - (WAI_Timer select 0)) + (WAI_Timer select 0)) * 60;
-	_bTime = (random ((WAI_Timer select 1) - (WAI_Timer select 0)) + (WAI_Timer select 0)) * 60;
 		
 	[_hArray,_bArray,_bTime,_hTime]
 };

@@ -117,6 +117,7 @@ local _dotMarker = "WAI" + str(_mission) + "dot";
 local _autoMarkDot = "WAI" + str(_mission) + "autodot";
 local _autoText = "";
 local _player = objNull;
+local _claimPlayer = objNull;
 
 DZE_MissionPositions set [count DZE_MissionPositions, _position];
 local _posIndex = count DZE_MissionPositions - 1;

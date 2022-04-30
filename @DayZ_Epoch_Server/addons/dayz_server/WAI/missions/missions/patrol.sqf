@@ -64,7 +64,7 @@ for "_i" from 0 to _numWaypoints - 1 do {
 			_locations = [_locations,_forEachIndex] call fnc_deleteAt;
 		};
 	} forEach _locations;
-	_wp = _unitGroup addWayPoint [position _location,0];
+	local _wp = _unitGroup addWayPoint [position _location,0];
 	_wp setWaypointType "MOVE";
 	_wp setWaypointSpeed "LIMITED";
 	//_wp setWaypointSpeed "FULL";
@@ -81,7 +81,7 @@ local _timeout = false;
 local _playerNear = false;
 local _complete = false;
 local _starttime = diag_tickTime;
-local _aiCount	= (WAI_MissionData select _mission) select 0;
+local _aiCount = (WAI_MissionData select _mission) select 0;
 local _killpercent = _aiCount - (_aiCount * (WAI_KillPercent / 100));
 local _leader = leader _unitgroup;
 _vehicle setDamage 0;
@@ -108,7 +108,8 @@ local _unitGroup2 = grpNull;
 				_x assignAsCommander _vehicle;
 				_x moveInCommander _vehicle;
 			} else {
-			_x moveInCargo _vehicle;
+				_x moveInCargo _vehicle;
+			};
 		};
 	};
 } count (units _unitgroup);
