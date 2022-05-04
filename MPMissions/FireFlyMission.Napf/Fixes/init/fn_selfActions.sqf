@@ -807,6 +807,47 @@ if (!isNull _cursorTarget && {!_inVehicle && !_isPZombie && _canDo && player dis
 	};
 	*/
 
+	if (Z_singleCurrency) then
+	{
+		local _isGamble = ((_cursorTarget isKindOf "Dr_Annie_Baker_EP1") || (_cursorTarget isKindOf "Dr_Hladik_EP1") || (_cursorTarget isKindOf "pook_Doc_Bell47") || (_cursorTarget isKindOf "Ins_Woodlander2")); // Define here the trader or the building where you get the gambling dialog
+		if (_isGamble && _isAlive) then
+		{			
+			local _hasCards = "ItemCards" in magazines player;
+			if (_hasCards) then
+			{
+				if (s_player_gamblefree < 0) then
+				{
+					s_player_gamblefree = player addAction [localize "STR_CL_GAMBLE_PRICEFREE", "Scripts\Gamble\Gamble.sqf",0, 1, false, true];
+				};
+			};
+			
+			if (s_player_gamble1 < 0) then
+			{
+				s_player_gamble1 = player addAction [format [localize "STR_CL_GAMBLE_PRICE1x", CurrencyName], "Scripts\Gamble\Gamble.sqf",1000, 1, false, true];
+			};
+			
+			if (s_player_gamble2 < 0) then
+			{
+				s_player_gamble2 = player addAction [format [localize "STR_CL_GAMBLE_PRICE2x", CurrencyName], "Scripts\Gamble\Gamble.sqf",2000, 1, false, true];
+			};
+			
+			if (s_player_gamble3 < 0) then
+			{
+				s_player_gamble3 = player addAction [format [localize "STR_CL_GAMBLE_PRICE3x", CurrencyName], "Scripts\Gamble\Gamble.sqf",3000, 1, false, true];
+			};
+		} else
+		{
+			player removeAction s_player_gamblefree;
+			s_player_gamblefree = -1;
+			player removeAction s_player_gamble1;
+			s_player_gamble1 = -1;
+			player removeAction s_player_gamble2;
+			s_player_gamble2 = -1;
+			player removeAction s_player_gamble3;
+			s_player_gamble3 = -1;
+		};
+	};
+
 	// ZSC
 	if (Z_singleCurrency) then {
 		if (_isMan && !_isAlive && {(!(_cursorTarget isKindOf "Animal") && !_isZombie) || (_isZombie && ZSC_ZombieCoins select 0)}) then {
@@ -1079,6 +1120,15 @@ if (!isNull _cursorTarget && {!_inVehicle && !_isPZombie && _canDo && player dis
 	s_bank_dialog3 = -1;
 	player removeAction s_player_checkWallet;
 	s_player_checkWallet = -1;
+
+	player removeAction s_player_gamblefree;
+	s_player_gamblefree = -1;
+	player removeAction s_player_gamble1;
+	s_player_gamble1 = -1;
+	player removeAction s_player_gamble2;
+	s_player_gamble2 = -1;
+	player removeAction s_player_gamble3;
+	s_player_gamble3 = -1;
 };
 
 //Dog actions on player self

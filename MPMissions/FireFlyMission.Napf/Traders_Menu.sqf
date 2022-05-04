@@ -4,7 +4,7 @@
 #define FoodBackpackList ["Еда (Консервы)",400],["Еда (Мясо/Рыба)",401],["Вода",402],["Рюкзаки",403]
 #define ConstructionList ["Инструменты",500],["Детали техники",501],["Строительство",502]
 #define MedicList ["Медицина",600],["Дымовые",601],["Световые приборы",602],["Драгоценности",603],["Уникальное",604]
-#define MedicTrade ["FoodBioMeat","ItemZombieParts",1,1,"buy","Zombie Parts","Bio Meat",101]
+//#define MedicTrade ["FoodBioMeat","ItemZombieParts",1,1,"buy","Zombie Parts","Bio Meat",101]
 
 serverTraders =
 [
@@ -52,8 +52,8 @@ menu_TK_Special_Forces_MG_EP1	=	[[ConstructionList],[],"neutral"];
 /********* Стройка и Детали - конец *********/
 
 /********* Медик *********/
-menu_Dr_Annie_Baker_EP1		=	[[MedicList],[MedicTrade],"neutral"];
-menu_Dr_Hladik_EP1			=	[[MedicList],[MedicTrade],"neutral"];
-menu_pook_Doc_Bell47		=	[[MedicList],[MedicTrade],"neutral"];
-menu_Ins_Woodlander2		=	[[MedicList],[MedicTrade],"neutral"];
+menu_Dr_Annie_Baker_EP1		=	[[MedicList],[],"neutral"];
+menu_Dr_Hladik_EP1			=	[[MedicList],[],"neutral"];
+menu_pook_Doc_Bell47		=	[[MedicList],[],"neutral"];
+menu_Ins_Woodlander2		=	[[MedicList],[],"neutral"];
 /********* Медик - конец *********/

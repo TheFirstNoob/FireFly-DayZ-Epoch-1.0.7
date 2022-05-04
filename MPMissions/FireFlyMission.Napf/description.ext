@@ -190,8 +190,20 @@ class RscTitles {
 	};
 };
 
+class CfgSounds	{
+	sounds[] = {tada};
+
+	class tada
+	{
+		name="tada";
+		sound[]={\Sounds\Tada.ogg,0.9,1};
+		titles[] = {};
+	};
+};
+
 //#include "\z\addons\dayz_code\gui\description.hpp"
 #include "Configs\CfgLoot\CfgLoot.hpp"
 #include "Configs\CfgTraders\CfgServerTrader.hpp"
 #include "GUI\RecipesPreview\RecipesPreview.hpp" // Автор: ch0c
 #include "GUI\Antihack\Antihack.hpp" // Автор: BigEgg17
+//#include "Configs\R3F_Realism\R3F_Weight\R3F_CfgWeight.hpp"

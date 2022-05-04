@@ -208,6 +208,11 @@ if (!isDedicated) then {
 		s_bank_dialog2 = -1;
 		s_bank_dialog3 = -1;
 		s_player_checkWallet = -1;
+		
+		s_player_gamblefree = -1;
+		s_player_gamble1 = -1;
+		s_player_gamble2 = -1;
+		s_player_gamble3 = -1;
 	};
 	call dayz_resetSelfActions;
 
