@@ -382,7 +382,7 @@ class Category_108
 	class Bizon_Kobra_DZ		{typeW		buyWA 400 worth 	sellWA 80 worth };
 	class Bizon_Kobra_SD_DZ		{typeW		buyWA 470 worth 	sellWA 94 worth };
 	class Bizon_SD_DZ			{typeW		buyWA 370 worth 	sellWA 74 worth };
-	class Sa61_EP1				{typeW		buyWA 80 worth 		sellWA 16 worth };
+	class Sa61_DZ				{typeW		buyWA 80 worth 		sellWA 16 worth };
 	class PDW_DZ				{typeW		buyWA 200 worth 	sellWA 50 worth };
 	class PDW_SD_DZ				{typeW		buyWA 320 worth 	sellWA 64 worth };
 	class MAT49_DZ				{typeW		buyWA 200 worth 	sellWA 50 worth };
