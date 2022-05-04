@@ -37,15 +37,17 @@ FireFly - Это российский сервер с упором на хард
 * EVENT: [Дополнительные Ивенты](https://github.com/worldwidesorrow/Epoch-Server-Events) by worldwidesorrow
 * SCRIPT: Случайный стартовый лут (DayZ_Epoch_24.Napf\Scripts\RndLoadout) by Unknown...
 * SCRIPT: [Client Side Markers](https://github.com/worldwidesorrow/Client-Side-Marker-Manager/) by worldwidesorrow
+* SCRIPT: [Gambling](https://github.com/AirwavesMan/O9-Gambling-Script) by AirwavesMan
 * SCRIPT HPP: [Debug Monitor HPP](https://github.com/ch0c/debug-monitor-display) by ch0c
-* SCRIPT HPP: [Preview Buiding/Recipes](https://github.com/ch0c/epoch-recipes) by ch0c
+* SCRIPT HPP: [Preview Building/Recipes](https://github.com/ch0c/epoch-recipes) by ch0c
 * CUSTOM: Торговля и Лут (Config/CfgTrader | Config/CfgLoot)
 * CUSTOM: Переделанные точки спавна (Mission.sqm)
 * CUSTOM: Переделанные Торговые зоны (Mission.sqm + dayz_server\buildings + dayz_server\Traders)
+* CUSTOM: Выдача денег новым игрокам (ConfigVariables.sqf)
 * FIXES: 1.0.7.1 RC2
 
 --------------------------
-Тестеры:
+Тестеры (Отдельное спасибо):
 --------------------------
 (Weekly Open Games, Другие):  
 * [BE] First (TheFirstNoob)
@@ -54,9 +56,14 @@ FireFly - Это российский сервер с упором на хард
 * Fantomow
 * Mason
 * Zed
+* Pasha
+* _ZayaZ_YaukA_
+* Nostradamus
 
 --------------------------
 Licence (Лицензия):
 --------------------------
 Arma Public License Share Alike (APL-SA) - https://www.bistudio.com/community/licenses/arma-public-license-share-alike
 "Не для продажи! Полностью свободно распространяется!"
+Модификация файлов разрешена за исключением файлов других авторов.
+Спрашивайте разрешение у других авторов!
