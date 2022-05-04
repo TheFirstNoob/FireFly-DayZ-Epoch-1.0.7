@@ -132,7 +132,7 @@ class Category_205
 	class 30Rnd_556x45_Stanag	{typeI	buyA 150 worth 		sellA 30 worth };
 	class 10Rnd_9x39_SP5_VSS	{typeI	buyA 400 worth 		sellA 80 worth };
 	class 20Rnd_9x39_SP5_VSS	{typeI	buyA 800 worth 		sellA 160 worth };
-	class 5Rnd_127x108_KSVK		{typeI	buyA 3000 worth 	sellA 6000 worth };
+	class 5Rnd_127x108_KSVK		{typeI	buyA 5000 worth 	sellA 1000 worth };
 	class 5Rnd_408_CheyTac		{typeI	buyA 2000 worth 	sellA 400 worth };
 	class 5Rnd_408_CheyTac_SD	{typeI	buyA 3000 worth 	sellA 600 worth };
 };
