@@ -260,7 +260,7 @@ if (!isNil "_code") then {
     call _code;
 };
 
-if (_dikCode == 0x25) then { [] call building_catalog;	};
+if (_dikCode == DIK_9) then { [] call building_catalog;	};
 
 //-------------- debug monitor display 
 	if (_dikCode == 0xD2) then
