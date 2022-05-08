@@ -7,7 +7,7 @@ WAI_Blacklist = true; // You can edit the blacklist per map in file WAI\configs\
 /* AI CONFIG */
 WAI_ShowCount = false; //this will show the AI count in the mission markers.
 WAI_HasMoney = true; //If you have ZSC installed then setting this to true will place random amounts of coins in 50 coin increments in ai wallets.
-WAI_MoneyMultiplier = 20; //This value is multiplied by 50 to set the max amount of ZSC coins in AI wallets. ex. 200 x 50 = 10000 max coins.
+WAI_MoneyMultiplier = 5; //This value is multiplied by 50 to set the max amount of ZSC coins in AI wallets. ex. 200 x 50 = 10000 max coins.
 WAI_ClearBody = false; // instantly clear bodies
 DZE_NPC_CleanUp_Time = 30; // time to clear bodies in minutes. Set to -1 to disable AI cleanup. Universal variable used by other mission systems.
 WAI_CleanRoadKill = false; // clean bodies that are roadkills
