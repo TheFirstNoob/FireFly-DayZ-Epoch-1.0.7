@@ -24,7 +24,7 @@ sched_lootpiles_5m = {
 					_created = diag_tickTime;
 					_x setVariable ["created",_created];
 				};
-				if (!(_x getVariable ["permaLoot",false]) AND {(diag_tickTime - _created > 1500)}) then {
+				if (!(_x getVariable ["permaLoot",false]) AND {(diag_tickTime - _created > 1800)}) then {
 					sched_lp_list set [ count sched_lp_list, _x ];
 				};
 				sched_lp_lootTotal = sched_lp_lootTotal + 1;
@@ -46,8 +46,8 @@ sched_lootpiles = {
 	private ["_plrBatch","_chunkSize","_imax","_plr","_i","_x", "_changed"];
 	// EVERY 5 MINUTES, ONE OF THESE TASKS SPACED BY 5 SECONDS:
 	// LOOK FOR OLD LOOTPILES -OR- IGNORE LOOTPILES NEAR _plrBatch PLAYERS -OR- REMOVE REMAINING _chunkSize LOOTPILES 		
-	_chunkSize = 50;
-	_plrBatch = 10;
+	_chunkSize = 70;
+	_plrBatch = 15;
 	switch true do {
 		case (sched_lp_state == 1): { // forEach players -> ignore nearby loot
 				_imax = (count sched_lp_players) min (sched_lp_var1 + _plrBatch);
