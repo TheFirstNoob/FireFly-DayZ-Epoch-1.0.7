@@ -57,8 +57,10 @@ FireFly - Это российский сервер с упором на хард
 * Mason
 * Zed
 * Pasha
-* _ZayaZ_YaukA_
+* ZayaZ_YaukA
 * Nostradamus
+* [BE]Oubi
+* [BE]Dtyz
 
 --------------------------
 Licence (Лицензия):
