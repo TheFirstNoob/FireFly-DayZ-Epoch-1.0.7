@@ -82,8 +82,8 @@ sched_corpses = {
 							// body will be deleted at next round
 						};
 					};
-					// 40 minutes = how long a player corpse stays on the map
-					if ((diag_tickTime - _deathTime > 40*60) && {_x getVariable["bodyName",""] != "NPC"}) then {
+					// 360 minutes = how long a player corpse stays on the map
+					if ((diag_tickTime - _deathTime > 360*60) && {_x getVariable["bodyName",""] != "NPC"}) then {
 						if (_x getVariable["sched_co_fliesDeleted",false] or !dayz_enableFlies) then {
 							// flies have been switched off, we can delete body
 							_sound = _x getVariable ["sched_co_fliesSource", nil];
