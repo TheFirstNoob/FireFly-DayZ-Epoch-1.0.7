@@ -79,6 +79,9 @@ if (isServer) then
 	{
 		execVM "\z\addons\dayz_code\system\mission\chernarus\MainLootableObjects.sqf";
 	};
+	
+	Log_To_Server 	= 	compile preprocessFileLineNumbers "Scripts\LogToServer\LogToServer.sqf";
+	"PV_LogToServer" addPublicVariableEventHandler {_id 	= 	(_this select 1) spawn Log_To_Server};
 };
 
 if (!isDedicated) then
