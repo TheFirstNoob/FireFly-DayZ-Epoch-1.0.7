@@ -223,7 +223,7 @@ if (!isNull _cursorTarget && {!_inVehicle && !_isPZombie && _canDo && player dis
 	local _id = "";
 	local _ownerID = "";
 	local _hasAccess = [];	
-	local _isGamble = ((_cursorTarget isKindOf "Dr_Annie_Baker_EP1") || (_cursorTarget isKindOf "Dr_Hladik_EP1") || (_cursorTarget isKindOf "pook_Doc_Bell47") || (_cursorTarget isKindOf "Ins_Woodlander2"));
+	local _isGamble = _typeOfCursorTarget == "Arcade_DZ";
 	local _hasCards = "ItemCards" in _magazinesPlayer;	
 
 	if (DZE_permanentPlot) then {
@@ -809,10 +809,6 @@ if (!isNull _cursorTarget && {!_inVehicle && !_isPZombie && _canDo && player dis
 	};
 	*/
 
-	if (Z_singleCurrency) then
-	{
-	};
-
 	// ZSC
 	if (Z_singleCurrency) then {
 		if (_isMan && !_isAlive && {(!(_cursorTarget isKindOf "Animal") && !_isZombie) || (_isZombie && ZSC_ZombieCoins select 0)}) then {
@@ -832,7 +828,7 @@ if (!isNull _cursorTarget && {!_inVehicle && !_isPZombie && _canDo && player dis
 			player removeAction s_bank_dialog;
 			s_bank_dialog = -1;
 		};
-		if (_isGamble && _isAlive) then {
+		if (_isGamble) then {
 			if (_hasCards) then {
 				if (s_player_gamblefree < 0) then {
 					s_player_gamblefree = player addAction [format ["<t color='#FFD700'>%1</t>",localize "STR_CL_GAMBLE_PRICEFREE"], "Scripts\Gamble\Gamble.sqf",0, 1, false, true];

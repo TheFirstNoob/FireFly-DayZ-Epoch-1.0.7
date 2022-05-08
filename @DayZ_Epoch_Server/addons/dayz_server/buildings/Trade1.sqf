@@ -564,13 +564,22 @@ if (true) then
   _this setPos [3186.5061, 12151.449, 4.5776367e-005];
 };
 
-_vehicle_2880 = objNull;
+_vehicle_410 = objNull;
 if (true) then
 {
-  _this = createVehicle ["HeliHEmpty", [9642, 2958], [], 0, "CAN_COLLIDE"];
-  _vehicle_2880 = _this;
-  _this setDir 356;
-  _this setPos [9642, 2958];
+  _this = createVehicle ["HeliHEmpty", [3178, 12157, 0], [], 0, "CAN_COLLIDE"];
+  _vehicle_2722 = _this;
+  _this setDir 178;
+  _this setPos [3178, 12157, 0];
+};
+
+_vehicle_2900 = objNull;
+if (true) then
+{
+  _this = createVehicle ["Arcade_DZ", [3168, 12183, 0], [], 0, "CAN_COLLIDE"];
+  _vehicle_2900 = _this;
+  _this setDir 2;
+  _this setPos [3168, 12183, 0];
 };
 
 processInitCommands;
