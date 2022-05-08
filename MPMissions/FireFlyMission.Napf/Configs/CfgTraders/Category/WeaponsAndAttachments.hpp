@@ -21,8 +21,8 @@ class Category_190
 	class Attachment_SCOPED			{typeI		buyWA 400 worth 	sellWA 80 worth };
 	class Attachment_ACOG			{typeI		buyWA 250 worth 	sellWA 50 worth };
 	class Attachment_PSO1			{typeI		buyWA 250 worth 	sellWA 50 worth };
-	class Attachment_ANPVS4			{typeI		buyWA 350 worth 	sellWA 70 worth };
-	class Attachment_NSPU			{typeI		buyWA 350 worth 	sellWA 70 worth };
+	class Attachment_ANPVS4			{typeI		buyWA 600 worth 	sellWA 120 worth };
+	class Attachment_NSPU			{typeI		buyWA 400 worth 	sellWA 80 worth };
 	class Attachment_Sup9			{typeI		buyWA 120 worth 	sellWA 24 worth };
 	class Attachment_Sup10			{typeI		buyWA 120 worth 	sellWA 24 worth };
 	class Attachment_Sup45			{typeI		buyWA 300 worth 	sellWA 60 worth };
@@ -205,7 +205,7 @@ class Category_104
 	class FNFAL_DZ			{typeW		buyWA 8000 worth 		sellWA 1600 worth };
 	class FNFAL_CCO_DZ		{typeW		buyWA 8100 worth 		sellWA 1620 worth };
 	class FNFAL_Holo_DZ		{typeW		buyWA 8100 worth 		sellWA 1620 worth };
-	class FNFAL_ANPVS4_DZ	{typeW		buyWA 8350 worth 		sellWA 1670 worth };
+	class FNFAL_ANPVS4_DZE	{typeW		buyWA 8350 worth 		sellWA 1670 worth };
 	class G3_DZ				{typeW		buyWA 7000 worth 		sellWA 1400 worth };
 };
 
@@ -361,52 +361,192 @@ class Category_1104
 //Серия VAL/VSS
 class Category_1105
 {
-	class VAL_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
-	class VAL_Kobra_DZ		{typeW		buyWA 3100 worth 		sellWA 620 worth };
-	class VAL_PSO1_DZ		{typeW		buyWA 3350 worth 		sellWA 670 worth };
-	class VSS_vintorez_DZE	{typeW		buyWA 5000 worth 		sellWA 1000 worth };
+	class VAL_DZ			{typeW		buyWA 1000 worth 		sellWA 200 worth };
+	class VAL_Kobra_DZ		{typeW		buyWA 1100 worth 		sellWA 220 worth };
+	class VAL_PSO1_DZ		{typeW		buyWA 1350 worth 		sellWA 270 worth };
+	class VSS_vintorez_DZE	{typeW		buyWA 3000 worth 		sellWA 600 worth };
 };
 
 //Серия AUG
 class Category_1106
 {
-	
+	class SteyrAug_A3_Black_DZ				{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class SteyrAug_A3_GL_Black_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class SteyrAug_A3_Holo_Black_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class SteyrAug_A3_Holo_GL_Black_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class SteyrAug_A3_ACOG_Black_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class SteyrAug_A3_ACOG_GL_Black_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
 };
 
-// Пист.Пулеметы
+//Серия HK416
+class Category_1107
+{
+	class HK416_DZ				{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK416_CCO_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK416_CCO_SD_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK416_Holo_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK416_Holo_SD_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK416_GL_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK416_GL_SD_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK416_GL_CCO_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK416_GL_CCO_SD_DZ	{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK416_GL_Holo_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK416_GL_Holo_SD_DZ	{typeW		buyWA 3000 worth 		sellWA 600 worth };
+};
+
+//Серия HK417
+class Category_1108
+{
+	class HK417_DZ				{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK417_SD_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK417_CCO_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK417_CCO_SD_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK417_Holo_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK417_Holo_SD_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK417_ACOG_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK417_ACOG_SD_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK417_Sniper_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class HK417_Sniper_SD_DZ	{typeW		buyWA 3000 worth 		sellWA 600 worth };
+};
+
+//Серия RK95
+class Category_1109
+{
+	class RK95_DZ				{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class RK95_SD_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class RK95_CCO_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class RK95_CCO_SD_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class RK95_ACOG_DZ			{typeW		buyWA 3000 worth 		sellWA 600 worth };
+	class RK95_ACOG_SD_DZ		{typeW		buyWA 3000 worth 		sellWA 600 worth };
+};
+
+// Пист.Пулеметы (Другие)
 class Category_108
+{
+	class Sa61_DZ				{typeW		buyWA 80 worth 		sellWA 16 worth };
+	class MAT49_DZ				{typeW		buyWA 200 worth 	sellWA 50 worth };
+	class Sten_MK_DZ			{typeW		buyWA 200 worth 	sellWA 50 worth };
+	class M31_DZ				{typeW		buyWA 500 worth 	sellWA 100 worth };
+};
+
+// Пист.Пулеметы MP5/HK53
+class Category_1200
 {
 	class MP5_DZ				{typeW		buyWA 150 worth 	sellWA 30 worth };
 	class MP5_SD_DZ				{typeW		buyWA 270 worth 	sellWA 54 worth };
+	class HK53A3_DZ				{typeW		buyWA 150 worth 	sellWA 30 worth };
+	class HK53A3_CCO_DZ			{typeW		buyWA 270 worth 	sellWA 54 worth };
+	class HK53A3_Holo_DZ		{typeW		buyWA 270 worth 	sellWA 54 worth };
+};
+
+// Пист.Пулеметы Бизон
+class Category_1201
+{
 	class Bizon_DZ				{typeW		buyWA 300 worth 	sellWA 60 worth };
 	class Bizon_Kobra_DZ		{typeW		buyWA 400 worth 	sellWA 80 worth };
 	class Bizon_Kobra_SD_DZ		{typeW		buyWA 470 worth 	sellWA 94 worth };
 	class Bizon_SD_DZ			{typeW		buyWA 370 worth 	sellWA 74 worth };
-	class Sa61_DZ				{typeW		buyWA 80 worth 		sellWA 16 worth };
+};
+
+// Пист.Пулеметы PDW
+class Category_1202
+{
 	class PDW_DZ				{typeW		buyWA 200 worth 	sellWA 50 worth };
 	class PDW_SD_DZ				{typeW		buyWA 320 worth 	sellWA 64 worth };
-	class MAT49_DZ				{typeW		buyWA 200 worth 	sellWA 50 worth };
-	class Sten_MK_DZ			{typeW		buyWA 200 worth 	sellWA 50 worth };
-	class M31_DZ				{typeW		buyWA 500 worth 	sellWA 100 worth };
 	class KAC_PDW_DZ			{typeW		buyWA 200 worth 	sellWA 50 worth };
 	class KAC_PDW_CCO_DZ		{typeW		buyWA 300 worth 	sellWA 60 worth };
 	class KAC_PDW_HOLO_DZ		{typeW		buyWA 300 worth 	sellWA 60 worth };
 	class KAC_PDW_ACOG_DZ		{typeW		buyWA 450 worth 	sellWA 90 worth };
+};
+
+// Пист.Пулеметы KRISS
+class Category_1203
+{
 	class Kriss_DZ				{typeW		buyWA 400 worth 	sellWA 80 worth };
 	class Kriss_SD_DZ			{typeW		buyWA 700 worth 	sellWA 140 worth };
 	class Kriss_CCO_DZ			{typeW		buyWA 500 worth 	sellWA 100 worth };
 	class Kriss_CCO_SD_DZ		{typeW		buyWA 800 worth 	sellWA 160 worth };
 	class Kriss_Holo_DZ			{typeW		buyWA 500 worth 	sellWA 100 worth };
 	class Kriss_Holo_SD_DZ		{typeW		buyWA 800 worth 	sellWA 160 worth };
+};
+
+// Пист.Пулеметы PDR
+class Category_1204
+{
 	class PDR_DZ				{typeW		buyWA 300 worth 	sellWA 60 worth };
 	class PDR_CCO_DZ			{typeW		buyWA 400 worth 	sellWA 80 worth };
 	class PDR_Holo_DZ			{typeW		buyWA 400 worth 	sellWA 80 worth };
+};
+
+// Пист.Пулеметы P90
+class Category_1205
+{
 	class P90_DZ				{typeW		buyWA 400 worth 	sellWA 80 worth };
 	class P90_SD_DZ				{typeW		buyWA 700 worth 	sellWA 140 worth };
 	class P90_CCO_DZ			{typeW		buyWA 500 worth 	sellWA 100 worth };
 	class P90_CCO_SD_DZ			{typeW		buyWA 800 worth 	sellWA 160 worth };
 	class P90_Holo_DZ			{typeW		buyWA 500 worth 	sellWA 100 worth };
 	class P90_Holo_SD_DZ		{typeW		buyWA 800 worth 	sellWA 160 worth };
+};
+
+// Пист.Пулеметы MP7
+class Category_1206
+{
+	class MP7_DZ				{typeW		buyWA 300 worth 		sellWA 60 worth };
+	class MP7_FL_DZ				{typeW		buyWA 335 worth 		sellWA 67 worth };
+	class MP7_MFL_DZ			{typeW		buyWA 335 worth 		sellWA 67 worth };
+	class MP7_SD_DZ				{typeW		buyWA 600 worth 		sellWA 120 worth };
+	class MP7_SD_FL_DZ			{typeW		buyWA 635 worth 		sellWA 127 worth };
+	class MP7_SD_MFL_DZ			{typeW		buyWA 635 worth 		sellWA 127 worth };
+	class MP7_CCO_DZ			{typeW		buyWA 400 worth 		sellWA 80 worth };
+	class MP7_CCO_FL_DZ			{typeW		buyWA 435 worth 		sellWA 87 worth };
+	class MP7_CCO_MFL_DZ		{typeW		buyWA 435 worth 		sellWA 87 worth };
+	class MP7_CCO_SD_DZ			{typeW		buyWA 700 worth 		sellWA 140 worth };
+	class MP7_CCO_SD_FL_DZ		{typeW		buyWA 735 worth 		sellWA 147 worth };
+	class MP7_CCO_SD_MFL_DZ		{typeW		buyWA 735 worth 		sellWA 147 worth };
+	class MP7_Holo_DZ			{typeW		buyWA 400 worth 		sellWA 80 worth };
+	class MP7_Holo_FL_DZ		{typeW		buyWA 435 worth 		sellWA 87 worth };
+	class MP7_Holo_MFL_DZ		{typeW		buyWA 435 worth 		sellWA 87 worth };
+	class MP7_Holo_SD_DZ		{typeW		buyWA 700 worth 		sellWA 140 worth };
+	class MP7_Holo_SD_FL_DZ		{typeW		buyWA 735 worth 		sellWA 147 worth };
+	class MP7_Holo_SD_MFL_DZ	{typeW		buyWA 735 worth 		sellWA 147 worth };
+	class MP7_ACOG_DZ			{typeW		buyWA 550 worth 		sellWA 110 worth };
+	class MP7_ACOG_FL_DZ		{typeW		buyWA 585 worth 		sellWA 117 worth };
+	class MP7_ACOG_MFL_DZ		{typeW		buyWA 585 worth 		sellWA 117 worth };
+	class MP7_ACOG_SD_DZ		{typeW		buyWA 850 worth 		sellWA 170 worth };
+	class MP7_ACOG_SD_FL_DZ		{typeW		buyWA 885 worth 		sellWA 177 worth };
+	class MP7_ACOG_SD_MFL_DZ	{typeW		buyWA 885 worth 		sellWA 177 worth };
+
+};
+
+// Пист.Пулеметы TMP
+class Category_1207
+{
+	class TMP_DZ				{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class TMP_SD_DZ				{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class TMP_CCO_DZ			{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class TMP_CCO_SD_DZ			{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class TMP_Holo_DZ			{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class TMP_Holo_SD_DZ		{typeW		buyWA 100 worth 		sellWA 20 worth };
+};
+
+// Пист.Пулеметы UMP
+class Category_1208
+{
+	class UMP_DZ				{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class UMP_SD_DZ				{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class UMP_CCO_DZ			{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class UMP_CCO_SD_DZ			{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class UMP_Holo_DZ			{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class UMP_Holo_SD_DZ		{typeW		buyWA 100 worth 		sellWA 20 worth };
+};
+
+// Пист.Пулеметы Scorpion
+class Category_1209
+{
+	class Scorpion_Evo3_DZ				{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class Scorpion_Evo3_CCO_DZ			{typeW		buyWA 100 worth 		sellWA 20 worth };
+	class Scorpion_Evo3_CCO_SD_DZ		{typeW		buyWA 100 worth 		sellWA 20 worth };
 };
 
 // Дробовики
@@ -419,28 +559,65 @@ class Category_109
 	class M1014_DZ				{typeW		buyWA 400 worth 		sellWA 80 worth };
 	class M1014_CCO_DZ			{typeW		buyWA 500 worth 		sellWA 100 worth };
 	class M1014_Holo_DZ			{typeW		buyWA 500 worth 		sellWA 100 worth };
-	class Winchester1866_DZ		{typeW		buyWA 800 worth 		sellWA 160 worth };
-	class Saiga12K				{typeW		buyWA 1250 worth 		sellWA 250 worth };
-	class AA12_DZ				{typeW		buyWA 8000 worth 		sellWA 1600 worth };
-	class USAS12_DZ				{typeW		buyWA 8000 worth 		sellWA 1600 worth };
+	class Saiga12K_DZ			{typeW		buyWA 1250 worth 		sellWA 250 worth };
+	class AA12_DZ				{typeW		buyWA 7000 worth 		sellWA 1400 worth };
+	class USAS12_DZ				{typeW		buyWA 7000 worth 		sellWA 1400 worth };
 };
 
-// Винтовки
+// Винтовки (Другие)
 class Category_110
 {
-	class LeeEnfield_DZ			{typeW		buyWA 2500 worth 		sellWA 500 worth };
+	class LeeEnfield_DZ			{typeW		buyWA 1150 worth 		sellWA 235 worth };
+	class Winchester1866_DZ		{typeW		buyWA 800 worth 		sellWA 160 worth };
 	class Mosin_DZ				{typeW		buyWA 1000 worth 		sellWA 200 worth };
 	class Mosin_FL_DZ			{typeW		buyWA 1035 worth 		sellWA 207 worth };
 	class Mosin_MFL_DZ			{typeW		buyWA 1035 worth 		sellWA 207 worth };
 	class Mosin_Belt_DZ			{typeW		buyWA 1250 worth 		sellWA 250 worth };
 	class Mosin_Belt_FL_DZ		{typeW		buyWA 1285 worth 		sellWA 257 worth };
 	class Mosin_Belt_MFL_DZ		{typeW		buyWA 1285 worth 		sellWA 257 worth };
+	class Mosin_PU_DZ			{typeW		buyWA 1400 worth 		sellWA 280 worth };
+	class Mosin_PU_FL_DZ		{typeW		buyWA 1435 worth 		sellWA 287 worth };
+	class Mosin_PU_MFL_DZ		{typeW		buyWA 1435 worth 		sellWA 287 worth };
+	class Mosin_PU_Belt_DZ		{typeW		buyWA 1650 worth 		sellWA 330 worth };
+	class Mosin_PU_Belt_FL_DZ	{typeW		buyWA 1685 worth 		sellWA 337 worth };
+	class Mosin_PU_Belt_MFL_DZ	{typeW		buyWA 1685 worth 		sellWA 337 worth };
+};
+
+// Винтовки M14
+class Category_1300
+{
 	class M14_DZ				{typeW		buyWA 1500 worth 		sellWA 300 worth };
 	class M14_Gh_DZ				{typeW		buyWA 1720 worth 		sellWA 344 worth };
 	class M14_CCO_DZ			{typeW		buyWA 1600 worth 		sellWA 320 worth };
 	class M14_CCO_Gh_DZ			{typeW		buyWA 1820 worth 		sellWA 364 worth };
 	class M14_Holo_DZ			{typeW		buyWA 1600 worth 		sellWA 320 worth };
 	class M14_Holo_Gh_DZ		{typeW		buyWA 1820 worth 		sellWA 364 worth };
+};
+
+// Винтовки MK14
+class Category_1301
+{
+	class MK14_DZ				{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class MK14_SD_DZ			{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class MK14_CCO_DZ			{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class MK14_CCO_SD_DZ		{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class MK14_Holo_DZ			{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class MK14_Holo_SD_DZ		{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class MK14_ACOG_DZ			{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class MK14_ACOG_SD_DZ		{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class MK14_Sniper_DZ		{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class MK14_Sniper_SD_DZ		{typeW		buyWA 1820 worth 		sellWA 364 worth };
+};
+
+// Винтовки M1A
+class Category_1302
+{
+	class M1A_SC16_BL_DZ			{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class M1A_SC16_BL_CCO_DZ		{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class M1A_SC16_BL_HOLO_DZ		{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class M1A_SC16_BL_ACOG_DZ		{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class M1A_SC16_BL_PU_DZ			{typeW		buyWA 1820 worth 		sellWA 364 worth };
+	class M1A_SC16_BL_Sniper_DZ		{typeW		buyWA 1820 worth 		sellWA 364 worth };
 };
 
 // Пулеметы
@@ -453,6 +630,7 @@ class Category_111
 	class RPK74_Kobra_DZ		{typeW		buyWA 2600 worth 		sellWA 520 worth };
 	class RPK74_PSO1_DZ			{typeW		buyWA 2750 worth 		sellWA 550 worth };
 	class UK59_DZ				{typeW		buyWA 2500 worth 		sellWA 500 worth };
+	class MG36_DZ				{typeW		buyWA 4000 worth 		sellWA 800 worth };
 	class M249_DZ				{typeW		buyWA 5000 worth 		sellWA 1000 worth };
 	class M249_CCO_DZ			{typeW		buyWA 5100 worth 		sellWA 1020 worth };
 	class M249_Holo_DZ			{typeW		buyWA 5100 worth 		sellWA 1020 worth };
@@ -465,7 +643,7 @@ class Category_111
 	class M240_CCO_DZ			{typeW		buyWA 4600 worth 		sellWA 920 worth };
 	class M240_Holo_DZ			{typeW		buyWA 4600 worth 		sellWA 920 worth };
 	class m240_scoped_EP1_DZE	{typeW		buyWA 5000 worth 		sellWA 1000 worth };
-	class MK43_DZ				{typeW		buyWA 4500 worth 		sellWA 900 worth };
+	class Mk43_DZ				{typeW		buyWA 4500 worth 		sellWA 900 worth };
 	class MK43_Holo_DZ			{typeW		buyWA 4600 worth 		sellWA 920 worth };
 	class MK43_M145_DZ			{typeW		buyWA 5000 worth 		sellWA 1000 worth };
 	class MK43_ACOG_DZ			{typeW		buyWA 5000 worth 		sellWA 1000 worth };
@@ -475,18 +653,12 @@ class Category_111
 	class M60A4_EP1_DZE			{typeW		buyWA 7000 worth 		sellWA 1400 worth };
 	class PKM_DZ				{typeW		buyWA 7500 worth 		sellWA 1500 worth };
 	class Pecheneg_DZ			{typeW		buyWA 8000 worth 		sellWA 1600 worth };
-	class MG36_DZ				{typeW		buyWA 4000 worth 		sellWA 800 worth };
 };
 
 // Снайп.Винтовки
 class Category_112
 {
-	class Mosin_PU_DZ				{typeW		buyWA 1400 worth 		sellWA 280 worth };
-	class Mosin_PU_FL_DZ			{typeW		buyWA 1435 worth 		sellWA 287 worth };
-	class Mosin_PU_MFL_DZ			{typeW		buyWA 1435 worth 		sellWA 287 worth };
-	class Mosin_PU_Belt_DZ			{typeW		buyWA 1650 worth 		sellWA 330 worth };
-	class Mosin_PU_Belt_FL_DZ		{typeW		buyWA 1685 worth 		sellWA 337 worth };
-	class Mosin_PU_Belt_MFL_DZ		{typeW		buyWA 1685 worth 		sellWA 337 worth };
+	class M4SPR_DZE					{typeW		buyWA 2000 worth 		sellWA 400 worth };
 	class CZ550_DZ					{typeW		buyWA 2900 worth 		sellWA 580 worth };
 	class CZ750_DZ					{typeW		buyWA 12000 worth 		sellWA 2400 worth };
 	class SVD_DZ					{typeW		buyWA 8000 worth 		sellWA 1600 worth };
@@ -497,12 +669,12 @@ class Category_112
 	class SVD_PSO1_DZ				{typeW		buyWA 8250 worth 		sellWA 1650 worth };
 	class SVD_PSO1_Gh_DZ			{typeW		buyWA 8470 worth 		sellWA 1694 worth };
 	class SVD_NSPU_DZ				{typeW		buyWA 8350 worth 		sellWA 1670 worth };
+	class SVU_PSO1_DZ				{typeW		buyWA 8250 worth 		sellWA 1650 worth };
 	class M24_DZ					{typeW		buyWA 10000 worth 		sellWA 2000 worth };
 	class M24_Gh_DZ					{typeW		buyWA 10220 worth 		sellWA 2044 worth };
 	class M40A3_DZ					{typeW		buyWA 10000 worth 		sellWA 2000 worth };
 	class M40A3_Gh_DZ				{typeW		buyWA 10220 worth 		sellWA 2044 worth };
 	class WA2000_DZ					{typeW		buyWA 11000 worth 		sellWA 2200 worth };
-	class M4SPR_DZE					{typeW		buyWA 3000 worth 		sellWA 600 worth };
 	class KSVK_DZE					{typeW		buyWA 20000 worth 		sellWA 4000 worth };
 	class Barrett_MRAD_Iron_DZ		{typeW		buyWA 15000 worth 		sellWA 3000 worth };
 	class Barrett_MRAD_CCO_DZ		{typeW		buyWA 15100 worth 		sellWA 3020 worth };
@@ -518,8 +690,12 @@ class Category_112
 	class XM2010_SD_DZ				{typeW		buyWA 16000 worth 		sellWA 3200 worth };
 	class XM2010_NV_DZ				{typeW		buyWA 18500 worth 		sellWA 3700 worth };
 	class XM2010_NV_SD_DZ			{typeW		buyWA 21000 worth 		sellWA 4200 worth };
-	class RSASS_DZ					{typeW		buyWA 25000 worth 		sellWA 5000 worth };
-	class RSASS_SD_DZ				{typeW		buyWA 28000 worth 		sellWA 5600 worth };
+	class RSASS_DZ					{typeW		buyWA 15000 worth 		sellWA 3000 worth };
+	class RSASS_SD_DZ				{typeW		buyWA 18000 worth 		sellWA 3600 worth };
+
+	class M21_DZ					{typeW		buyWA 10000 worth 		sellWA 2000 worth };
+	class M21A5_DZ					{typeW		buyWA 10000 worth 		sellWA 2000 worth };
+	class M21A5_SD_DZ				{typeW		buyWA 10000 worth 		sellWA 2000 worth };
 };
 
 // Гранатометы
@@ -527,7 +703,7 @@ class Category_113
 {
 	class Mk13_EP1		{typeW		buyWA 1650 worth 		sellWA 330 worth };
 	class M79_EP1		{typeW		buyWA 1650 worth 		sellWA 330 worth };
-	class M32_EP1		{typeW		buyWA 10000 worth 		sellWA 2000 worth };
+	class M32_EP1		{typeW		buyWA 8000 worth 		sellWA 1600 worth };
 };
 
 // Прочее
