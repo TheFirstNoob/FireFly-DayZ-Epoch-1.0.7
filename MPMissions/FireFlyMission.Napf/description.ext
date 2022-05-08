@@ -206,4 +206,3 @@ class CfgSounds	{
 #include "Configs\CfgTraders\CfgServerTrader.hpp"
 #include "GUI\RecipesPreview\RecipesPreview.hpp" // Автор: ch0c
 #include "GUI\Antihack\Antihack.hpp" // Автор: BigEgg17
-//#include "Configs\R3F_Realism\R3F_Weight\R3F_CfgWeight.hpp"
