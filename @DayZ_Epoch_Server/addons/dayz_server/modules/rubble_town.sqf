@@ -213,6 +213,7 @@ local _box 	= 	_crate createVehicle [0,0,0];
 _box setPos _lootPos;
 clearMagazineCargoGlobal _box;
 clearWeaponCargoGlobal _box;
+_box setVariable ["permaLoot", true];
 
 if (_lowerGrass) then
 {

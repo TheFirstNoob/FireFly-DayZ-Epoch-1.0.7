@@ -223,10 +223,11 @@ else
 	_crash 	= 	_crashModel createVehicle [0,0,0];
 	_crash setDir _dir;
 	_crash setPos _pos;
+	_crash setVariable ["permaLoot",true];
 	
 	if (SPAWN_FIRE) then
 	{
-		PVDZ_obj_Fire = [_crash,4,time,false,FADE_FIRE];
+		PVDZ_obj_Fire = [_crash,6,time,false,FADE_FIRE];
 		publicVariable "PVDZ_obj_Fire";
 	};
 	
@@ -326,6 +327,7 @@ else
 			_end 	= 	true;
 		};
 		
+		/*
 		{
 			if ((isPlayer _x) && (_x distance _pos <= 25)) then
 			{
@@ -346,8 +348,9 @@ else
 				_end 	= 	true;
 			};
 		} count playableUnits;
+		*/
 
-		uiSleep 3;
+		uiSleep 30;
 	};
 	
 	if ((count _markers) > 0) then

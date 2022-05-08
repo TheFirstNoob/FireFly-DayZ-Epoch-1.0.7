@@ -138,6 +138,7 @@ _truck setDir _dir;
 _truck setPos _pos;
 _truck setVehicleLock "locked";
 _truck setVariable ["CharacterID","9999",true];
+_truck setVariable ["permaLoot", true];
 
 if (_disableDMGPump) then
 {
@@ -207,17 +208,25 @@ while {!_done} do {
 		};
 		publicVariable "RemoteMessage";
 		
-		if (_spawn_fire) then
-		{
-			PVDZ_obj_Fire = [_truck, 4, time, false, _fade_fire];
-			publicVariable "PVDZ_obj_Fire";
-		};
+		deleteVehicle _truck;
+		uiSleep 1;
 		
 		// Взрываем технику
 		"Bo_GBU12_LGB" createVehicle _pos;
 		uiSleep 1;
 		"Bo_GBU12_LGB" createVehicle _pos;
 		uiSleep 3;
+		
+		local _crash 	= 	"UralWreck" createVehicle [0,0,0];
+		_crash setDir _dir;
+		_crash setPos _pos;
+		_crash setVariable ["permaLoot",true];
+		
+		if (_spawn_fire) then
+		{
+			PVDZ_obj_Fire = [_crash, 6, time, false, _fade_fire];
+			publicVariable "PVDZ_obj_Fire";
+		};
 		
 		// Создаем лут у Техники (рядом_
 		{

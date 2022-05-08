@@ -30,11 +30,11 @@ local _crate 		= 	"GuerillaCacheBox"; 	// Класснейм ящика
 // Например: Если будет выбран массив [5,"ItemGoldBar"] 2 раза, то итоговое значение будет 10 ItemGoldBar в ящике.
 local _lootList =
 [
-	 [5,"ItemGoldBar"]
-	,[3,"ItemGoldBar10oz"]
-	,"ItemBriefcase100oz"
-	,[20,"ItemSilverBar"]
-	,[10,"ItemSilverBar10oz"]
+	 [5,"ItemCards"]
+	,[3,"ItemCards"]
+	,"ItemCards"
+	,[20,"ItemCards"]
+	,[10,"ItemCards"]
 ];
 
 // Уникальное оружие
@@ -69,6 +69,7 @@ local _box 	= 	_crate createVehicle [0,0,0];
 _box setPos _lootPos;
 clearMagazineCargoGlobal _box;
 clearWeaponCargoGlobal _box;
+_box setVariable ["permaLoot", true];
 
 if (_lowerGrass) then
 {

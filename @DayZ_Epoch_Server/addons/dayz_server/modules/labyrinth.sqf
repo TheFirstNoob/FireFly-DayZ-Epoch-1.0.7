@@ -32,11 +32,11 @@ diag_log "[Лабиринт]: Запуск...";
 
 local _lootList =
 [
-	 [5,"ItemGoldBar"]
-	,[3,"ItemGoldBar10oz"]
-	,"ItemBriefcase100oz"
-	,[20,"ItemSilverBar"]
-	,[10,"ItemSilverBar10oz"]
+	 [5,"ItemCards"]
+	,[3,"ItemCards"]
+	,"ItemCards"
+	,[20,"ItemCards"]
+	,[10,"ItemCards"]
 ];
 
 if (random 1 > _spawnChance and !_debug) exitWith {};
@@ -92,6 +92,7 @@ local _box 	= 	_crate createVehicle [0,0,0];
 _box setPos _lootPos;
 clearMagazineCargoGlobal _box;
 clearWeaponCargoGlobal _box;
+_box setVariable ["permaLoot", true];
 
 if (_lowerGrass) then
 {
