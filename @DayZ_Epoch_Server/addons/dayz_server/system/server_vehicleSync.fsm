@@ -75,7 +75,7 @@ class FSM
     class prepare
     {
       name = "prepare";
-      init = /*%FSM<STATEINIT""">*/"diag_log (""CLEANUP: INITIALIZING Vehicle SCRIPT"");" \n
+      init = /*%FSM<STATEINIT""">*/"diag_log (""[СЕРВЕР]: [FSM]: [server_vehicleSync.fsm]: [ЧИСТКА]: Инициализация скрипта для Техники"");" \n
        "" \n
        "_lastVehicleUpdate = diag_tickTime;" \n
        "" \n
@@ -102,7 +102,7 @@ class FSM
     {
       name = "update_objects";
       init = /*%FSM<STATEINIT""">*/"if (object_debug) then {" \n
-       "	diag_log format[""INFO: needUpdate_objects=%1"",needUpdate_objects];" \n
+       "	diag_log format[""[СЕРВЕР]: [FSM]: [server_vehicleSync.fsm]: [ИНФОРМАЦИЯ]: needUpdate_objects=%1"",needUpdate_objects];" \n
        "};" \n
        "" \n
        "{" \n
