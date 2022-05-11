@@ -1,4 +1,5 @@
 // (c) facoptere@gmail.com, licensed to DayZMod for the community
+// ТОЛЬКО ДЛЯ ЧЕРНОРУСИИ!!!
 private ["_blocked","_fires","_flame","_position"];
 
 _fires = [];
