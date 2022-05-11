@@ -46,6 +46,9 @@ if (isServer) then
 	DZE_TRADER_SPAWNMODE 	=	false;	// Купленная техника будет появляться на парашюте? / True - Да, False - Нет
 	// ZSC
 	Z_globalBankingTraders 	= 	true;	// Включить Банкиров NPC в Трейд-Зонах?
+	
+	// Safe Zone перемещение техники
+	DZE_SafeZone_Relocate 	= 	false; 	// Включить перемещение техники, оставленные в Торговых зонах, после перезапуска сервера? / True - Да, False - Нет
 };
 
 // КЛИЕНТ

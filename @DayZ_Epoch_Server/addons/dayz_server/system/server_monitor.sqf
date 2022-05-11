@@ -644,5 +644,10 @@ if (_hiveLoaded) then
 		{
 			[_x,"gear"] call server_updateObject
 		} count _vehiclesToUpdate;
+		
+		if (DZE_SafeZone_Relocate) then
+		{
+			execVM "\z\addons\dayz_server\system\safezone_relocate.sqf";
+		};
 	};
 };
