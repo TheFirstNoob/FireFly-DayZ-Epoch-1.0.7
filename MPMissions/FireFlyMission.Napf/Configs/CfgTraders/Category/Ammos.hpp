@@ -19,6 +19,8 @@ class Category_200
 	class 30Rnd_762x39_SA58			{typeI	buyA 120 worth 		sellA 24 worth };
 	class 20Rnd_762x51_FNFAL		{typeI	buyA 2200 worth 	sellA 440 worth };
 	class 20Rnd_762x51_G3			{typeI	buyA 2200 worth 	sellA 440 worth };
+	class 20Rnd_762x51_HK417		{typeI	buyA 80 worth 		sellA 16 worth };
+	class 20Rnd_762x51_HK417SD		{typeI	buyA 100 worth 		sellA 20 worth };
 	class 30Rnd_762x39_Groza1		{typeI	buyA 350 worth 		sellA 70 worth };
 	class 30Rnd_762x39_Groza1SD		{typeI	buyA 360 worth 		sellA 72 worth };
 	class 20Rnd_9x39_Groza9			{typeI	buyA 150 worth 		sellA 25 worth };
@@ -82,6 +84,7 @@ class Category_202
 	class 33Rnd_45ACP_KRISS		{typeI	buyA 300 worth 		sellA 60 worth };
 	class 33Rnd_45ACP_KRISSSD	{typeI	buyA 350 worth 		sellA 70 worth };
 	class 50Rnd_57x28_P90		{typeI	buyA 300 worth 		sellA 60 worth };
+	class 50Rnd_57x28_P90SD		{typeI	buyA 300 worth 		sellA 60 worth };
 };
 
 // Патр.Дробовики
@@ -144,6 +147,7 @@ class Category_206
 	class 75Rnd_762x39_RPK			{typeI	buyA 600 worth 		sellA 120 worth };
 	class 100Rnd_556x45_M249		{typeI	buyA 425 worth 		sellA 85 worth };
 	class 200Rnd_556x45_M249		{typeI	buyA 850 worth 		sellA 170 worth };
+	class 200Rnd_556x45_L110A1		{typeI	buyA 850 worth 		sellA 170 worth };
 	class 100Rnd_556x45_BetaCMag	{typeI	buyA 500 worth 		sellA 100 worth };
 	class 100Rnd_762x51_M240		{typeI	buyA 750 worth 		sellA 150 worth };
 	class 100Rnd_762x54_PK			{typeI	buyA 1000 worth 	sellA 200 worth };
