@@ -284,7 +284,7 @@ class Mission
 		};
 		class Item15
 		{
-			position[]={3160, 0, 12110};
+			position[]={3164, 0, 12179};
 			name="Allies1";
 			text="ТЗ Церковь";
 			type="Defend";
@@ -321,10 +321,10 @@ class Mission
 #define TRGDEF a=100;b=100;activationBy="WEST";repeating=1;interruptable=1;age="UNKNOWN";class Effects{};
 		class Item0
 		{
-			position[]={3160, 0, 12110};
+			position[]={3164, 0, 12179};
 			TRGDEF
 			name="Cerkov";
-			expCond="(player distance Cerkov) < 200;";
+			expCond="(player distance Cerkov) < 100;";
 			expActiv="[""Торговая зона - Церковь"",true,""enter""] call player_traderCity;";
 			expDesactiv="[""Торговая зона - Церковь"",true,""leave""] call player_traderCity;";
 		};
@@ -333,7 +333,7 @@ class Mission
 			position[]={9670, 0, 2955};
 			TRGDEF
 			name="Gora";
-			expCond="(player distance Gora) < 200;";
+			expCond="(player distance Gora) < 100;";
 			expActiv="[""Торговая зона - Гора"",true,""enter""] call player_traderCity;";
 			expDesactiv="[""Торговая зона - Гора"",true,""leave""] call player_traderCity;";
 		};
@@ -342,7 +342,7 @@ class Mission
 			position[]={10580, 0, 13110};
 			TRGDEF
 			name="Bunker";
-			expCond="(player distance Bunker) < 200;";
+			expCond="(player distance Bunker) < 100;";
 			expActiv="[""Торговая зона - Бункер"",true,""enter""] call player_traderCity;";
 			expDesactiv="[""Торговая зона - Бункер"",true,""leave""] call player_traderCity;";
 		};
@@ -351,7 +351,7 @@ class Mission
 			position[]={13155, 0, 6395};
 			TRGDEF
 			name="Storosh";
-			expCond="(player distance Storosh) < 200;";
+			expCond="(player distance Storosh) < 100;";
 			expActiv="[""Торговая зона - Сторож"",true,""enter""] call player_traderCity;";
 			expDesactiv="[""Торговая зона - Сторож"",true,""leave""] call player_traderCity;";
 		};

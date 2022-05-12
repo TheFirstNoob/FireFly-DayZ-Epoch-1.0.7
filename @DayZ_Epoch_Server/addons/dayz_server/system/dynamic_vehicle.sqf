@@ -1,18 +1,19 @@
-_Ratio1 = 1;
-_Ratio2 = 2;
-_Ratio3 = 3;
-_Ratio4 = 4;
-_Ratio5 = 5;
-_Ratio6 = 6;
+local _Ratio1 	= 	1;
+local _Ratio2 	= 	2;
+local _Ratio3 	= 	3;
+local _Ratio4 	= 	4;
+local _Ratio5 	= 	5;
+local _Ratio6 	= 	6;
 
 /*
 if (MaxVehicleLimit > 300) then
 {
-	_Ratio1 = round(MaxVehicleLimit * 0.0034);		// 1
-	_Ratio2 = round(MaxVehicleLimit * 0.0067);		// 2
-	_Ratio3 = round(MaxVehicleLimit * 0.01);		// 3
+	_Ratio1 	= 	round(MaxVehicleLimit * 0.0034);		// 1
+	_Ratio2 	= 	round(MaxVehicleLimit * 0.0067);		// 2
+	_Ratio3 	= 	round(MaxVehicleLimit * 0.01);			// 3
 };
 */
+
 AllowedVehiclesList =
 [
 	// Наземная техника
@@ -154,21 +155,38 @@ AllowedVehiclesList =
 	,["CH53_DZE",				_Ratio1]	// CH53
 ];
 
-// Лодки мне не нужны...
 /*
-if (toLower worldName in ["caribou","chernarus","cmr_ovaron","dayznogova","dingor","dzhg","fallujah","fapovo","fdf_isle1_a","isladuala","lingor","mbg_celle2","namalsk","napf","oring","panthera2","ruegen","sara","sauerland","smd_sahrani_a2","tasmania2010","tavi","trinity","utes"]) then
+// Вдруг потребуется, но пока не нужно.
+if (toLower worldName in ["napf","utes"]) then
 {
+
 	AllowedVehiclesList = AllowedVehiclesList + [
-		["Fishing_Boat",_Ratio3],
+		["Fishing_Boat_DZE",_Ratio3],
 		["JetSkiYanahui_Case_Blue",_Ratio1],
 		["JetSkiYanahui_Case_Green",_Ratio1],
 		["JetSkiYanahui_Case_Red",_Ratio1],
 		["JetSkiYanahui_Case_Yellow",_Ratio1],
-		["PBX",_Ratio3],
-		["RHIB",_Ratio3],
-		["Smallboat_1",_Ratio3],
-		["Smallboat_2",_Ratio3],
-		["Zodiac",_Ratio3]
+		["PBX_DZE",_Ratio3],
+		["RHIB_DZE",_Ratio1],
+		["RHIB2Turret_DZE",_Ratio1],
+		["Smallboat_1_DZE",_Ratio3],
+		["Smallboat_2_DZE",_Ratio3],
+		["Zodiac_DZE",_Ratio3],
+		["Submarine_DZE",_Ratio3]
 	];
 };
+
+DZE_Hangar_positions = [];
+DZE_Runway_Positions = [];
+
+// Используем уникальные позиции для спавна Самолетов на Взлетных полосах и в Ангарах.
+call {
+	if (toLower worldName == "napf") exitWith
+	{
+		DZE_Hangar_positions 	= 	[[[18302.373, 2296.6174],128.92664],[[18219.572, 2201.1204],131.85796],[[18163.936, 2138.0906],130.08537],[[5012.1724, 4871.896],260.887802],[[4651.1582, 4806.9653],77.901695],[[4782.9136, 4831.3003],260.053566],[[14391.086, 16890.748],139.26932],[[14482.736, 16787.213],317.649258]];
+		DZE_Runway_Positions 	= 	[[[14339.543, 17166.994],138.43173],[[14254.993, 17096.977],78.634995],[[14742.884, 16617.965],135.36357],[[15147.044, 16147.293],345.509653],[[18139.805, 1965.5642],39.729259],[[3902.3901, 4476.9971],79.775864],[[3876.8308, 4604.3208],128.58391],[[3930.5286, 4311.0532],16.60323],[[3888.5801, 4372.7026],51.806969],[[5208.6802, 4621.9556],286.741859]];
+	};
+};
+
+DZE_AllAircraftPositions = DZE_Hangar_positions + DZE_Runway_Positions;
 */
