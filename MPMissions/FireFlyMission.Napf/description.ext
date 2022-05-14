@@ -204,5 +204,6 @@ class CfgSounds	{
 //#include "\z\addons\dayz_code\gui\description.hpp"
 #include "Configs\CfgLoot\CfgLoot.hpp"
 #include "Configs\CfgTraders\CfgServerTrader.hpp"
+#include "Configs\CfgCrafting\CfgCrafting.hpp"
 #include "GUI\RecipesPreview\RecipesPreview.hpp" // Автор: ch0c
 #include "GUI\Antihack\Antihack.hpp" // Автор: BigEgg17
