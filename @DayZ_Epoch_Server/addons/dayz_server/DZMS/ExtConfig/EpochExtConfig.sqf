@@ -5,7 +5,7 @@
 */
 
 // Generates keys for mission vehicles and places it in the gear. Only works if DZMSSaveVehicles is set to true and Epoch is detected.
-DZMSMakeVehKey = true;
+DZMSMakeVehKey = false;
 
 //If you have ZSC installed then you can set this to true to place money in ai wallets.
 DZMSAICheckWallet = true;
@@ -110,8 +110,8 @@ DZMSGear4 = [
 ];
 
 // New to DayZ Epoch 1.0.7. "ItemDogTagHero" and "ItemDogTagBandit" can be traded at hero and bandit vendors for +/- humanity.
-DZMS_HeroDogTag = .15; // Chance for a dog tag to be added to the inventory of a hero NPC: Between 0 and 1.
-DZMS_BanditDogTag = .15; // Chance for a dog tag to be added to the inventory of a bandit NPC: Between 0 and 1.
+DZMS_HeroDogTag = 0; // Chance for a dog tag to be added to the inventory of a hero NPC: Between 0 and 1.
+DZMS_BanditDogTag = 0; // Chance for a dog tag to be added to the inventory of a bandit NPC: Between 0 and 1.
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 // These are arrays of vehicle classnames for the missions.
