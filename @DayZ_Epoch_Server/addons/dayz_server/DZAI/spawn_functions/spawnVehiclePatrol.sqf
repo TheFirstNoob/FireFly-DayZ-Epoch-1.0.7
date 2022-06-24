@@ -24,7 +24,7 @@ call {
 	};
 	if (_vehicleType isKindOf "LandVehicle") exitWith {
 		_maxGunnerUnits = DZAI_vehGunnerUnits;
-		_maxCargoUnits = DZAI_vehCargoUnits;
+		_maxCargoUnits = floor(random DZAI_vehCargoUnits);
 		_weapongrade = DZAI_vehUnitLevel call DZAI_getWeapongrade;
 		while {_keepLooking} do {
 			_vehSpawnPos = [(getMarkerPos "DZAI_centerMarker"),300 + random((getMarkerSize "DZAI_centerMarker") select 0),random(360),0,[2,750]] call SHK_pos;
@@ -50,6 +50,8 @@ _driver = _unitGroup createUnit [(DZAI_BanditTypes call BIS_fnc_selectRandom2), 
 
 _vehicle = createVehicle [_vehicleType, _vehSpawnPos, [], 0, _spawnMode];
 _vehicle setPos _vehSpawnPos;
+_vehicle setVariable ["ObjectID","1", true];
+_vehicle setVariable ["ObjectUID","1", true];
 _driver moveInDriver _vehicle;
 
 //Run high-priority commands to set up group vehicle
