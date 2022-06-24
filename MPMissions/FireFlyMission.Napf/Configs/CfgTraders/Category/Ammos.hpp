@@ -8,6 +8,7 @@ class Category_200
 {
 	class 30Rnd_556x45_Stanag		{typeI	buyA 150 worth 		sellA 30 worth };
 	class 30Rnd_556x45_StanagSD		{typeI	buyA 150 worth 		sellA 30 worth };
+	class 30Rnd_556x45_Aug			{typeI	buyA 150 worth 		sellA 30 worth };
 	class ACR_30Rnd_680x43			{typeI	buyA 160 worth 		sellA 32 worth };
 	class ACR_30Rnd_680x43_SD		{typeI	buyA 160 worth 		sellA 32 worth };
 	class 30Rnd_556x45_G36			{typeI	buyA 150 worth 		sellA 30 worth };
@@ -15,11 +16,11 @@ class Category_200
 	class 30Rnd_545x39_AK			{typeI	buyA 80 worth 		sellA 16 worth };
 	class 30Rnd_545x39_AKSD			{typeI	buyA 100 worth 		sellA 20 worth };
 	class 30Rnd_762x39_AK47			{typeI	buyA 150 worth 		sellA 30 worth };
+	class 30Rnd_762x39_RK95			{typeI	buyA 150 worth 		sellA 30 worth };
+	class 30Rnd_762x39_RK95SD		{typeI	buyA 200 worth 		sellA 40 worth };
 	class 30Rnd_762x39_SA58			{typeI	buyA 120 worth 		sellA 24 worth };
 	class 20Rnd_762x51_FNFAL		{typeI	buyA 2200 worth 	sellA 440 worth };
 	class 20Rnd_762x51_G3			{typeI	buyA 2200 worth 	sellA 440 worth };
-	class 20Rnd_762x51_HK417		{typeI	buyA 80 worth 		sellA 16 worth };
-	class 20Rnd_762x51_HK417SD		{typeI	buyA 100 worth 		sellA 20 worth };
 	class 30Rnd_762x39_Groza1		{typeI	buyA 350 worth 		sellA 70 worth };
 	class 30Rnd_762x39_Groza1SD		{typeI	buyA 360 worth 		sellA 72 worth };
 	class 20Rnd_9x39_Groza9			{typeI	buyA 150 worth 		sellA 25 worth };
@@ -77,13 +78,17 @@ class Category_202
 	class 70Rnd_9x19_M31		{typeI	buyA 250 worth 		sellA 50 worth };
 	class 10Rnd_B_765x17_Ball	{typeI	buyA 20 worth 		sellA 4 worth };
 	class 20Rnd_B_765x17_Ball	{typeI	buyA 40 worth 		sellA 8 worth };
+	class 20Rnd_9x19_EVO		{typeI	buyA 135 worth 		sellA 23 worth };
+	class 20Rnd_9x19_EVOSD		{typeI	buyA 150 worth 		sellA 25 worth };
 	class 30Rnd_9x19_UZI		{typeI	buyA 150 worth 		sellA 25 worth };
 	class 30Rnd_9x19_UZI_SD		{typeI	buyA 170 worth 		sellA 34 worth };
+	class 30Rnd_9x19_TMP		{typeI	buyA 100 worth 		sellA 20 worth };
+	class 30Rnd_9x19_TMPSD		{typeI	buyA 125 worth 		sellA 25 worth };
 	class 30Rnd_6x35_KAC		{typeI	buyA 150 worth 		sellA 25 worth };
 	class 33Rnd_45ACP_KRISS		{typeI	buyA 300 worth 		sellA 60 worth };
 	class 33Rnd_45ACP_KRISSSD	{typeI	buyA 350 worth 		sellA 70 worth };
 	class 50Rnd_57x28_P90		{typeI	buyA 300 worth 		sellA 60 worth };
-	class 50Rnd_57x28_P90SD		{typeI	buyA 300 worth 		sellA 60 worth };
+	class 50Rnd_57x28_P90SD		{typeI	buyA 350 worth 		sellA 70 worth };
 };
 
 // Патр.Дробовики
@@ -108,6 +113,7 @@ class Category_204
 	class 10Rnd_303British		{typeI	buyA 250 worth 		sellA 50 worth };
 	class 5Rnd_762x54_Mosin		{typeI	buyA 200 worth 		sellA 40 worth };
 	class 20Rnd_762x51_DMR		{typeI	buyA 2800 worth 	sellA 560 worth };
+	class 20Rnd_762x51_DMRSD	{typeI	buyA 3500 worth 	sellA 700 worth };
 	class 10Rnd_86x70_MRAD		{typeI	buyA 3000 worth 	sellA 600 worth };
 	class 15Rnd_W1866_Slug		{typeI	buyA 500 worth 		sellA 100 worth };
 };
@@ -129,6 +135,9 @@ class Category_205
 	class 20Rnd_762x51_RSASS_SD {typeI	buyA 3200 worth 	sellA 640 worth };
 	class 10Rnd_762x51_CZ750	{typeI	buyA 1400 worth 	sellA 280 worth };
 	class 20Rnd_762x51_DMR		{typeI	buyA 2800 worth 	sellA 560 worth };
+	class 20Rnd_762x51_DMRSD	{typeI	buyA 3500 worth 	sellA 700 worth };
+	class 20Rnd_762x51_HK417	{typeI	buyA 2800 worth 	sellA 560 worth };
+	class 20Rnd_762x51_HK417SD	{typeI	buyA 3500 worth 	sellA 700 worth };
 	class 10Rnd_762x54_SVD		{typeI	buyA 850 worth 		sellA 170 worth };
 	class 30Rnd_556x45_Stanag	{typeI	buyA 150 worth 		sellA 30 worth };
 	class 10Rnd_9x39_SP5_VSS	{typeI	buyA 400 worth 		sellA 80 worth };
@@ -145,7 +154,6 @@ class Category_206
 	class 75Rnd_762x39_RPK			{typeI	buyA 600 worth 		sellA 120 worth };
 	class 100Rnd_556x45_M249		{typeI	buyA 425 worth 		sellA 85 worth };
 	class 200Rnd_556x45_M249		{typeI	buyA 850 worth 		sellA 170 worth };
-	class 200Rnd_556x45_L110A1		{typeI	buyA 850 worth 		sellA 170 worth };
 	class 100Rnd_556x45_BetaCMag	{typeI	buyA 500 worth 		sellA 100 worth };
 	class 100Rnd_762x51_M240		{typeI	buyA 750 worth 		sellA 150 worth };
 	class 200Rnd_762x51_M240		{typeI	buyA 1500 worth 	sellA 300 worth };

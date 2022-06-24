@@ -29,6 +29,11 @@ class Category_500
 	class ItemCrowbar			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
 	class ItemHatchet			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
 	class ItemMachete			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
+	class Wrench_DZE			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
+	class Screwdriver_DZE		{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
+	class Scissors_DZE			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
+	class Hammer_DZE			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
+	class Smartphone_DZE		{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
 	class Binocular				{typeW	buyCVP 1000 worth 		sellCVP 200 worth };
 	class Binocular_Vector		{typeW	buyCVP 40000 worth 		sellCVP 8000 worth };
 	class NVGoggles				{typeW	buyCVP 50000 worth 		sellCVP 10000 worth };
@@ -60,10 +65,18 @@ class Category_501
 // Строительство
 class Category_502
 {
-	class ItemTent			{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
-	class ItemDomeTent		{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
-	class ItemDesertTent	{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
-	class plot_pole_kit		{typeI	buyCVP 50000 worth 		sellCVP 10000 worth };
-	class ItemVault			{typeI	buyCVP 50000 worth 		sellCVP 10000 worth };
-	class ItemLockbox		{typeI	buyCVP 75000 worth 		sellCVP 15000 worth };
+	class ItemTent				{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class ItemDomeTent			{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class ItemDesertTent		{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class ItemTentWinter		{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class ItemWinterDomeTent	{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class plot_pole_kit			{typeI	buyCVP 50000 worth 		sellCVP 10000 worth };
+	class ItemVault				{typeI	buyCVP 50000 worth 		sellCVP 10000 worth };
+	class ItemLockbox			{typeI	buyCVP 75000 worth 		sellCVP 15000 worth };
+};
+
+// Фурнитура
+class Category_503
+{
+	class equip_hose			{typeI	buyCVP 500 worth 		sellCVP 100 worth };
 };
