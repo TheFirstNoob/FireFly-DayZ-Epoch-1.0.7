@@ -45,7 +45,7 @@ building_catalog =
 	};		
 
 	lbSort _listbox;
-	local _stats 	= 	format["<br/><br/><br/><br/><br/><t size='1' font='Zeppelin33' align='center' color='#b00000'> Окно предпросмотра </t>"];
+	local _stats 	= 	format["<br/><br/><br/><t size='1' font='Zeppelin33' align='center' color='#b00000'> Окно предпросмотра </t>"];
 	_infobox ctrlSetStructuredText parseText _stats;
 };
 
@@ -73,7 +73,6 @@ building_previews =
 
 	_arrayToText =
 	{
-		private ["_output","_type","_quantity"];
 		local _output 	= 	"";
 		{
 			if (typeName _x == "ARRAY") then
@@ -142,7 +141,7 @@ building_previews =
 	}
 	else
 	{
-		_stats 	= 	_stats + format ["<br/> <t size='0.7' font='Zeppelin33' align='center' color='#ffffff'> Не может быть создано.</t> <br /><br/> <t size='0.7' font='Zeppelin33' align='center' color='#ffffff'> Продается у торговца.</t> <br />" ];
+		_stats 	= 	_stats + format ["<br/> <t size='0.7' font='Zeppelin33' align='center' color='#ffffff'> Не может быть создано.</t> <br /><br/> <t size='0.7' font='Zeppelin33' align='center' color='#ffffff'>Возможно продается у торговца.</t> <br />" ];
 	};
 
 	for "_i" from 0 to (count _cfgmags)-1 do {
@@ -181,7 +180,7 @@ building_previews =
 
 				if (count _craftInto > 0) then
 				{
-					_stats = _stats+ format [_formatedText,(_craftInto call _arrayToText),(_recipe call _arrayToText) ];
+					_stats = _stats + format [_formatedText,(_craftInto call _arrayToText),(_recipe call _arrayToText) ];
 
 					if (count _craftInto1 > 0) then {_stats 	= 	_stats + format [_formatedText,(_craftInto1 call _arrayToText),(_recipe1 call _arrayToText)];};
 					if (count _craftInto2 > 0) then {_stats 	= 	_stats + format [_formatedText,(_craftInto2 call _arrayToText),(_recipe2 call _arrayToText)];};
