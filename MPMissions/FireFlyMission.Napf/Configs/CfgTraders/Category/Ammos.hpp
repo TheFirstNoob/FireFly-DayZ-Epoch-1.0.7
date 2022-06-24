@@ -6,7 +6,6 @@
 // Патр.Автоматы
 class Category_200
 {
-	class 20Rnd_556x45_Stanag		{typeI	buyA 100 worth 		sellA 20 worth };
 	class 30Rnd_556x45_Stanag		{typeI	buyA 150 worth 		sellA 30 worth };
 	class 30Rnd_556x45_StanagSD		{typeI	buyA 150 worth 		sellA 30 worth };
 	class ACR_30Rnd_680x43			{typeI	buyA 160 worth 		sellA 32 worth };
@@ -93,7 +92,6 @@ class Category_203
 	class 8Rnd_12Gauge_Slug			{typeI	buyA 60 worth 		sellA 15 worth };
 	class 8Rnd_B_Saiga12_74Slug		{typeI	buyA 100 worth 		sellA 20 worth };
 	class 8Rnd_B_Saiga12_Pellets	{typeI	buyA 100 worth 		sellA 20 worth };
-	class 15Rnd_W1866_Slug			{typeI	buyA 500 worth 		sellA 100 worth };
 	class 20Rnd_B_AA12_74Slug		{typeI	buyA 2500 worth 	sellA 500 worth };
 	class 20Rnd_B_AA12_Pellets		{typeI	buyA 2500 worth 	sellA 500 worth };
 	class 20Rnd_B_AA12_HE			{typeI	buyA 10000 worth 	sellA 2000 worth };
@@ -108,6 +106,7 @@ class Category_204
 	class 5Rnd_762x54_Mosin		{typeI	buyA 200 worth 		sellA 40 worth };
 	class 20Rnd_762x51_DMR		{typeI	buyA 2800 worth 	sellA 560 worth };
 	class 10Rnd_86x70_MRAD		{typeI	buyA 3000 worth 	sellA 600 worth };
+	class 15Rnd_W1866_Slug		{typeI	buyA 500 worth 		sellA 100 worth };
 };
 
 // Патр.Снайп.Винтовки
@@ -128,7 +127,6 @@ class Category_205
 	class 10Rnd_762x51_CZ750	{typeI	buyA 1400 worth 	sellA 280 worth };
 	class 20Rnd_762x51_DMR		{typeI	buyA 2800 worth 	sellA 560 worth };
 	class 10Rnd_762x54_SVD		{typeI	buyA 850 worth 		sellA 170 worth };
-	class 20Rnd_556x45_Stanag	{typeI	buyA 100 worth 		sellA 20 worth };
 	class 30Rnd_556x45_Stanag	{typeI	buyA 150 worth 		sellA 30 worth };
 	class 10Rnd_9x39_SP5_VSS	{typeI	buyA 400 worth 		sellA 80 worth };
 	class 20Rnd_9x39_SP5_VSS	{typeI	buyA 800 worth 		sellA 160 worth };
@@ -146,6 +144,7 @@ class Category_206
 	class 200Rnd_556x45_M249		{typeI	buyA 850 worth 		sellA 170 worth };
 	class 100Rnd_556x45_BetaCMag	{typeI	buyA 500 worth 		sellA 100 worth };
 	class 100Rnd_762x51_M240		{typeI	buyA 750 worth 		sellA 150 worth };
+	class 200Rnd_762x51_M240		{typeI	buyA 1500 worth 	sellA 300 worth };
 	class 100Rnd_762x54_PK			{typeI	buyA 1000 worth 	sellA 200 worth };
 	class 50Rnd_762x54_UK59			{typeI	buyA 325 worth 		sellA 650 worth };
 };
@@ -163,9 +162,9 @@ class Category_207
 class Category_208
 {
 	class 100Rnd_762x51_M240	{typeI	buyA 750 worth 		sellA 150 worth };
+	class 200Rnd_762x51_M240	{typeI	buyA 1500 worth 	sellA 300 worth };
 	class 100Rnd_762x54_PK		{typeI	buyA 1000 worth 	sellA 200 worth };
 	class 100Rnd_127x99_M2		{typeI	buyA 2500 worth 	sellA 500 worth };
-	class 250Rnd_127x99_M3P		{typeI	buyA 6000 worth 	sellA 1200 worth };
 	class 50Rnd_127x107_DSHKM	{typeI	buyA 1500 worth 	sellA 300 worth };
 	class 150Rnd_127x107_DSHKM	{typeI	buyA 4500 worth 	sellA 900 worth };
 };
