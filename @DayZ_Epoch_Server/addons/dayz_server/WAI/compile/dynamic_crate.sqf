@@ -63,11 +63,7 @@ if (typeName (_loot select 3) == "ARRAY") then {
 	_pistolsArray = (_loot select 3) select 1;
 } else {
 	_numPistols = _loot select 3;
-	if (WAI_Overpoch) then {
-		_pistolsArray = WAI_OWPistol;
-	} else {
-		_pistolsArray = WAI_Pistol;
-	};
+	_pistolsArray = WAI_Pistol;
 };
 
 if (typeName (_loot select 4) == "ARRAY") then {
