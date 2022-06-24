@@ -9,8 +9,8 @@ weaponsRU[] =
 	{Loot_WEAPON,		1,		Makarov_SD_DZ},
 	{Loot_WEAPON,		2,		APS_DZ},
 	{Loot_WEAPON,		1,		APS_SD_DZ},	
-	{Loot_WEAPON,		2,		P99_Silver_DZ},
-	{Loot_WEAPON,		1,		P99_Silver_SD_DZ},			
+	//{Loot_WEAPON,		2,		P99_Silver_DZ},
+	//{Loot_WEAPON,		1,		P99_Silver_SD_DZ},			
 	
 	// Bolt action rifles and shotguns
 	{Loot_WEAPON,		5,		Saiga12K_DZ},
@@ -26,7 +26,7 @@ weaponsRU[] =
 	{Loot_WEAPON,		4,		Groza1_Sniper_DZ},
 	{Loot_WEAPON,		1,		Groza1_Sniper_SD_DZ},	
 	{Loot_WEAPON,		1,		KSVK_DZE}, // High value weapon, low spawn chance.
-	{Loot_WEAPON,		1,		Anzio_20_DZ}, // High value weapon, low spawn chance.
+	//{Loot_WEAPON,		1,		Anzio_20_DZ}, // High value weapon, low spawn chance.
 	
 	// Submachine Guns
 	{Loot_WEAPON,		7,		Bizon_DZ},
@@ -58,14 +58,14 @@ weaponsUS[] =
 	// Pistols
 	{Loot_WEAPON,		1,		MK22_DZ},
 	{Loot_WEAPON,		1,		MK22_SD_DZ},
-	{Loot_WEAPON,		1,		MK22_2_DZ},
-	{Loot_WEAPON,		1,		MK22_2_SD_DZ},	
+	//{Loot_WEAPON,		1,		MK22_2_DZ},
+	//{Loot_WEAPON,		1,		MK22_2_SD_DZ},	
 	{Loot_WEAPON,		2,		M9_DZ},
 	{Loot_WEAPON,		1,		M9_SD_DZ},
 	{Loot_WEAPON,		2,		M9_Camo_DZ},
 	{Loot_WEAPON,		1,		M9_Camo_SD_DZ},	
-	{Loot_WEAPON,		2,		P99_Green_DZ},
-	{Loot_WEAPON,		1,		P99_Green_SD_DZ},	
+	//{Loot_WEAPON,		2,		P99_Green_DZ},
+	//{Loot_WEAPON,		1,		P99_Green_SD_DZ},	
 	{Loot_WEAPON,		2,		Kimber_M1911_DZ},
 	{Loot_WEAPON,		1,		Kimber_M1911_SD_DZ},	
 	
@@ -81,7 +81,7 @@ weaponsUS[] =
 	{Loot_WEAPON,		3,		DMR_DZ},
 	{Loot_WEAPON,		3,		MK14_Sniper_DZ},
 	{Loot_WEAPON,		3,		M21A5_DZ},
-	{Loot_WEAPON,		1,		M107_DZ}, // High value weapon, low spawn chance.
+	//{Loot_WEAPON,		1,		M107_DZ}, // High value weapon, low spawn chance.
 	{Loot_WEAPON,		1,		MSR_DZ}, // High value weapon, low spawn chance.	
 	
 	// Submachine Guns
@@ -94,8 +94,8 @@ weaponsUS[] =
 	// Assault Rifles
 	{Loot_WEAPON,		6,		M14_DZ},
 	{Loot_WEAPON,		6,		MK14_DZ},
-	{Loot_WEAPON,		6,		Masada_DZ},
-	{Loot_WEAPON,		6,		Masada_BL_DZ},
+	//{Loot_WEAPON,		6,		Masada_DZ},
+	//{Loot_WEAPON,		6,		Masada_BL_DZ},
 	{Loot_WEAPON,		6,		CTAR21_DZ},
 	{Loot_WEAPON,		6,		KAC_PDW_DZ},
 	{Loot_WEAPON,		6,		M16A2_DZ},
@@ -103,9 +103,9 @@ weaponsUS[] =
 	{Loot_WEAPON,		6,		M4A1_DZ},
 	{Loot_WEAPON,		6,		M4A1_Camo_CCO_DZ},
 	{Loot_WEAPON,		6,		M4A1_Camo_Holo_GL_DZ},
-	{Loot_WEAPON,		6,		M4A3_DES_CCO_DZ},
+	//{Loot_WEAPON,		6,		M4A3_DES_CCO_DZ},
 	{Loot_WEAPON,		6,		PDR_DZ},
-	{Loot_WEAPON,		6,		ACR_WDL_DZ},
+	//{Loot_WEAPON,		6,		ACR_WDL_DZ},
 	{Loot_WEAPON,		6,		ACR_BL_DZ},
 	
 	// Machine Guns
@@ -125,7 +125,7 @@ weaponsEU[] =
 	{Loot_WEAPON,		2,		M93R_DZ},
 	{Loot_WEAPON,		2,		G18_DZ},
 	{Loot_WEAPON,		2,		P226_DZ},
-	{Loot_WEAPON,		2,		P226_Silver_DZ},
+	//{Loot_WEAPON,		2,		P226_Silver_DZ},
 	{Loot_WEAPON,		2,		PPK_DZ},
 	{Loot_WEAPON,		2,		P38_DZ},
 	{Loot_WEAPON,		2,		G17_DZ},
@@ -150,7 +150,7 @@ weaponsEU[] =
 	{Loot_WEAPON,		4,		FNFAL_DZ},
 	{Loot_WEAPON,		3,		FN_FAL_ANPVS4_DZE}, //FNFAL_ANPVS4_DZ is NV only _DZE is toggleable with attachment support
 	{Loot_WEAPON,		4,		G3_DZ},	
-	{Loot_WEAPON,		1,		BAF_AS50_scoped_DZ}, // High value weapon, low spawn chance.
+	//{Loot_WEAPON,		1,		BAF_AS50_scoped_DZ}, // High value weapon, low spawn chance.
 	{Loot_WEAPON,		1,		Barrett_MRAD_Sniper_DZ}, // High value weapon, low spawn chance.
 	
 	// Submachine Guns
@@ -173,11 +173,11 @@ weaponsEU[] =
 	{Loot_WEAPON,		5,		G36C_Camo_DZ},
 	{Loot_WEAPON,		5,		G36K_Camo_DZ},
 	{Loot_WEAPON,		5,		G36C_Camo_Holo_SD_DZ},
-	{Loot_WEAPON,		5,		XM8_Compact_DZ},
-	{Loot_WEAPON,		5,		XM8_Sharpsh_DZ},
-	{Loot_WEAPON,		5,		XM8_SD_DZ},
-	{Loot_WEAPON,		5,		XM8_DZ},
-	{Loot_WEAPON,		5,		XM8_GL_DZ},
+	//{Loot_WEAPON,		5,		XM8_Compact_DZ},
+	//{Loot_WEAPON,		5,		XM8_Sharpsh_DZ},
+	//{Loot_WEAPON,		5,		XM8_SD_DZ},
+	//{Loot_WEAPON,		5,		XM8_DZ},
+	//{Loot_WEAPON,		5,		XM8_GL_DZ},
 	{Loot_WEAPON,		5,		L85A2_DZ},
 	{Loot_WEAPON,		5,		HK53A3_DZ},
 	{Loot_WEAPON,		5,		Famas_DZ},
@@ -193,12 +193,12 @@ weaponsEU[] =
 	{Loot_WEAPON,		3,		MK17_CCO_SD_DZ},
 	{Loot_WEAPON,		3,		MK17_Holo_SD_DZ},
 	{Loot_WEAPON,		3,		MK17_ACOG_SD_DZ},
-	{Loot_WEAPON,		3,		SteyrAug_A3_Green_DZ},
-	{Loot_WEAPON,		3,		SteyrAug_A3_ACOG_Green_DZ},
-	{Loot_WEAPON,		3,		SteyrAug_A3_Holo_Green_DZ},	
+	//{Loot_WEAPON,		3,		SteyrAug_A3_Green_DZ},
+	//{Loot_WEAPON,		3,		SteyrAug_A3_ACOG_Green_DZ},
+	//{Loot_WEAPON,		3,		SteyrAug_A3_Holo_Green_DZ},	
 	
 	// Machine Guns
-	{Loot_WEAPON,		6,		XM8_SAW_DZ},
+	//{Loot_WEAPON,		6,		XM8_SAW_DZ},
 	{Loot_WEAPON,		4,		L110A1_DZ},
 	{Loot_WEAPON,		4,		MG36_Camo_DZ},
 	{Loot_WEAPON,		4,		MG36_DZ},
@@ -222,7 +222,7 @@ weaponsCZ[] =
 	
 	// Sniper Rifles
 	{Loot_WEAPON,		3,		CZ750_DZ},
-	{Loot_WEAPON,		3,		M110_NV_DZ}, // Technically a US rifle, but the CZ group does not have a DMR type rifle.
+	//{Loot_WEAPON,		3,		M110_NV_DZ}, // Technically a US rifle, but the CZ group does not have a DMR type rifle.
 	{Loot_WEAPON,		1,		XM2010_DZ}, // High value weapon, low spawn chance.
 	
 	// Submachine Guns
@@ -251,7 +251,7 @@ weaponsCZ[] =
 pistols[] = { // Residential spawns
 	{Loot_WEAPON,		9,		Makarov_DZ},
 	{Loot_WEAPON,		7,		M1911_DZ},
-	{Loot_WEAPON,		7,		M1911_2_DZ},
+	//{Loot_WEAPON,		7,		M1911_2_DZ},
 	{Loot_WEAPON,		1,		DesertEagle_DZ},
 	{Loot_WEAPON,		5,		Colt_Revolver_DZ},
 	{Loot_WEAPON,		5,		Revolver_DZ},	

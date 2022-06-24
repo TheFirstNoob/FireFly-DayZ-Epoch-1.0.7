@@ -12,7 +12,7 @@ CrashSiteRU[] =
 {
 	// Weapons
 	{Loot_GROUP,		30,		weaponsRU},
-	{Loot_WEAPON,		1,		Anzio_20_DZ}, // High value weapon
+	//{Loot_WEAPON,		1,		Anzio_20_DZ}, // High value weapon
 	
 	//Tools
 	{Loot_GROUP,		3,		ToolsMilitary},
@@ -45,7 +45,7 @@ CrashSiteRUPile[] =
 	{Loot_GROUP,		5,		ToolsMilitary},
 	{Loot_MAGAZINE,		10,		FoodMRE},
 	{Loot_GROUP,		15,		AmmoRU},
-	{Loot_MAGAZINE,		3,		3rnd_Anzio_20x102mm},
+	//{Loot_MAGAZINE,		3,		3rnd_Anzio_20x102mm},
 	{Loot_GROUP,		10,		MedicalLow}
 };
 
@@ -53,9 +53,9 @@ CrashSiteUS[] =
 {
 	//Weapons
 	{Loot_GROUP,		30,		weaponsUS},
-	{Loot_WEAPON,		1,		M107_DZ}, // High value weapon
+	//{Loot_WEAPON,		1,		M107_DZ}, // High value weapon
 	{Loot_WEAPON,		1,		M200_CheyTac_DZ}, // High value weapon
-	{Loot_WEAPON,		5,		ACR_WDL_NV_DZ}, // ACR WDL NV
+	//{Loot_WEAPON,		5,		ACR_WDL_NV_DZ}, // ACR WDL NV
 	{Loot_WEAPON,		5,		ACR_BL_NV_DZ}, // ACR BL NV
 
 	//Tools
@@ -97,7 +97,7 @@ CrashSiteEU[] =
 {
 	//Weapons
 	{Loot_GROUP,		30,		weaponsEU},
-	{Loot_WEAPON,		1,		BAF_AS50_scoped_DZ}, // High value weapon
+	//{Loot_WEAPON,		1,		BAF_AS50_scoped_DZ}, // High value weapon
 	{Loot_WEAPON,		1,		WA2000_DZ},
 
 	//Tools
@@ -130,7 +130,7 @@ CrashSiteEUPile[] =
 	{Loot_GROUP,		5,		ToolsMilitary},
 	{Loot_MAGAZINE,		10,		FoodMRE},
 	{Loot_GROUP,		15,		AmmoEU},
-	{Loot_MAGAZINE,		3,		5Rnd_127x99_as50},
+	//{Loot_MAGAZINE,		3,		5Rnd_127x99_as50},
 	{Loot_MAGAZINE,		3,		6Rnd_762x51_WA2000},
 	{Loot_GROUP,		10,		MedicalLow}
 };
@@ -139,7 +139,7 @@ CrashSiteCZ[] =
 {
 	//Weapons
 	{Loot_GROUP,		30,		weaponsCZ},
-	{Loot_WEAPON,		1,		MAAWS}, // High value weapon
+	//{Loot_WEAPON,		1,		MAAWS}, // High value weapon
 
 	//Tools
 	{Loot_GROUP,		3,		ToolsMilitary},
@@ -172,6 +172,6 @@ CrashSiteCZPile[] =
 	{Loot_GROUP,		5,		ToolsMilitary},
 	{Loot_MAGAZINE,		10,		FoodMRE},
 	{Loot_GROUP,		15,		AmmoCZ},
-	{Loot_MAGAZINE,		3,		MAAWS_HEAT},
+	//{Loot_MAGAZINE,		3,		MAAWS_HEAT},
 	{Loot_GROUP,		10,		MedicalHigh}
 };

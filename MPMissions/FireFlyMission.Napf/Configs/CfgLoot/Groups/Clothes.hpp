@@ -187,7 +187,7 @@ stalkerclothes[] = {
 // These should probably be split up into separate groups.
 militaryclothes[] = {
 	{Loot_GROUP,	1,	ghilliesuits},
-	{Loot_GROUP,	1,	stalkerclothes},
+	//{Loot_GROUP,	1,	stalkerclothes},
 	{Loot_MAGAZINE,	1,	Skin_Camo1_DZ},	
 	{Loot_MAGAZINE,	1,	Skin_Rocket_DZ},
 	{Loot_MAGAZINE,	1,	Skin_Soldier1_DZ},

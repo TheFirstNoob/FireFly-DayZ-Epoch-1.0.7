@@ -102,7 +102,7 @@ AmmoRU[] =
 	// Sniper rifles
 	{Loot_MAGAZINE,		5,		10Rnd_762x54_SVD},
 	{Loot_MAGAZINE,		3,		5Rnd_127x108_KSVK},
-	{Loot_MAGAZINE,		1,		3rnd_Anzio_20x102mm},
+	//{Loot_MAGAZINE,		1,		3rnd_Anzio_20x102mm},
 	
 	// Machine guns
 	{Loot_MAGAZINE,		3,		75Rnd_545x39_RPK},
@@ -147,7 +147,7 @@ AmmoUS[] =
 	
 	// Sniper rifles
 	{Loot_MAGAZINE,		7,		5Rnd_762x51_M24},
-	{Loot_MAGAZINE,		1,		10Rnd_127x99_m107},
+	//{Loot_MAGAZINE,		1,		10Rnd_127x99_m107},
 	{Loot_MAGAZINE,		1,		7Rnd_86x70_MSR},
 	{Loot_MAGAZINE,		4,		20Rnd_762x51_DMR},
 	{Loot_MAGAZINE,		4,		20Rnd_762x51_DMRSD},
@@ -212,7 +212,7 @@ AmmoEU[] =
 	
 	//Sniper rifle
 	{Loot_MAGAZINE,		3,		5Rnd_86x70_L115A1},
-	{Loot_MAGAZINE,		1,		5Rnd_127x99_as50},
+	//{Loot_MAGAZINE,		1,		5Rnd_127x99_as50},
 	{Loot_MAGAZINE,		1,		20Rnd_762x51_RSASS},
 	{Loot_MAGAZINE,		1,		10Rnd_86x70_MRAD},
 	
