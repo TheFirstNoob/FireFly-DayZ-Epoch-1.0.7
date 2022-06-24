@@ -7,6 +7,7 @@
 // Инструменты
 class Category_500
 {
+	class ItemRadio				{typeW	buyCVP 1000 worth 		sellCVP 200 worth };
 	class ItemKnife				{typeW	buyCVP 1000 worth 		sellCVP 200 worth };
 	class ItemMatchbox			{typeW	buyCVP 1000 worth 		sellCVP 200 worth };
 	class ItemToolbox			{typeW	buyCVP 5000 worth 		sellCVP 1000 worth };
@@ -15,18 +16,23 @@ class Category_500
 	class ItemCompass			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
 	class ItemMap				{typeW	buyCVP 5000 worth 		sellCVP 1000 worth };
 	class ItemGPS				{typeW	buyCVP 12500 worth 		sellCVP 2500 worth };
+	class ItemKeyKit			{typeW	buyCVP 10000 worth 		sellCVP 2000 worth };
+	class ItemSolder_DZE		{typeW	buyCVP 3000 worth 		sellCVP 600 worth };
+	class ItemAPSI_DZE			{typeW	buyCVP 10000 worth 		sellCVP 2000 worth };
 	class ItemFlashlight		{typeW	buyCVP 250 worth 		sellCVP 50 worth };
 	class ItemFlashlightRed		{typeW	buyCVP 250 worth 		sellCVP 50 worth };
 	class ItemFishingPole		{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
 	class ItemShovel			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
 	class ItemPickaxe			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
+	class ItemSledge			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
 	class ItemSledgeHammer		{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
 	class ItemCrowbar			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
 	class ItemHatchet			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
-	class Itemmachete			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
+	class ItemMachete			{typeW	buyCVP 2500 worth 		sellCVP 500 worth };
 	class Binocular				{typeW	buyCVP 1000 worth 		sellCVP 200 worth };
 	class Binocular_Vector		{typeW	buyCVP 40000 worth 		sellCVP 8000 worth };
 	class NVGoggles				{typeW	buyCVP 50000 worth 		sellCVP 10000 worth };
+	class Handsaw_DZE			{typeW	buyCVP 1000 worth 		sellCVP 200 worth };
 	class ChainSaw				{typeW	buyCVP 20000 worth 		sellCVP 4000 worth };
 	class ChainSawB				{typeW	buyCVP 20000 worth 		sellCVP 4000 worth };
 	class ChainSawG				{typeW	buyCVP 20000 worth 		sellCVP 4000 worth };
@@ -51,7 +57,7 @@ class Category_501
 	class ItemFuelBarrel		{typeI	buyCVP 21000 worth 		sellCVP 4200 worth };
 };
 
-// Строительство (1 место - 1000)
+// Строительство
 class Category_502
 {
 	class ItemTent			{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
