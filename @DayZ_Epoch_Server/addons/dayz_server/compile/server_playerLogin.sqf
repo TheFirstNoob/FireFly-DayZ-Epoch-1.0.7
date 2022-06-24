@@ -1,4 +1,4 @@
-private ["_playerID","_endMission","_0","_1","_timeleft","_doLoop","_key","_primary","_model","_inventory","_backpack","_survival","_CharacterCoins","_group","_playerCoins","_BankCoins","_hiveVer","_mags","_wpns","_bcpk","_config","_isInfected","_remaining","_playerObj","_playerName","_newPlayer","_isNew","_charID","_isHiveOk","_rangeMoney"];
+private ["_playerID","_endMission","_0","_1","_timeleft","_doLoop","_key","_primary","_model","_inventory","_backpack","_survival","_CharacterCoins","_group","_playerCoins","_BankCoins","_hiveVer","_mags","_wpns","_bcpk","_config","_isInfected","_remaining","_playerObj","_playerName","_newPlayer","_isNew","_charID","_isHiveOk"];
 
 #include "\z\addons\dayz_server\compile\server_toggle_debug.hpp"
 
@@ -24,8 +24,6 @@ _CharacterCoins 	= 	0;
 _group 				= 	[];
 _playerCoins 		= 	0;
 _BankCoins 			= 	0;
-// TFN
-_rangeMoney			= 	[0,0];
 
 if (_playerID == "") then
 {
@@ -176,15 +174,10 @@ else
 
 _isHiveOk 	= (_hiveVer >= dayz_hiveVersionNo); //EDITED
 
-// Выдаем деньги новым игрокам. (НУЖНА ПРОВЕРКА НА ЗНАЧЕНИЯ < 0!!!)
-if (Z_SingleCurrency && ZSC_CoinForNewPlayer select 0 && _newPlayer) then
+if (_newPlayer) then
 {
-	_rangeMoney = ZSC_CoinForNewPlayer select 1;
-	_characterCoins = ceil(random (_rangeMoney select 1)) max (_rangeMoney select 0);
+	_characterCoins = floor(random 50000);
 };
-
-// Временно для отладки TFN.
-//diag_log format ["[СЕРВЕР]: [server_playerLogin.sqf]: [СТАТУС НОВЫХ ИГРОКОВ]: Z_SingleCurrency: %1, ZSC_CoinForNewPlayer: %2 [%3,%4]",Z_SingleCurrency,ZSC_CoinForNewPlayer select 0,_rangeMoney];
 
 PVCDZ_plr_Login 	= 	[_charID,_inventory,_backpack,_survival,_isNew,dayz_versionNo,_model,_isHiveOk,_newPlayer,_isInfected,_group,_CharacterCoins,_playerCoins,_BankCoins];
 (owner _playerObj) publicVariableClient "PVCDZ_plr_Login";
