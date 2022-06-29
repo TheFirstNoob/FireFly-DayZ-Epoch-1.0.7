@@ -23,6 +23,7 @@ class Category_190
 	class Attachment_PSO1			{typeI		buyWA 250 worth 	sellWA 50 worth };
 	class Attachment_ANPVS4			{typeI		buyWA 600 worth 	sellWA 120 worth };
 	class Attachment_NSPU			{typeI		buyWA 400 worth 	sellWA 80 worth };
+	class Attachment_NV				{typeI		buyWA 400 worth 	sellWA 80 worth };
 	class Attachment_Sup9			{typeI		buyWA 120 worth 	sellWA 24 worth };
 	class Attachment_Sup10			{typeI		buyWA 120 worth 	sellWA 24 worth };
 	class Attachment_Sup45			{typeI		buyWA 300 worth 	sellWA 60 worth };
@@ -205,7 +206,7 @@ class Category_104
 	class FNFAL_DZ			{typeW		buyWA 8000 worth 		sellWA 1600 worth };
 	class FNFAL_CCO_DZ		{typeW		buyWA 8100 worth 		sellWA 1620 worth };
 	class FNFAL_Holo_DZ		{typeW		buyWA 8100 worth 		sellWA 1620 worth };
-	class FNFAL_ANPVS4_DZE	{typeW		buyWA 8350 worth 		sellWA 1670 worth };
+	class FNFAL_ANPVS4_DZ	{typeW		buyWA 8350 worth 		sellWA 1670 worth };
 	class G3_DZ				{typeW		buyWA 7000 worth 		sellWA 1400 worth };
 };
 
