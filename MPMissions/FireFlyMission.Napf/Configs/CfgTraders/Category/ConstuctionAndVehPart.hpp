@@ -70,6 +70,12 @@ class Category_502
 	class ItemDesertTent		{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
 	class ItemTentWinter		{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
 	class ItemWinterDomeTent	{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class desert_net_kit		{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class desert_large_net_kit	{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class forest_net_kit		{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class forest_large_net_kit	{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class winter_net_kit		{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
+	class winter_large_net_kit	{typeI	buyCVP 3000 worth 		sellCVP 600 worth };
 	class plot_pole_kit			{typeI	buyCVP 50000 worth 		sellCVP 10000 worth };
 	class ItemVault				{typeI	buyCVP 50000 worth 		sellCVP 10000 worth };
 	class ItemLockbox			{typeI	buyCVP 75000 worth 		sellCVP 15000 worth };
@@ -78,5 +84,17 @@ class Category_502
 // Фурнитура
 class Category_503
 {
-	class equip_hose			{typeI	buyCVP 500 worth 		sellCVP 100 worth };
+	class equip_hose				{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Шланг
+	class equip_rope				{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Веревка
+	class equip_string				{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Нитки
+	class equip_tent_poles			{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Распорки палаток/сетей
+	class ItemBurlap				{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Джутовая ткань
+	class ItemCanvas				{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Холст
+	class equip_rag					{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Тряпка
+	class equip_gauze				{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Марля
+	class equip_nails				{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Гвозди
+	class equip_floppywire			{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Шлейф
+	class equip_scrapelectronics	{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Радиодетали
+	class equip_metal_sheet			{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Лист металла
+	class ItemScrews				{typeI	buyCVP 500 worth 		sellCVP 100 worth };	// Коробка шурупов
 };
