@@ -44,13 +44,13 @@ FireFly - Это российский сервер с упором на хард
 * CUSTOM: Переделанные точки спавна (Mission.sqm)
 * CUSTOM: Переделанные Торговые зоны (Mission.sqm + dayz_server\buildings + dayz_server\Traders)
 * CUSTOM: Выдача денег новым игрокам (ConfigVariables.sqf)
-* FIXES: 1.0.7.1 RC2
+* FIXES: Убраны до выхода 1.0.7.1 (07.07.22)
 
 --------------------------
 Тестеры (Отдельное спасибо):
 --------------------------
 (Weekly Open Games, Другие):  
-* [BE] First (TheFirstNoob)
+* [BE]First (TheFirstNoob)
 * Burbon
 * ArtOfWar
 * Fantomow
@@ -61,6 +61,7 @@ FireFly - Это российский сервер с упором на хард
 * Nostradamus
 * [BE]Oubi
 * [BE]Dtyz
+* I1ch
 
 --------------------------
 Licence (Лицензия):
