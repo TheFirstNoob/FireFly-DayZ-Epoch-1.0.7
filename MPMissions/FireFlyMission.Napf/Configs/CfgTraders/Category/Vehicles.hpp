@@ -139,7 +139,6 @@ class Category_306
 	class AH6X_DZ				{typeVeh	buyV 40000 worth 	sellV 8000 worth };
 	class MH6J_DZ				{typeVeh	buyV 80000 worth 	sellV 16000 worth };
 	class MTVR_Bird_DZE			{typeVeh	buyV 60000 worth 	sellV 12000 worth };
-	class Mi17_BLACK_DZE		{typeVeh	buyV 112500 worth 	sellV 22500 worth };
 	class Mi17_medevac_RU_DZ	{typeVeh	buyV 125000 worth 	sellV 25000 worth };
 	class UH60M_MEV_EP1_DZ		{typeVeh	buyV 135000 worth 	sellV 27000 worth };
 	class BAF_Merlin_DZE		{typeVeh	buyV 150000 worth 	sellV 30000 worth };
