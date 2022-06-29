@@ -16,7 +16,7 @@ VehicleDocuments[] = {
 
 GenericDocuments[] = {
 	{Loot_MAGAZINE,		1,		ItemDocument},
-	{Loot_MAGAZINE,		1,		ItemPlotDeed},
+	//{Loot_MAGAZINE,		1,		ItemPlotDeed},
 	{Loot_MAGAZINE,		1,		ItemLetter},
 	{Loot_MAGAZINE,		1,		ItemBook1},
 	{Loot_MAGAZINE,		1,		ItemBook2},
