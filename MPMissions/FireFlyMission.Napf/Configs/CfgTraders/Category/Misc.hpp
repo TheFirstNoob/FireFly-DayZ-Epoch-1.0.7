@@ -23,10 +23,30 @@ class Category_604
 	class ItemBook3				{typeI	buyM 999999999 worth 		sellM 3000 worth };
 	class ItemBook4				{typeI	buyM 999999999 worth 		sellM 4000 worth };
 	class ItemBookBible			{typeI	buyM 999999999 worth 		sellM 5000 worth };
-	class ItemCards				{typeI	buyM 999999999 worth 		sellM 3500 worth };
+	class ItemCards				{typeI	buyM 999999999 worth 		sellM 1000 worth };
+	class ItemLetter			{typeI	buyM 999999999 worth 		sellM 1000 worth };
 	class ItemNewsPaper			{typeI	buyM 999999999 worth 		sellM 2500 worth };
+	class ItemTrashPaper		{typeI	buyM 999999999 worth 		sellM 2500 worth };
 	class ItemTrashPaperMusic	{typeI	buyM 999999999 worth 		sellM 4000 worth };
 	class ItemTrashRazor		{typeI	buyM 999999999 worth 		sellM 3000 worth };
 	class ItemTrashToiletpaper	{typeI	buyM 999999999 worth 		sellM 3000 worth };
 	class PileMedBooks			{typeI	buyM 999999999 worth 		sellM 25000 worth };
+};
+
+// Документы
+class Category_605
+{
+	class ItemORP				{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemAVE				{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemLRK				{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemTNK				{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemARM				{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemTruckORP			{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemTruckAVE			{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemTruckLRK			{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemTruckTNK			{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemTruckARM			{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemHeliAVE			{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemHeliLRK			{typeI	buyM 10000 worth 		sellM 2000 worth };
+	class ItemHeliTNK			{typeI	buyM 10000 worth 		sellM 2000 worth };
 };
